@@ -30,12 +30,17 @@
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 2rem;
+  grid-template-columns: 380px 1fr;
+  gap: 1.5rem;
   align-items: start;
 
   @media (max-width: 968px) {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    padding: 0 0.5rem;
   }
 }
 
@@ -187,6 +192,11 @@
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
 
+  @media (max-width: 640px) {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+  }
+
   &:hover {
     box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
@@ -199,25 +209,41 @@
     font-weight: 700;
     border-bottom: 3px solid var(--accent-color);
     padding-bottom: 0.5rem;
+
+    @media (max-width: 640px) {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      border-bottom-width: 2px;
+    }
   }
 
   .area-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+
+    @media (max-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+    }
   }
 
   .area-btn {
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.8rem;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: var(--shadow-sm);
+
+    @media (max-width: 640px) {
+      padding: 0.5rem 0.6rem;
+      font-size: 0.8rem;
+    }
 
     &:hover {
       transform: translateY(-3px);
