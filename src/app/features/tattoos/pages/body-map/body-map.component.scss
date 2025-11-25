@@ -1,6 +1,6 @@
 .body-map-container {
   min-height: 100vh;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   position: relative;
   z-index: 1;
@@ -9,18 +9,18 @@
 .header {
   text-align: center;
   color: white;
-  margin-bottom: 3rem;
-  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     font-weight: 700;
   }
 
   p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     opacity: 0.95;
     font-weight: 300;
   }
@@ -30,7 +30,7 @@
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 500px 1fr;
+  grid-template-columns: 420px 1fr;
   gap: 2rem;
   align-items: start;
 
@@ -42,17 +42,21 @@
 .svg-container {
   background: white;
   border-radius: var(--radius-lg);
-  padding: 3rem 2rem;
+  padding: 2rem 1.5rem;
   box-shadow: var(--shadow-xl);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 600px;
+  max-height: calc(100vh - 220px);
+  overflow: hidden;
+  min-height: auto;
 
   .body-svg {
     max-width: 100%;
+    max-height: calc(100vh - 260px);
     height: auto;
+    width: auto;
     display: block;
   }
 
