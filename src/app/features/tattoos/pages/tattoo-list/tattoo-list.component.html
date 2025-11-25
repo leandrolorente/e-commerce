@@ -1,0 +1,74 @@
+<app-header></app-header>
+
+<main class="tattoo-list-page">
+  <div class="container">
+    @if (selectedArea()) {
+      <div class="page-header">
+        <h1>Tatuagens para: {{ selectedArea() }}</h1>
+        <a routerLink="/body-map" class="back-link">← Voltar para Áreas do Corpo</a>
+      </div>
+    } @else {
+      <div class="page-header">
+        <h1>🎨 Catálogo Completo de Tatuagens</h1>
+        <a routerLink="/body-map" class="back-link">📍 Ver por Área do Corpo</a>
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Carregando tatuagens...</p>
+      </div>
+    } @else {
+      @if (tattoos().length > 0) {
+        <div class="tattoos-grid">
+          @for (tattoo of tattoos(); track tattoo.id) {
+            <div class="tattoo-card">
+              <div class="tattoo-image">
+                <img [src]="tattoo.images[0]" [alt]="tattoo.name">
+                <div class="size-badge">{{ tattoo.size }}</div>
+              </div>
+              <div class="tattoo-info">
+                <h3>{{ tattoo.name }}</h3>
+                <p class="description">{{ tattoo.description }}</p>
+                <div class="meta-info">
+                  <span class="style">{{ tattoo.style }}</span>
+                  <span class="area">{{ tattoo.bodyArea }}</span>
+                </div>
+                <div class="tattoo-details">
+                  <div class="detail">
+                    <span class="label">Artista:</span>
+                    <span>{{ tattoo.artist }}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="label">Tempo:</span>
+                    <span>{{ tattoo.estimatedTime }}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="label">Dificuldade:</span>
+                    <span class="difficulty" [class]="'level-' + tattoo.difficulty.toLowerCase()">
+                      {{ tattoo.difficulty }}
+                    </span>
+                  </div>
+                </div>
+                <div class="tattoo-footer">
+                  <span class="price">{{ tattoo.estimatedPrice | currency: 'BRL' }}</span>
+                  <button class="btn-contact">💬 Consultar</button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <h2>Nenhuma tatuagem encontrada</h2>
+          <p>Não temos tatuagens cadastradas para esta área ainda.</p>
+          <a routerLink="/body-map" class="btn btn-primary">Explorar Outras Áreas</a>
+        </div>
+      }
+    }
+  </div>
+</main>
+
+<app-footer></app-footer>

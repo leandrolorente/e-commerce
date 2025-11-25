@@ -12,6 +12,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/products/products.routes').then(m => m.PRODUCTS_ROUTES)
   },
   {
+    path: 'tattoos',
+    loadChildren: () => import('./features/tattoos/tattoos.routes').then(m => m.TATTOOS_ROUTES)
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },

@@ -59,6 +59,8 @@
 
     <!-- Navigation -->
     <nav class="nav">
+      <a routerLink="/tattoos/body-map" class="nav-link">📍 Áreas do Corpo</a>
+      
       @if (isAuthenticated()) {
         <div class="user-menu">
           <span class="user-name">Olá, {{ currentUser()?.name }}</span>

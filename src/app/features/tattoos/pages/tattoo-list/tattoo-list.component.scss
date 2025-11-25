@@ -1,0 +1,236 @@
+.tattoo-list-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+  padding: var(--spacing-lg) 0 var(--spacing-2xl);
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+  
+  .back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto var(--spacing-md);
+    border: 4px solid rgba(45, 95, 122, 0.1);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.tattoos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.tattoo-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.tattoo-image {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .size-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.tattoo-info {
+  padding: var(--spacing-md);
+  
+  h3 {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  
+  .description {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 var(--spacing-md) 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.meta-info {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  
+  span {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .style {
+    background: rgba(45, 95, 122, 0.1);
+    color: var(--primary-color);
+  }
+  
+  .area {
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
+  }
+}
+
+.tattoo-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: #f8f9fa;
+  border-radius: var(--radius-sm);
+  
+  .detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    
+    .label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    
+    .difficulty {
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 11px;
+      
+      &.level-fácil {
+        background: #d4edda;
+        color: #155724;
+      }
+      
+      &.level-médio {
+        background: #fff3cd;
+        color: #856404;
+      }
+      
+      &.level-difícil {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      
+      &.level-expert {
+        background: #d6d8db;
+        color: #1b1e21;
+      }
+    }
+  }
+}
+
+.tattoo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid #e9ecef;
+  
+  .price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  
+  .btn-contact {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg, #2d5f7a 0%, #1f4358 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(45, 95, 122, 0.3);
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  
+  .empty-icon {
+    font-size: 80px;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--text-primary);
+  }
+  
+  p {
+    color: var(--text-secondary);
+    margin: 0 0 var(--spacing-lg) 0;
+  }
+}

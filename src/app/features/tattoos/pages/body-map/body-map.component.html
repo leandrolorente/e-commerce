@@ -1,0 +1,151 @@
+<div class="body-map-container">
+  <div class="header">
+    <h1>🎨 Áreas do Corpo para Tatuagem</h1>
+    <p>Selecione a área onde deseja fazer sua tatuagem</p>
+  </div>
+
+  <div class="content">
+    <!-- SVG Body Map -->
+    <div class="svg-container">
+      <svg viewBox="0 0 400 800" class="body-svg">
+        <!-- Cabeça -->
+        <ellipse cx="200" cy="60" rx="40" ry="50" class="body-part head" 
+                 (click)="selectArea(BodyArea.ROSTO)"
+                 (mouseenter)="onAreaHover('Rosto')"
+                 (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Pescoço -->
+        <rect x="185" y="100" width="30" height="30" class="body-part neck"
+              (click)="selectArea(BodyArea.PESCOCO)"
+              (mouseenter)="onAreaHover('Pescoço')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Ombros -->
+        <ellipse cx="150" cy="145" rx="25" ry="15" class="body-part shoulder"
+                 (click)="selectArea(BodyArea.OMBRO)"
+                 (mouseenter)="onAreaHover('Ombro Esquerdo')"
+                 (mouseleave)="onAreaLeave()"/>
+        <ellipse cx="250" cy="145" rx="25" ry="15" class="body-part shoulder"
+                 (click)="selectArea(BodyArea.OMBRO)"
+                 (mouseenter)="onAreaHover('Ombro Direito')"
+                 (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Peito/Tronco -->
+        <rect x="165" y="130" width="70" height="90" rx="10" class="body-part chest"
+              (click)="selectArea(BodyArea.PEITO)"
+              (mouseenter)="onAreaHover('Peito')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Barriga -->
+        <rect x="175" y="220" width="50" height="60" rx="10" class="body-part stomach"
+              (click)="selectArea(BodyArea.BARRIGA)"
+              (mouseenter)="onAreaHover('Barriga')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Braços Superiores -->
+        <rect x="120" y="150" width="35" height="80" rx="15" class="body-part arm"
+              (click)="selectArea(BodyArea.BRACO_SUPERIOR)"
+              (mouseenter)="onAreaHover('Braço Superior Esquerdo')"
+              (mouseleave)="onAreaLeave()"/>
+        <rect x="245" y="150" width="35" height="80" rx="15" class="body-part arm"
+              (click)="selectArea(BodyArea.BRACO_SUPERIOR)"
+              (mouseenter)="onAreaHover('Braço Superior Direito')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Antebraços -->
+        <rect x="115" y="230" width="30" height="90" rx="12" class="body-part forearm"
+              (click)="selectArea(BodyArea.ANTEBRACO_COMPLETO)"
+              (mouseenter)="onAreaHover('Antebraço Esquerdo')"
+              (mouseleave)="onAreaLeave()"/>
+        <rect x="255" y="230" width="30" height="90" rx="12" class="body-part forearm"
+              (click)="selectArea(BodyArea.ANTEBRACO_COMPLETO)"
+              (mouseenter)="onAreaHover('Antebraço Direito')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Mãos -->
+        <ellipse cx="130" cy="335" rx="12" ry="18" class="body-part hand"
+                 (click)="selectArea(BodyArea.MAO_COMPLETA)"
+                 (mouseenter)="onAreaHover('Mão Esquerda')"
+                 (mouseleave)="onAreaLeave()"/>
+        <ellipse cx="270" cy="335" rx="12" ry="18" class="body-part hand"
+                 (click)="selectArea(BodyArea.MAO_COMPLETA)"
+                 (mouseenter)="onAreaHover('Mão Direita')"
+                 (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Quadril/Lombar -->
+        <rect x="175" y="280" width="50" height="40" rx="8" class="body-part hip"
+              (click)="selectArea(BodyArea.LOMBAR)"
+              (mouseenter)="onAreaHover('Lombar')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Coxas -->
+        <rect x="165" y="320" width="30" height="100" rx="12" class="body-part thigh"
+              (click)="selectArea(BodyArea.COXA)"
+              (mouseenter)="onAreaHover('Coxa Esquerda')"
+              (mouseleave)="onAreaLeave()"/>
+        <rect x="205" y="320" width="30" height="100" rx="12" class="body-part thigh"
+              (click)="selectArea(BodyArea.COXA)"
+              (mouseenter)="onAreaHover('Coxa Direita')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Joelhos -->
+        <circle cx="180" cy="430" r="12" class="body-part knee"
+                (click)="selectArea(BodyArea.JOELHO)"
+                (mouseenter)="onAreaHover('Joelho Esquerdo')"
+                (mouseleave)="onAreaLeave()"/>
+        <circle cx="220" cy="430" r="12" class="body-part knee"
+                (click)="selectArea(BodyArea.JOELHO)"
+                (mouseenter)="onAreaHover('Joelho Direito')"
+                (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Panturrilhas -->
+        <rect x="170" y="442" width="25" height="90" rx="10" class="body-part calf"
+              (click)="selectArea(BodyArea.PANTURRILHA)"
+              (mouseenter)="onAreaHover('Panturrilha Esquerda')"
+              (mouseleave)="onAreaLeave()"/>
+        <rect x="205" y="442" width="25" height="90" rx="10" class="body-part calf"
+              (click)="selectArea(BodyArea.PANTURRILHA)"
+              (mouseenter)="onAreaHover('Panturrilha Direita')"
+              (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Tornozelos -->
+        <circle cx="182" cy="545" r="8" class="body-part ankle"
+                (click)="selectArea(BodyArea.TORNOZELO)"
+                (mouseenter)="onAreaHover('Tornozelo Esquerdo')"
+                (mouseleave)="onAreaLeave()"/>
+        <circle cx="218" cy="545" r="8" class="body-part ankle"
+                (click)="selectArea(BodyArea.TORNOZELO)"
+                (mouseenter)="onAreaHover('Tornozelo Direito')"
+                (mouseleave)="onAreaLeave()"/>
+        
+        <!-- Pés -->
+        <ellipse cx="182" cy="565" rx="15" ry="22" class="body-part foot"
+                 (click)="selectArea(BodyArea.PE_COMPLETO)"
+                 (mouseenter)="onAreaHover('Pé Esquerdo')"
+                 (mouseleave)="onAreaLeave()"/>
+        <ellipse cx="218" cy="565" rx="15" ry="22" class="body-part foot"
+                 (click)="selectArea(BodyArea.PE_COMPLETO)"
+                 (mouseenter)="onAreaHover('Pé Direito')"
+                 (mouseleave)="onAreaLeave()"/>
+      </svg>      @if (hoveredArea()) {
+        <div class="tooltip">{{ hoveredArea() }}</div>
+      }
+    </div>
+
+    <!-- Category Buttons -->
+    <div class="categories">
+      @for (category of categories; track category.name) {
+        <div class="category-card">
+          <h3>{{ category.name }}</h3>
+          <div class="area-buttons">
+            @for (area of category.areas; track area.value) {
+              <button class="area-btn" (click)="selectArea(area.value)">
+                {{ area.label }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
