@@ -40,4 +40,9 @@ export class TattooListComponent implements OnInit {
       this.loading.set(false);
     }, 300);
   }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = 'https://placehold.co/600x400/2d5f7a/ffffff?text=Tatuagem';
+  }
 }

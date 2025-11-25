@@ -7,123 +7,123 @@
   <div class="content">
     <!-- SVG Body Map -->
     <div class="svg-container">
-      <svg viewBox="0 0 400 800" class="body-svg">
+      <svg viewBox="0 0 400 850" class="body-svg" preserveAspectRatio="xMidYMid meet">
         <!-- Cabeça -->
-        <ellipse cx="200" cy="60" rx="40" ry="50" class="body-part head" 
+        <ellipse cx="200" cy="70" rx="50" ry="60" class="body-part head" 
                  (click)="selectArea(BodyArea.ROSTO)"
                  (mouseenter)="onAreaHover('Rosto')"
                  (mouseleave)="onAreaLeave()"/>
         
         <!-- Pescoço -->
-        <rect x="185" y="100" width="30" height="30" class="body-part neck"
+        <rect x="180" y="120" width="40" height="35" rx="5" class="body-part neck"
               (click)="selectArea(BodyArea.PESCOCO)"
               (mouseenter)="onAreaHover('Pescoço')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Ombros -->
-        <ellipse cx="150" cy="145" rx="25" ry="15" class="body-part shoulder"
+        <ellipse cx="145" cy="165" rx="35" ry="20" class="body-part shoulder"
                  (click)="selectArea(BodyArea.OMBRO)"
                  (mouseenter)="onAreaHover('Ombro Esquerdo')"
                  (mouseleave)="onAreaLeave()"/>
-        <ellipse cx="250" cy="145" rx="25" ry="15" class="body-part shoulder"
+        <ellipse cx="255" cy="165" rx="35" ry="20" class="body-part shoulder"
                  (click)="selectArea(BodyArea.OMBRO)"
                  (mouseenter)="onAreaHover('Ombro Direito')"
                  (mouseleave)="onAreaLeave()"/>
         
         <!-- Peito/Tronco -->
-        <rect x="165" y="130" width="70" height="90" rx="10" class="body-part chest"
+        <rect x="160" y="155" width="80" height="105" rx="12" class="body-part chest"
               (click)="selectArea(BodyArea.PEITO)"
               (mouseenter)="onAreaHover('Peito')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Barriga -->
-        <rect x="175" y="220" width="50" height="60" rx="10" class="body-part stomach"
+        <rect x="170" y="260" width="60" height="70" rx="12" class="body-part stomach"
               (click)="selectArea(BodyArea.BARRIGA)"
               (mouseenter)="onAreaHover('Barriga')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Braços Superiores -->
-        <rect x="120" y="150" width="35" height="80" rx="15" class="body-part arm"
+        <rect x="105" y="170" width="45" height="95" rx="20" class="body-part arm"
               (click)="selectArea(BodyArea.BRACO_SUPERIOR)"
               (mouseenter)="onAreaHover('Braço Superior Esquerdo')"
               (mouseleave)="onAreaLeave()"/>
-        <rect x="245" y="150" width="35" height="80" rx="15" class="body-part arm"
+        <rect x="250" y="170" width="45" height="95" rx="20" class="body-part arm"
               (click)="selectArea(BodyArea.BRACO_SUPERIOR)"
               (mouseenter)="onAreaHover('Braço Superior Direito')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Antebraços -->
-        <rect x="115" y="230" width="30" height="90" rx="12" class="body-part forearm"
+        <rect x="100" y="265" width="38" height="105" rx="15" class="body-part forearm"
               (click)="selectArea(BodyArea.ANTEBRACO_COMPLETO)"
               (mouseenter)="onAreaHover('Antebraço Esquerdo')"
               (mouseleave)="onAreaLeave()"/>
-        <rect x="255" y="230" width="30" height="90" rx="12" class="body-part forearm"
+        <rect x="262" y="265" width="38" height="105" rx="15" class="body-part forearm"
               (click)="selectArea(BodyArea.ANTEBRACO_COMPLETO)"
               (mouseenter)="onAreaHover('Antebraço Direito')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Mãos -->
-        <ellipse cx="130" cy="335" rx="12" ry="18" class="body-part hand"
+        <ellipse cx="119" cy="385" rx="16" ry="22" class="body-part hand"
                  (click)="selectArea(BodyArea.MAO_COMPLETA)"
                  (mouseenter)="onAreaHover('Mão Esquerda')"
                  (mouseleave)="onAreaLeave()"/>
-        <ellipse cx="270" cy="335" rx="12" ry="18" class="body-part hand"
+        <ellipse cx="281" cy="385" rx="16" ry="22" class="body-part hand"
                  (click)="selectArea(BodyArea.MAO_COMPLETA)"
                  (mouseenter)="onAreaHover('Mão Direita')"
                  (mouseleave)="onAreaLeave()"/>
         
         <!-- Quadril/Lombar -->
-        <rect x="175" y="280" width="50" height="40" rx="8" class="body-part hip"
+        <rect x="170" y="330" width="60" height="50" rx="10" class="body-part hip"
               (click)="selectArea(BodyArea.LOMBAR)"
               (mouseenter)="onAreaHover('Lombar')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Coxas -->
-        <rect x="165" y="320" width="30" height="100" rx="12" class="body-part thigh"
+        <rect x="160" y="380" width="35" height="120" rx="15" class="body-part thigh"
               (click)="selectArea(BodyArea.COXA)"
               (mouseenter)="onAreaHover('Coxa Esquerda')"
               (mouseleave)="onAreaLeave()"/>
-        <rect x="205" y="320" width="30" height="100" rx="12" class="body-part thigh"
+        <rect x="205" y="380" width="35" height="120" rx="15" class="body-part thigh"
               (click)="selectArea(BodyArea.COXA)"
               (mouseenter)="onAreaHover('Coxa Direita')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Joelhos -->
-        <circle cx="180" cy="430" r="12" class="body-part knee"
+        <circle cx="177" cy="510" r="16" class="body-part knee"
                 (click)="selectArea(BodyArea.JOELHO)"
                 (mouseenter)="onAreaHover('Joelho Esquerdo')"
                 (mouseleave)="onAreaLeave()"/>
-        <circle cx="220" cy="430" r="12" class="body-part knee"
+        <circle cx="223" cy="510" r="16" class="body-part knee"
                 (click)="selectArea(BodyArea.JOELHO)"
                 (mouseenter)="onAreaHover('Joelho Direito')"
                 (mouseleave)="onAreaLeave()"/>
         
         <!-- Panturrilhas -->
-        <rect x="170" y="442" width="25" height="90" rx="10" class="body-part calf"
+        <rect x="165" y="526" width="30" height="110" rx="12" class="body-part calf"
               (click)="selectArea(BodyArea.PANTURRILHA)"
               (mouseenter)="onAreaHover('Panturrilha Esquerda')"
               (mouseleave)="onAreaLeave()"/>
-        <rect x="205" y="442" width="25" height="90" rx="10" class="body-part calf"
+        <rect x="205" y="526" width="30" height="110" rx="12" class="body-part calf"
               (click)="selectArea(BodyArea.PANTURRILHA)"
               (mouseenter)="onAreaHover('Panturrilha Direita')"
               (mouseleave)="onAreaLeave()"/>
         
         <!-- Tornozelos -->
-        <circle cx="182" cy="545" r="8" class="body-part ankle"
+        <circle cx="180" cy="648" r="12" class="body-part ankle"
                 (click)="selectArea(BodyArea.TORNOZELO)"
                 (mouseenter)="onAreaHover('Tornozelo Esquerdo')"
                 (mouseleave)="onAreaLeave()"/>
-        <circle cx="218" cy="545" r="8" class="body-part ankle"
+        <circle cx="220" cy="648" r="12" class="body-part ankle"
                 (click)="selectArea(BodyArea.TORNOZELO)"
                 (mouseenter)="onAreaHover('Tornozelo Direito')"
                 (mouseleave)="onAreaLeave()"/>
         
         <!-- Pés -->
-        <ellipse cx="182" cy="565" rx="15" ry="22" class="body-part foot"
+        <ellipse cx="180" cy="675" rx="18" ry="26" class="body-part foot"
                  (click)="selectArea(BodyArea.PE_COMPLETO)"
                  (mouseenter)="onAreaHover('Pé Esquerdo')"
                  (mouseleave)="onAreaLeave()"/>
-        <ellipse cx="218" cy="565" rx="15" ry="22" class="body-part foot"
+        <ellipse cx="220" cy="675" rx="18" ry="26" class="body-part foot"
                  (click)="selectArea(BodyArea.PE_COMPLETO)"
                  (mouseenter)="onAreaHover('Pé Direito')"
                  (mouseleave)="onAreaLeave()"/>

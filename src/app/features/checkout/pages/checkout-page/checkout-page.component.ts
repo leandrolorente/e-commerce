@@ -9,7 +9,6 @@ import { FooterComponent } from '@shared/components/layout/footer/footer.compone
   standalone: true,
   imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent],
   template: `
-    <app-header></app-header>
     <main class="container" style="min-height: 60vh; padding: 2rem 0;">
       <h1>Finalizar Compra</h1>
       <p>Página de checkout em desenvolvimento...</p>

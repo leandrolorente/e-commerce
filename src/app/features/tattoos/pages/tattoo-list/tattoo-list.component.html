@@ -1,16 +1,14 @@
-<app-header></app-header>
-
 <main class="tattoo-list-page">
   <div class="container">
     @if (selectedArea()) {
       <div class="page-header">
         <h1>Tatuagens para: {{ selectedArea() }}</h1>
-        <a routerLink="/body-map" class="back-link">← Voltar para Áreas do Corpo</a>
+        <a routerLink="/tattoos/body-map" class="back-link">← Voltar para Áreas do Corpo</a>
       </div>
     } @else {
       <div class="page-header">
         <h1>🎨 Catálogo Completo de Tatuagens</h1>
-        <a routerLink="/body-map" class="back-link">📍 Ver por Área do Corpo</a>
+        <a routerLink="/tattoos/body-map" class="back-link">📍 Ver por Área do Corpo</a>
       </div>
     }
 
@@ -25,7 +23,11 @@
           @for (tattoo of tattoos(); track tattoo.id) {
             <div class="tattoo-card">
               <div class="tattoo-image">
-                <img [src]="tattoo.images[0]" [alt]="tattoo.name">
+                <img 
+                  [src]="tattoo.images[0]" 
+                  [alt]="tattoo.name"
+                  (error)="onImageError($event)"
+                  loading="lazy">
                 <div class="size-badge">{{ tattoo.size }}</div>
               </div>
               <div class="tattoo-info">

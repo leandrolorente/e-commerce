@@ -8,9 +8,9 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Dragão Oriental Completo',
     description: 'Manga completa com dragão japonês em tons de preto e cinza, com detalhes em vermelho',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800',
-      'https://images.unsplash.com/photo-1598816466952-1a31c4997fb2?w=800'
+      'https://picsum.photos/seed/dragon1/800/600',
+      'https://picsum.photos/seed/dragon2/800/600',
+      'https://picsum.photos/seed/dragon3/800/600'
     ],
     bodyArea: BodyArea.BRACO_COMPLETO,
     style: TattooStyle.JAPONES,
@@ -26,8 +26,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Tribal Maori Braço',
     description: 'Padrões tribais maoris tradicionais em preto sólido',
     images: [
-      'https://images.unsplash.com/photo-1565284469096-a83cf8e98eb3?w=800',
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800'
+      'https://picsum.photos/seed/tribal1/800/600',
+      'https://picsum.photos/seed/tribal2/800/600'
     ],
     bodyArea: BodyArea.BRACO_COMPLETO,
     style: TattooStyle.MAORI,
@@ -45,8 +45,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Leão Realista',
     description: 'Retrato realista de leão em preto e cinza com sombreamento detalhado',
     images: [
-      'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?w=800',
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800'
+      'https://picsum.photos/seed/lion1/800/600',
+      'https://picsum.photos/seed/lion2/800/600'
     ],
     bodyArea: BodyArea.ANTEBRACO_COMPLETO,
     style: TattooStyle.REALISMO,
@@ -62,8 +62,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Geometria Sagrada',
     description: 'Mandala geométrica com padrões simétricos e linhas finas',
     images: [
-      'https://images.unsplash.com/photo-1590246815053-dab0d99563ab?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/mandala1/800/600',
+      'https://picsum.photos/seed/mandala2/800/600'
     ],
     bodyArea: BodyArea.ANTEBRACO_EXTERNO,
     style: TattooStyle.GEOMETRICO,
@@ -81,7 +81,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Águia Old School',
     description: 'Águia tradicional americana com rosas e fitas',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/eagle/800/600'
     ],
     bodyArea: BodyArea.PEITO,
     style: TattooStyle.OLD_SCHOOL,
@@ -99,8 +99,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Fênix das Cinzas',
     description: 'Fênix renascendo em estilo aquarela com cores vibrantes',
     images: [
-      'https://images.unsplash.com/photo-1590246815053-dab0d99563ab?w=800',
-      'https://images.unsplash.com/photo-1565284469096-a83cf8e98eb3?w=800'
+      'https://picsum.photos/seed/phoenix1/800/600',
+      'https://picsum.photos/seed/phoenix2/800/600'
     ],
     bodyArea: BodyArea.COSTAS_COMPLETAS,
     style: TattooStyle.AQUARELA,
@@ -118,7 +118,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Flores Japonesas',
     description: 'Peônias e flores de cerejeira em estilo oriental',
     images: [
-      'https://images.unsplash.com/photo-1598816466952-1a31c4997fb2?w=800'
+      'https://picsum.photos/seed/flowers1/800/600'
     ],
     bodyArea: BodyArea.COXA,
     style: TattooStyle.JAPONES,
@@ -136,7 +136,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Lobo Geométrico',
     description: 'Lobo em linhas geométricas com elementos tribais',
     images: [
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/wolf/800/600'
     ],
     bodyArea: BodyArea.PANTURRILHA,
     style: TattooStyle.GEOMETRICO,
@@ -154,7 +154,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Samurai Warrior',
     description: 'Guerreiro samurai em estilo japonês tradicional',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/samurai/800/600'
     ],
     bodyArea: BodyArea.OMBRO,
     style: TattooStyle.JAPONES,
@@ -172,7 +172,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Minimalista Linha Única',
     description: 'Desenho minimalista de montanhas em linha contínua',
     images: [
-      'https://images.unsplash.com/photo-1590246815053-dab0d99563ab?w=800'
+      'https://picsum.photos/seed/mountain/800/600'
     ],
     bodyArea: BodyArea.PULSO,
     style: TattooStyle.MINIMALISTA,
@@ -190,7 +190,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Mandala Abdominal',
     description: 'Grande mandala com padrões geométricos complexos',
     images: [
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/mandala3/800/600'
     ],
     bodyArea: BodyArea.BARRIGA,
     style: TattooStyle.GEOMETRICO,
@@ -208,7 +208,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Rosa Fine Line',
     description: 'Rosa delicada em linhas finas no pescoço',
     images: [
-      'https://images.unsplash.com/photo-1598816466952-1a31c4997fb2?w=800'
+      'https://picsum.photos/seed/rose1/800/600'
     ],
     bodyArea: BodyArea.PESCOCO,
     style: TattooStyle.FINE_LINE,
@@ -226,7 +226,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Frase Inspiradora',
     description: 'Frase em lettering script nas costelas',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/lettering/800/600'
     ],
     bodyArea: BodyArea.COSTELAS,
     style: TattooStyle.FINE_LINE,
@@ -244,7 +244,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Borboletas Aquarela',
     description: 'Borboletas coloridas em estilo aquarela',
     images: [
-      'https://images.unsplash.com/photo-1590246815053-dab0d99563ab?w=800'
+      'https://picsum.photos/seed/butterfly/800/600'
     ],
     bodyArea: BodyArea.LOMBAR,
     style: TattooStyle.AQUARELA,
@@ -262,7 +262,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Flecha Minimalista',
     description: 'Flecha simples em estilo minimalista',
     images: [
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/arrow/800/600'
     ],
     bodyArea: BodyArea.TORNOZELO,
     style: TattooStyle.MINIMALISTA,
@@ -280,7 +280,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Símbolos Místicos',
     description: 'Símbolos esotéricos nas mãos',
     images: [
-      'https://images.unsplash.com/photo-1565284469096-a83cf8e98eb3?w=800'
+      'https://picsum.photos/seed/symbols/800/600'
     ],
     bodyArea: BodyArea.MAO_COMPLETA,
     style: TattooStyle.BLACKWORK,
@@ -298,7 +298,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Linha Facial Minimalista',
     description: 'Linhas delicadas e minimalistas no rosto',
     images: [
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800'
+      'https://picsum.photos/seed/face/800/600'
     ],
     bodyArea: BodyArea.ROSTO,
     style: TattooStyle.MINIMALISTA,
@@ -316,8 +316,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Mandala Nuca',
     description: 'Mandala detalhada na nuca com padrões geométricos',
     images: [
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800',
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/nape1/800/600',
+      'https://picsum.photos/seed/nape2/800/600'
     ],
     bodyArea: BodyArea.NUCA,
     style: TattooStyle.GEOMETRICO,
@@ -335,9 +335,9 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Asas de Anjo',
     description: 'Asas majestosas nas costas superiores em estilo realista',
     images: [
-      'https://images.unsplash.com/photo-1565284469096-a83cf8e98eb3?w=800',
-      'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?w=800',
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800'
+      'https://picsum.photos/seed/wings1/800/600',
+      'https://picsum.photos/seed/wings2/800/600',
+      'https://picsum.photos/seed/wings3/800/600'
     ],
     bodyArea: BodyArea.COSTAS_SUPERIOR,
     style: TattooStyle.REALISMO,
@@ -355,10 +355,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Dragão Japonês Full Back',
     description: 'Dragão tradicional japonês cobrindo todas as costas',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800',
-      'https://images.unsplash.com/photo-1598816466952-1a31c4997fb2?w=800',
-      'https://images.unsplash.com/photo-1565284469096-a83cf8e98eb3?w=800'
+      'https://picsum.photos/seed/fullback1/800/600',
+      'https://picsum.photos/seed/fullback2/800/600',
+      'https://picsum.photos/seed/fullback3/800/600',
+      'https://picsum.photos/seed/fullback4/800/600'
     ],
     bodyArea: BodyArea.COSTAS_COMPLETAS,
     style: TattooStyle.JAPONES,
@@ -376,8 +376,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Flores e Pássaros',
     description: 'Composição delicada de flores e pássaros nas costelas',
     images: [
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/birds1/800/600',
+      'https://picsum.photos/seed/birds2/800/600'
     ],
     bodyArea: BodyArea.COSTELAS,
     style: TattooStyle.AQUARELA,
@@ -395,8 +395,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Geometria Sagrada Abdominal',
     description: 'Padrões geométricos sagrados no abdômen',
     images: [
-      'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?w=800',
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800'
+      'https://picsum.photos/seed/sacred1/800/600',
+      'https://picsum.photos/seed/sacred2/800/600'
     ],
     bodyArea: BodyArea.ABDOMEN,
     style: TattooStyle.GEOMETRICO,
@@ -414,8 +414,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Flores Delicadas Braço Interno',
     description: 'Rosas em estilo Fine Line no braço interno',
     images: [
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/innerarm1/800/600',
+      'https://picsum.photos/seed/innerarm2/800/600'
     ],
     bodyArea: BodyArea.BRACO_INTERNO,
     style: TattooStyle.FINE_LINE,
@@ -433,8 +433,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Tribal Maori Braço Externo',
     description: 'Padrões tribais maoris no braço externo',
     images: [
-      'https://images.unsplash.com/photo-1565284469096-a83cf8e98eb3?w=800',
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/outerarm1/800/600',
+      'https://picsum.photos/seed/outerarm2/800/600'
     ],
     bodyArea: BodyArea.BRACO_EXTERNO,
     style: TattooStyle.MAORI,
@@ -452,7 +452,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Citação e Flores',
     description: 'Frase motivacional com ornamentos florais no antebraço interno',
     images: [
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/quote/800/600'
     ],
     bodyArea: BodyArea.ANTEBRACO_INTERNO,
     style: TattooStyle.FINE_LINE,
@@ -470,8 +470,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Relógio Old School',
     description: 'Relógio de bolso em estilo old school no antebraço externo',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800',
-      'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?w=800'
+      'https://picsum.photos/seed/clock1/800/600',
+      'https://picsum.photos/seed/clock2/800/600'
     ],
     bodyArea: BodyArea.ANTEBRACO_EXTERNO,
     style: TattooStyle.OLD_SCHOOL,
@@ -489,7 +489,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Mandala Cotovelo',
     description: 'Mandala geométrica especialmente desenhada para o cotovelo',
     images: [
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800'
+      'https://picsum.photos/seed/elbow/800/600'
     ],
     bodyArea: BodyArea.COTOVELO,
     style: TattooStyle.GEOMETRICO,
@@ -507,7 +507,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Anéis e Símbolos nos Dedos',
     description: 'Pequenos símbolos e designs de anéis nos dedos',
     images: [
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/fingers/800/600'
     ],
     bodyArea: BodyArea.DEDOS,
     style: TattooStyle.MINIMALISTA,
@@ -525,8 +525,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Flores Aquarela Coxa',
     description: 'Composição de flores em estilo aquarela na coxa interna',
     images: [
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/thigh1/800/600',
+      'https://picsum.photos/seed/thigh2/800/600'
     ],
     bodyArea: BodyArea.COXA_INTERNA,
     style: TattooStyle.AQUARELA,
@@ -544,9 +544,9 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Tigre Realista Coxa',
     description: 'Retrato realista de tigre na coxa externa',
     images: [
-      'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?w=800',
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800',
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/tiger1/800/600',
+      'https://picsum.photos/seed/tiger2/800/600',
+      'https://picsum.photos/seed/tiger3/800/600'
     ],
     bodyArea: BodyArea.COXA_EXTERNA,
     style: TattooStyle.REALISMO,
@@ -564,8 +564,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Ornamental Canela',
     description: 'Padrões ornamentais detalhados na canela',
     images: [
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/shin1/800/600',
+      'https://picsum.photos/seed/shin2/800/600'
     ],
     bodyArea: BodyArea.CANELA,
     style: TattooStyle.ORNAMENTAL,
@@ -583,7 +583,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Flores e Folhagens Pé',
     description: 'Composição de flores e folhagens no pé',
     images: [
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800'
+      'https://picsum.photos/seed/foot/800/600'
     ],
     bodyArea: BodyArea.PE_COMPLETO,
     style: TattooStyle.FINE_LINE,
@@ -601,7 +601,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Símbolos nos Dedos do Pé',
     description: 'Pequenos símbolos minimalistas nos dedos do pé',
     images: [
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/toes/800/600'
     ],
     bodyArea: BodyArea.DEDOS_PE,
     style: TattooStyle.MINIMALISTA,
@@ -619,8 +619,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Rosa Realista Ombro',
     description: 'Rosa em estilo realista no ombro frontal',
     images: [
-      'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?w=800',
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800'
+      'https://picsum.photos/seed/shoulder1/800/600',
+      'https://picsum.photos/seed/shoulder2/800/600'
     ],
     bodyArea: BodyArea.OMBRO_FRONTAL,
     style: TattooStyle.REALISMO,
@@ -638,7 +638,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Tribal Ombro Traseiro',
     description: 'Desenho tribal no ombro traseiro',
     images: [
-      'https://images.unsplash.com/photo-1565284469096-a83cf8e98eb3?w=800'
+      'https://picsum.photos/seed/backshoulder/800/600'
     ],
     bodyArea: BodyArea.OMBRO_TRASEIRO,
     style: TattooStyle.MAORI,
@@ -656,8 +656,8 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Colar Ornamental',
     description: 'Design ornamental simulando um colar no peito superior',
     images: [
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800'
+      'https://picsum.photos/seed/necklace1/800/600',
+      'https://picsum.photos/seed/necklace2/800/600'
     ],
     bodyArea: BodyArea.PEITO_SUPERIOR,
     style: TattooStyle.ORNAMENTAL,
@@ -675,7 +675,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Pássaro Lateral Peito',
     description: 'Pássaro em voo no peito lateral',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/bird/800/600'
     ],
     bodyArea: BodyArea.PEITO_LATERAL,
     style: TattooStyle.BLACKWORK,
@@ -693,10 +693,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Manga Japonesa Perna',
     description: 'Sleeve completa de perna com elementos japoneses',
     images: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800',
-      'https://images.unsplash.com/photo-1598816466952-1a31c4997fb2?w=800',
-      'https://images.unsplash.com/photo-1590246814883-57c8e7e92e21?w=800'
+      'https://picsum.photos/seed/legsleeve1/800/600',
+      'https://picsum.photos/seed/legsleeve2/800/600',
+      'https://picsum.photos/seed/legsleeve3/800/600',
+      'https://picsum.photos/seed/legsleeve4/800/600'
     ],
     bodyArea: BodyArea.PERNA_COMPLETA,
     style: TattooStyle.JAPONES,
@@ -714,7 +714,7 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Mandala Joelho',
     description: 'Mandala especialmente adaptada para o joelho',
     images: [
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800'
+      'https://picsum.photos/seed/knee/800/600'
     ],
     bodyArea: BodyArea.JOELHO,
     style: TattooStyle.GEOMETRICO,
@@ -732,9 +732,9 @@ export const MOCK_TATTOOS: Tattoo[] = [
     name: 'Árvore da Vida',
     description: 'Árvore da vida detalhada nas costas',
     images: [
-      'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?w=800',
-      'https://images.unsplash.com/photo-1598371611061-aa2b8f5c4787?w=800',
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f40d0?w=800'
+      'https://picsum.photos/seed/tree1/800/600',
+      'https://picsum.photos/seed/tree2/800/600',
+      'https://picsum.photos/seed/tree3/800/600'
     ],
     bodyArea: BodyArea.COSTAS,
     style: TattooStyle.BLACKWORK,
@@ -746,4 +746,3 @@ export const MOCK_TATTOOS: Tattoo[] = [
     tags: ['árvore', 'vida', 'blackwork', 'costas']
   }
 ];
-
