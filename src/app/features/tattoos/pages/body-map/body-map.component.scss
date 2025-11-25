@@ -71,7 +71,7 @@
     stroke: #ffffff;
     stroke-width: 3;
     opacity: 0.85;
-    
+
     &:hover {
       opacity: 1;
       stroke-width: 4;
@@ -84,60 +84,60 @@
   }
 
   // Cores por região seguindo o tema do sistema
-  .head { 
-    fill: var(--accent-color); 
+  .head {
+    fill: var(--accent-color);
   }
-  
-  .neck { 
-    fill: var(--warning-color); 
+
+  .neck {
+    fill: var(--warning-color);
   }
-  
-  .shoulder { 
-    fill: var(--success-color); 
+
+  .shoulder {
+    fill: var(--success-color);
   }
-  
-  .chest { 
-    fill: #118ab2; 
+
+  .chest {
+    fill: #118ab2;
   }
-  
-  .stomach { 
-    fill: #8b5cf6; 
+
+  .stomach {
+    fill: #8b5cf6;
   }
-  
-  .arm { 
-    fill: #ef476f; 
+
+  .arm {
+    fill: #ef476f;
   }
-  
-  .forearm { 
-    fill: #f59e0b; 
+
+  .forearm {
+    fill: #f59e0b;
   }
-  
-  .hand { 
-    fill: #10b981; 
+
+  .hand {
+    fill: #10b981;
   }
-  
-  .hip { 
-    fill: #6366f1; 
+
+  .hip {
+    fill: #6366f1;
   }
-  
-  .thigh { 
-    fill: #ec4899; 
+
+  .thigh {
+    fill: #ec4899;
   }
-  
-  .knee { 
-    fill: #f97316; 
+
+  .knee {
+    fill: #f97316;
   }
-  
-  .calf { 
-    fill: #14b8a6; 
+
+  .calf {
+    fill: #14b8a6;
   }
-  
-  .ankle { 
-    fill: #8b5cf6; 
+
+  .ankle {
+    fill: #8b5cf6;
   }
-  
-  .foot { 
-    fill: #06b6d4; 
+
+  .foot {
+    fill: #06b6d4;
   }
 
   .tooltip {
