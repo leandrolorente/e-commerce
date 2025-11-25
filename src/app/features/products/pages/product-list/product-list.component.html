@@ -3,10 +3,18 @@
 <main class="main-content">
   <div class="container">
     <!-- Hero Section -->
-    <div class="hero-banner">
-      <h1>Ofertas Imperdíveis 🔥</h1>
-      <p>Descontos de até 50% em produtos selecionados</p>
-    </div>
+    @if (searchTerm) {
+      <div class="hero-banner search-results">
+        <h1>Resultados da Busca 🔍</h1>
+        <p>Buscando por: <strong>"{{ searchTerm }}"</strong></p>
+        <p class="results-count">{{ products.length }} {{ products.length === 1 ? 'produto encontrado' : 'produtos encontrados' }}</p>
+      </div>
+    } @else {
+      <div class="hero-banner">
+        <h1>Ofertas Imperdíveis 🔥</h1>
+        <p>Descontos de até 50% em produtos selecionados</p>
+      </div>
+    }
     
     @if (loading) {
       <div class="loading">
@@ -113,9 +121,15 @@
         </div>
       } @else {
         <div class="empty-state">
-          <div class="empty-icon">📦</div>
-          <h2>Nenhum produto encontrado</h2>
-          <p>Tente ajustar seus filtros ou volte mais tarde</p>
+          <div class="empty-icon">🔍</div>
+          @if (searchTerm) {
+            <h2>Nenhum produto encontrado</h2>
+            <p>Não encontramos resultados para "<strong>{{ searchTerm }}</strong>"</p>
+            <p>Tente buscar por outros termos ou navegue por nossas categorias</p>
+          } @else {
+            <h2>Nenhum produto disponível</h2>
+            <p>Volte mais tarde para conferir nossas ofertas</p>
+          }
         </div>
       }
     }

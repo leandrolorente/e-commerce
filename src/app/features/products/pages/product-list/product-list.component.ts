@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from '@shared/components/layout/header/header.component';
 import { FooterComponent } from '@shared/components/layout/footer/footer.component';
 import { ProductService } from '@core/services/product.service';
@@ -18,13 +18,25 @@ import { MOCK_PRODUCTS } from '@core/services/mock-data';
 export class ProductListComponent implements OnInit {
   private productService = inject(ProductService);
   private cartService = inject(CartService);
+  private route = inject(ActivatedRoute);
 
   products: Product[] = [];
+  allProducts: Product[] = [];
   loading = false;
   addedToCart: Set<string> = new Set();
   imageIndices: Map<string, number> = new Map();
+  searchTerm = '';
 
   ngOnInit(): void {
+    // Observar mudanças nos parâmetros de busca
+    this.route.queryParams.subscribe(params => {
+      this.searchTerm = params['search'] || '';
+      console.log('Query params mudaram. Search term:', this.searchTerm);
+      if (this.allProducts.length > 0) {
+        this.filterProducts();
+      }
+    });
+    
     this.loadProducts();
   }
 
@@ -32,11 +44,35 @@ export class ProductListComponent implements OnInit {
     this.loading = true;
     // Simulando chamada API com timeout
     setTimeout(() => {
-      this.products = MOCK_PRODUCTS;
+      this.allProducts = MOCK_PRODUCTS;
+      console.log('Produtos carregados:', this.allProducts.length);
+      // Aplicar filtro inicial baseado nos query params atuais
+      const currentParams = this.route.snapshot.queryParams;
+      this.searchTerm = currentParams['search'] || '';
+      this.filterProducts();
       // Inicializar índices de imagens
-      this.products.forEach(p => this.imageIndices.set(p.id, 0));
+      this.allProducts.forEach(p => this.imageIndices.set(p.id, 0));
       this.loading = false;
     }, 800);
+  }
+
+  filterProducts(): void {
+    console.log('Filtrando produtos. Termo:', this.searchTerm);
+    console.log('Total de produtos:', this.allProducts.length);
+    
+    if (!this.searchTerm.trim()) {
+      this.products = this.allProducts;
+      console.log('Sem busca, mostrando todos:', this.products.length);
+      return;
+    }
+
+    const term = this.searchTerm.toLowerCase().trim();
+    this.products = this.allProducts.filter(product => 
+      product.name.toLowerCase().includes(term) ||
+      product.description.toLowerCase().includes(term) ||
+      product.category.toLowerCase().includes(term)
+    );
+    console.log('Produtos filtrados:', this.products.length);
   }
 
   getCurrentImageIndex(productId: string): number {

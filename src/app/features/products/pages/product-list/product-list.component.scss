@@ -23,6 +23,21 @@
     font-size: 18px;
     margin: 0;
     opacity: 0.95;
+    
+    strong {
+      color: #ffd166;
+      font-weight: 700;
+    }
+  }
+  
+  &.search-results {
+    background: linear-gradient(135deg, #1f4358 0%, #2d5f7a 100%);
+    
+    .results-count {
+      margin-top: var(--spacing-sm);
+      font-size: 16px;
+      opacity: 0.9;
+    }
   }
 }
 

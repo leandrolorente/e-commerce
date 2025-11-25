@@ -45,10 +45,13 @@ export class HeaderComponent {
   }
 
   onSearch(): void {
+    console.log('Buscando por:', this.searchTerm);
     if (this.searchTerm.trim()) {
-      this.router.navigate(['/products'], { 
-        queryParams: { search: this.searchTerm } 
+      this.router.navigate(['/'], { 
+        queryParams: { search: this.searchTerm.trim() }
       });
+    } else {
+      this.router.navigate(['/']);
     }
   }
 
