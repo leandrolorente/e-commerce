@@ -184,14 +184,49 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group">
-            <label>URL da Imagem</label>
-            <input 
-              type="text" 
-              [(ngModel)]="formData.imageUrl"
-              name="imageUrl"
-              placeholder="https://..."
-            />
+          <div class="form-group full-width">
+            <label>Imagens do Produto</label>
+            
+            <!-- Área de Upload com Drag & Drop -->
+            <div 
+              class="image-upload-area"
+              [class.dragging]="isDragging()"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+              (click)="fileInput.click()"
+            >
+              <div class="upload-icon">📁</div>
+              <p class="upload-text">Arraste imagens aqui ou clique para selecionar</p>
+              <p class="upload-hint">Suporta: JPG, PNG, GIF (Máx: 5MB)</p>
+              <input 
+                #fileInput
+                type="file" 
+                accept="image/*"
+                multiple
+                (change)="onFileSelected($event)"
+                style="display: none;"
+              />
+            </div>
+
+            <!-- Preview das Imagens -->
+            @if (imagePreviews().length > 0) {
+              <div class="image-previews">
+                @for (preview of imagePreviews(); track $index) {
+                  <div class="image-preview-item">
+                    <img [src]="preview.url" [alt]="'Preview ' + $index">
+                    <button 
+                      type="button" 
+                      class="btn-remove-image"
+                      (click)="removeImage($index)"
+                      title="Remover imagem"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                }
+              </div>
+            }
           </div>
         </div>
 

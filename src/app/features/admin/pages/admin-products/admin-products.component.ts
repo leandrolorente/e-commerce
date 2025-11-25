@@ -15,6 +15,11 @@ interface ProductFormData {
   imageUrl: string;
 }
 
+interface ImagePreview {
+  url: string;
+  file?: File;
+}
+
 @Component({
   selector: 'app-admin-products',
   standalone: true,
@@ -31,6 +36,10 @@ export class AdminProductsComponent implements OnInit {
   isEditMode = signal(false);
   productToDelete = signal<Product | null>(null);
   editingProductId = signal<string | null>(null);
+  
+  // Image upload
+  imagePreviews = signal<ImagePreview[]>([]);
+  isDragging = signal(false);
 
   searchTerm = '';
   selectedCategory: ProductCategory | '' = '';
@@ -87,12 +96,14 @@ export class AdminProductsComponent implements OnInit {
     this.isEditMode.set(false);
     this.editingProductId.set(null);
     this.formData = this.getEmptyFormData();
+    this.imagePreviews.set([]);
     this.showModal.set(true);
   }
 
   openEditModal(product: Product) {
     this.isEditMode.set(true);
     this.editingProductId.set(product.id);
+    this.imagePreviews.set(product.images.map(url => ({ url })));
     this.formData = {
       name: product.name,
       description: product.description,
@@ -108,6 +119,7 @@ export class AdminProductsComponent implements OnInit {
   closeModal() {
     this.showModal.set(false);
     this.formData = this.getEmptyFormData();
+    this.imagePreviews.set([]);
   }
 
   saveProduct() {
@@ -116,7 +128,20 @@ export class AdminProductsComponent implements OnInit {
       return;
     }
 
+    if (this.imagePreviews().length === 0) {
+      alert('Por favor, adicione pelo menos uma imagem do produto');
+      return;
+    }
+
     this.isSaving.set(true);
+
+    // Em uma aplicação real, aqui você faria upload das imagens para o servidor
+    // Por enquanto, vamos usar as URLs de preview ou manter URLs existentes
+    const imageUrls = this.imagePreviews().map(preview => {
+      // Se for arquivo novo (tem file), em produção enviaria para servidor e receberia URL
+      // Por enquanto, mantém a URL do preview ou URL existente
+      return preview.url;
+    });
 
     const productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'> = {
       name: this.formData.name,
@@ -125,7 +150,7 @@ export class AdminProductsComponent implements OnInit {
       price: this.formData.price,
       discountPrice: this.formData.discountPrice,
       stock: this.formData.stock,
-      images: this.formData.imageUrl ? [this.formData.imageUrl] : ['assets/products/placeholder.jpg'],
+      images: imageUrls.length > 0 ? imageUrls : ['assets/products/placeholder.jpg'],
       rating: 0,
       reviewCount: 0
     };
@@ -190,6 +215,58 @@ export class AdminProductsComponent implements OnInit {
 
   getCategoryLabel(category: ProductCategory): string {
     return this.categories.find(c => c.value === category)?.label || category;
+  }
+
+  // Image Upload Methods
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.handleFiles(Array.from(input.files));
+    }
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(true);
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(false);
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(false);
+
+    if (event.dataTransfer?.files) {
+      this.handleFiles(Array.from(event.dataTransfer.files));
+    }
+  }
+
+  handleFiles(files: File[]) {
+    const imageFiles = files.filter(file => file.type.startsWith('image/'));
+    
+    imageFiles.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const preview: ImagePreview = {
+          url: e.target?.result as string,
+          file: file
+        };
+        this.imagePreviews.update(previews => [...previews, preview]);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  removeImage(index: number) {
+    this.imagePreviews.update(previews => 
+      previews.filter((_, i) => i !== index)
+    );
   }
 
   private getEmptyFormData(): ProductFormData {

@@ -320,6 +320,105 @@
   }
 }
 
+// Image Upload Area
+.image-upload-area {
+  border: 2px dashed #d4a574;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(212, 165, 116, 0.05);
+
+  &:hover {
+    border-color: var(--primary-color);
+    background: rgba(27, 77, 62, 0.05);
+  }
+
+  &.dragging {
+    border-color: var(--accent-color);
+    background: rgba(216, 17, 89, 0.1);
+    transform: scale(1.02);
+  }
+
+  .upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .upload-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+  }
+
+  .upload-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+  }
+}
+
+// Image Previews
+.image-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.image-preview-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: var(--primary-color);
+
+    .btn-remove-image {
+      opacity: 1;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .btn-remove-image {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(216, 17, 89, 0.9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    padding: 0;
+
+    &:hover {
+      background: var(--accent-color);
+      transform: scale(1.1);
+    }
+  }
+}
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;
