@@ -1,0 +1,84 @@
+<div class="chat-container" [class.open]="isOpen()">
+  <!-- Botão Flutuante -->
+  @if (!isOpen()) {
+    <button class="chat-button" (click)="toggleChat()" aria-label="Abrir chat">
+      <span class="icon">💬</span>
+      <span class="pulse"></span>
+    </button>
+  }
+
+  <!-- Janela do Chat -->
+  @if (isOpen()) {
+    <div class="chat-window">
+      <!-- Header -->
+      <div class="chat-header">
+        <div class="header-info">
+          <div class="avatar">🤖</div>
+          <div class="info">
+            <h3>InkArt Assistant</h3>
+            <span class="status">
+              <span class="status-dot"></span>
+              Online
+            </span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="btn-action" (click)="clearChat()" aria-label="Limpar chat">
+            🗑️
+          </button>
+          <button class="btn-action" (click)="toggleChat()" aria-label="Minimizar chat">
+            ➖
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Area -->
+      <div class="chat-messages">
+        @for (message of messages(); track message.id) {
+          <div class="message" [class.user]="message.sender === 'user'" [class.bot]="message.sender === 'bot'">
+            <div class="message-content">
+              <p>{{ message.text }}</p>
+              <span class="timestamp">{{ message.timestamp | date:'HH:mm' }}</span>
+            </div>
+          </div>
+        }
+
+        @if (isTyping()) {
+          <div class="message bot typing">
+            <div class="message-content">
+              <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input">
+        <div class="input-wrapper">
+          <textarea
+            [(ngModel)]="userInput"
+            (keypress)="handleKeyPress($event)"
+            placeholder="Digite sua mensagem..."
+            rows="1"
+            maxlength="500"
+            aria-label="Mensagem do chat"
+          ></textarea>
+          <button 
+            class="btn-send" 
+            (click)="sendMessage()"
+            [disabled]="!userInput().trim()"
+            aria-label="Enviar mensagem">
+            ➤
+          </button>
+        </div>
+        <div class="input-footer">
+          <small>Powered by AI • InkArt Studio</small>
+        </div>
+      </div>
+    </div>
+  }
+</div>
