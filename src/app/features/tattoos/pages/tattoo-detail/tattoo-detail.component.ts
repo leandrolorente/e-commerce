@@ -61,8 +61,8 @@ export class TattooDetailComponent implements OnInit {
   goBack() {
     const tattoo = this.tattoo();
     if (tattoo) {
-      this.router.navigate(['/tattoos'], { 
-        queryParams: { area: tattoo.bodyArea } 
+      this.router.navigate(['/tattoos'], {
+        queryParams: { area: tattoo.bodyArea }
       });
     } else {
       this.router.navigate(['/tattoos']);

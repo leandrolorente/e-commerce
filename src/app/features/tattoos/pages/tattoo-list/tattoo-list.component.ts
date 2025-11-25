@@ -13,7 +13,7 @@ import { MOCK_TATTOOS } from '@core/services/tattoo-mocks';
 })
 export class TattooListComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  
+
   tattoos = signal<Tattoo[]>([]);
   selectedArea = signal<string>('');
   loading = signal(false);

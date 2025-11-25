@@ -9,16 +9,16 @@
         <!-- Galeria de Imagens -->
         <div class="image-gallery">
           <div class="main-image">
-            <img 
-              [src]="tattoo.images[selectedImageIndex()]" 
+            <img
+              [src]="tattoo.images[selectedImageIndex()]"
               [alt]="tattoo.name"
               (error)="onImageError($event)">
           </div>
           @if (tattoo.images.length > 1) {
             <div class="thumbnails">
               @for (image of tattoo.images; track $index) {
-                <div 
-                  class="thumbnail" 
+                <div
+                  class="thumbnail"
                   [class.active]="selectedImageIndex() === $index"
                   (click)="selectImage($index)">
                   <img [src]="image" [alt]="tattoo.name + ' - ' + ($index + 1)">

@@ -33,7 +33,7 @@ export class ProductListComponent implements OnInit {
         this.filterProducts();
       }
     });
-    
+
     this.loadProducts();
   }
 
@@ -59,7 +59,7 @@ export class ProductListComponent implements OnInit {
     }
 
     const term = this.searchTerm.toLowerCase().trim();
-    this.products = this.allProducts.filter(product => 
+    this.products = this.allProducts.filter(product =>
       product.name.toLowerCase().includes(term) ||
       product.description.toLowerCase().includes(term) ||
       product.category.toLowerCase().includes(term)
@@ -102,7 +102,7 @@ export class ProductListComponent implements OnInit {
     event.stopPropagation();
     this.cartService.addToCart(product, 1);
     this.addedToCart.add(product.id);
-    
+
     // Remove feedback visual após 2 segundos
     setTimeout(() => {
       this.addedToCart.delete(product.id);

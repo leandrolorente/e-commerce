@@ -23,8 +23,8 @@
           @for (tattoo of tattoos(); track tattoo.id) {
             <div class="tattoo-card">
               <a [routerLink]="['/tattoos/detail', tattoo.id]" class="tattoo-image">
-                <img 
-                  [src]="tattoo.images[0]" 
+                <img
+                  [src]="tattoo.images[0]"
                   [alt]="tattoo.name"
                   (error)="onImageError($event)"
                   loading="lazy">

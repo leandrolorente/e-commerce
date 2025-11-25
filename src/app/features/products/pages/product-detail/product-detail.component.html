@@ -18,18 +18,18 @@
             <button class="nav-btn prev" (click)="prevImage()">‹</button>
             <img [src]="currentImage()" [alt]="product.name" class="main-image">
             <button class="nav-btn next" (click)="nextImage()">›</button>
-            
+
             @if (product.discountPrice) {
               <div class="discount-badge">
                 -{{ ((1 - product.discountPrice / product.price) * 100).toFixed(0) }}%
               </div>
             }
           </div>
-          
+
           <div class="thumbnails">
             @for (image of product.images; track image; let idx = $index) {
-              <img 
-                [src]="image" 
+              <img
+                [src]="image"
                 [alt]="product.name + ' - ' + (idx + 1)"
                 [class.active]="currentImageIndex() === idx"
                 (click)="selectImage(idx)"
@@ -43,7 +43,7 @@
         <div class="product-info-section">
           <span class="category-badge">{{ product.category }}</span>
           <h1 class="product-title">{{ product.name }}</h1>
-          
+
           <div class="rating-section">
             <div class="stars">
               @for (filled of getStarArray(product.rating); track $index) {
@@ -89,16 +89,16 @@
             </div>
 
             <div class="action-buttons">
-              <button 
-                (click)="addToCart()" 
+              <button
+                (click)="addToCart()"
                 class="btn btn-primary"
                 [class.added]="addedToCart()"
                 [disabled]="product.stock === 0"
               >
                 {{ addedToCart() ? '✓ Adicionado!' : '🛒 Adicionar ao Carrinho' }}
               </button>
-              <button 
-                (click)="buyNow()" 
+              <button
+                (click)="buyNow()"
                 class="btn btn-secondary"
                 [disabled]="product.stock === 0"
               >

@@ -23,9 +23,9 @@ export class ProductDetailComponent {
   currentImageIndex = signal(0);
   quantity = signal(1);
   addedToCart = signal(false);
-  
+
   reviews = signal<Review[]>([]);
-  
+
   currentImage = computed(() => {
     const p = this.product();
     const idx = this.currentImageIndex();
