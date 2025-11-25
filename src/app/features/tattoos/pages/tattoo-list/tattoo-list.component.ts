@@ -1,14 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { FooterComponent } from '@shared/components/layout/footer/footer.component';
 import { Tattoo } from '@models';
 import { MOCK_TATTOOS } from '@core/services/tattoo-mocks';
 
 @Component({
   selector: 'app-tattoo-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, FooterComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './tattoo-list.component.html',
   styleUrl: './tattoo-list.component.scss'
 })

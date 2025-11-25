@@ -1,8 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookingService, BookingData, Artist, BookingTimeSlot } from '../../services/booking.service';
+import { NotificationService } from '../../../../core/services/notification.service';
 
 @Component({
   selector: 'app-booking',
@@ -12,6 +13,8 @@ import { BookingService, BookingData, Artist, BookingTimeSlot } from '../../serv
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent implements OnInit {
+  private notificationService = inject(NotificationService);
+  
   currentStep = signal(1);
   artists = signal<Artist[]>([]);
   availableSlots = signal<BookingTimeSlot[]>([]);
@@ -102,32 +105,32 @@ export class BookingComponent implements OnInit {
     switch (step) {
       case 1:
         if (!this.formData.serviceType) {
-          alert('Por favor, selecione o tipo de serviço');
+          this.notificationService.warning('Por favor, selecione o tipo de serviço');
           return false;
         }
         return true;
       case 2:
         if (!this.formData.artistId) {
-          alert('Por favor, selecione um artista');
+          this.notificationService.warning('Por favor, selecione um artista');
           return false;
         }
         if (!this.formData.date) {
-          alert('Por favor, selecione uma data');
+          this.notificationService.warning('Por favor, selecione uma data');
           return false;
         }
         if (!this.formData.timeSlot) {
-          alert('Por favor, selecione um horário');
+          this.notificationService.warning('Por favor, selecione um horário');
           return false;
         }
         return true;
       case 3:
         if (!this.formData.customerName || !this.formData.customerEmail || !this.formData.customerPhone) {
-          alert('Por favor, preencha todos os campos obrigatórios');
+          this.notificationService.warning('Por favor, preencha todos os campos obrigatórios');
           return false;
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(this.formData.customerEmail)) {
-          alert('Por favor, insira um email válido');
+          this.notificationService.warning('Por favor, insira um email válido');
           return false;
         }
         return true;
@@ -143,13 +146,13 @@ export class BookingComponent implements OnInit {
     this.bookingService.createBooking(this.formData).subscribe({
       next: (response) => {
         this.isSaving.set(false);
-        alert('Agendamento realizado com sucesso! Em breve entraremos em contato para confirmar.');
+        this.notificationService.success('Agendamento realizado com sucesso! Em breve entraremos em contato para confirmar.', 5000);
         this.sendWhatsAppConfirmation();
         this.router.navigate(['/']);
       },
       error: () => {
         this.isSaving.set(false);
-        alert('Erro ao realizar agendamento. Tente novamente.');
+        this.notificationService.error('Erro ao realizar agendamento. Tente novamente.');
       }
     });
   }

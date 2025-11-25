@@ -1,8 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { UserService, UserProfile, Address } from '../../services/user.service';
+import { NotificationService } from '../../../../core/services/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,8 @@ import { UserService, UserProfile, Address } from '../../services/user.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  private notificationService = inject(NotificationService);
+  
   activeTab = signal('profile');
   profile = signal<UserProfile | null>(null);
   addresses = signal<Address[]>([]);
@@ -76,18 +79,18 @@ export class ProfileComponent implements OnInit {
         this.isSaving.set(false);
         this.isEditingProfile.set(false);
         this.loadProfile();
-        alert('Perfil atualizado com sucesso!');
+        this.notificationService.success('Perfil atualizado com sucesso!');
       },
       error: () => {
         this.isSaving.set(false);
-        alert('Erro ao atualizar perfil');
+        this.notificationService.error('Erro ao atualizar perfil');
       }
     });
   }
 
   changePassword() {
     if (this.passwordForm.newPassword !== this.passwordForm.confirmPassword) {
-      alert('As senhas não coincidem');
+      this.notificationService.warning('As senhas não coincidem');
       return;
     }
 
@@ -96,11 +99,11 @@ export class ProfileComponent implements OnInit {
       next: () => {
         this.isSaving.set(false);
         this.passwordForm = { currentPassword: '', newPassword: '', confirmPassword: '' };
-        alert('Senha alterada com sucesso!');
+        this.notificationService.success('Senha alterada com sucesso!');
       },
       error: () => {
         this.isSaving.set(false);
-        alert('Erro ao alterar senha');
+        this.notificationService.error('Erro ao alterar senha');
       }
     });
   }
@@ -122,25 +125,28 @@ export class ProfileComponent implements OnInit {
         this.isSaving.set(false);
         this.closeAddressModal();
         this.loadAddresses();
-        alert('Endereço salvo com sucesso!');
+        this.notificationService.success('Endereço salvo com sucesso!');
       },
       error: () => {
         this.isSaving.set(false);
-        alert('Erro ao salvar endereço');
+        this.notificationService.error('Erro ao salvar endereço');
       }
     });
   }
 
   deleteAddress(addressId: string) {
-    if (!confirm('Deseja remover este endereço?')) return;
-
-    this.userService.deleteAddress(addressId).subscribe({
-      next: () => {
-        this.loadAddresses();
-        alert('Endereço removido!');
-      },
-      error: () => alert('Erro ao remover endereço')
-    });
+    this.notificationService.confirm(
+      'Deseja remover este endereço?',
+      () => {
+        this.userService.deleteAddress(addressId).subscribe({
+          next: () => {
+            this.loadAddresses();
+            this.notificationService.success('Endereço removido!');
+          },
+          error: () => this.notificationService.error('Erro ao remover endereço')
+        });
+      }
+    );
   }
 
   setDefaultAddress(addressId: string) {
