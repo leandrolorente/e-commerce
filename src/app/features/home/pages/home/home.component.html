@@ -1,0 +1,188 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Bem-vindo ao<br>
+        <span class="brand-name">Guarana Tatto</span>
+      </h1>
+      <p class="hero-subtitle">
+        Transformando arte em pele há mais de 10 anos.<br>
+        Artistas experientes, ambiente seguro e designs exclusivos.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" (click)="navigateToBooking()">
+          📅 Agendar Sessão
+        </button>
+        <button class="btn-secondary" (click)="navigateToGallery()">
+          🎨 Ver Galeria
+        </button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/images/hero-tattoo.jpg" alt="Guarana Tatto Studio">
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stat-item">
+      <div class="stat-number">{{ studioStats.yearsExperience }}+</div>
+      <div class="stat-label">Anos de Experiência</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">{{ studioStats.satisfiedClients }}+</div>
+      <div class="stat-label">Clientes Satisfeitos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">{{ studioStats.artistsCount }}</div>
+      <div class="stat-label">Artistas Especializados</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">{{ studioStats.awardsCount }}+</div>
+      <div class="stat-label">Prêmios Conquistados</div>
+    </div>
+  </section>
+
+  <!-- Featured Tattoos -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2>Tatuagens em Destaque</h2>
+      <a routerLink="/tattoos" class="view-all-link">Ver Todas →</a>
+    </div>
+
+    @if (isLoading()) {
+      <div class="loading">Carregando tatuagens...</div>
+    } @else {
+      <div class="tattoos-grid">
+        @for (tattoo of featuredTattoos(); track tattoo.id) {
+          <div class="tattoo-card" [routerLink]="['/tattoos', tattoo.id]">
+            <div class="tattoo-image">
+              <img [src]="tattoo.images[0]" [alt]="tattoo.name">
+              <div class="tattoo-overlay">
+                <span class="tattoo-style">{{ tattoo.style }}</span>
+              </div>
+            </div>
+            <div class="tattoo-info">
+              <h3>{{ tattoo.name }}</h3>
+              <p class="tattoo-area">{{ tattoo.bodyArea }}</p>
+              <div class="tattoo-footer">
+                <span class="tattoo-price">R$ {{ tattoo.estimatedPrice.toFixed(2) }}</span>
+                <span class="tattoo-time">{{ tattoo.estimatedTime }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-section products-section">
+    <div class="section-header">
+      <h2>Produtos em Destaque</h2>
+      <a routerLink="/products" class="view-all-link">Ver Todos →</a>
+    </div>
+
+    <div class="products-grid">
+      @for (product of featuredProducts(); track product.id) {
+        <div class="product-card" [routerLink]="['/products', product.id]">
+          <div class="product-image">
+            <img [src]="product.images[0]" [alt]="product.name">
+            @if (product.discountPrice) {
+              <span class="discount-badge">
+                {{ ((1 - product.discountPrice / product.price) * 100).toFixed(0) }}% OFF
+              </span>
+            }
+          </div>
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <div class="product-price">
+              @if (product.discountPrice) {
+                <span class="price-discount">R$ {{ product.discountPrice.toFixed(2) }}</span>
+                <span class="price-original">R$ {{ product.price.toFixed(2) }}</span>
+              } @else {
+                <span class="price-current">R$ {{ product.price.toFixed(2) }}</span>
+              }
+            </div>
+            <div class="product-rating">
+              ⭐ {{ product.rating }} ({{ product.reviewCount }})
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Sobre o Guarana Tatto</h2>
+        <p>
+          O Estúdio Guarana Tatto nasceu da paixão pela arte de tatuar e do desejo de criar 
+          um espaço acolhedor onde cada cliente se sinta único e especial.
+        </p>
+        <p>
+          Com uma equipe de artistas altamente qualificados e certificados, utilizamos apenas 
+          equipamentos de última geração e seguimos rigorosos protocolos de higiene e segurança.
+        </p>
+        <p>
+          Cada tatuagem é uma obra de arte personalizada, criada em parceria com você para 
+          garantir que sua visão se torne realidade na sua pele.
+        </p>
+        <a routerLink="/about" class="btn-outline">Conheça Nossa História</a>
+      </div>
+      <div class="about-images">
+        <img src="assets/images/studio-1.jpg" alt="Estúdio Guarana Tatto">
+        <img src="assets/images/studio-2.jpg" alt="Equipe Guarana Tatto">
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="section-header">
+      <h2>O Que Nossos Clientes Dizem</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      @for (testimonial of testimonials(); track testimonial.id) {
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img [src]="testimonial.customerPhoto" [alt]="testimonial.customerName" class="customer-photo">
+            <div class="customer-info">
+              <h4>{{ testimonial.customerName }}</h4>
+              <div class="rating">
+                @for (star of getStars(testimonial.rating); track $index) {
+                  <span [class.filled]="star">⭐</span>
+                }
+              </div>
+            </div>
+          </div>
+          <p class="testimonial-comment">{{ testimonial.comment }}</p>
+          <div class="testimonial-footer">
+            <span class="service">{{ testimonial.service }}</span>
+            <span class="date">{{ testimonial.date | date: 'dd/MM/yyyy' }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Pronto para Sua Próxima Tatuagem?</h2>
+      <p>Entre em contato conosco e agende sua sessão hoje mesmo!</p>
+      <div class="cta-actions">
+        <button class="btn-whatsapp" (click)="openWhatsApp()">
+          💬 WhatsApp
+        </button>
+        <button class="btn-primary" (click)="navigateToBooking()">
+          📅 Agendar Online
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

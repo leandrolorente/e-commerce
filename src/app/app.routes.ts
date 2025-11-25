@@ -5,7 +5,7 @@ import { roleGuard } from './core/guards/role.guard';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./features/products/pages/product-list/product-list.component').then(m => m.ProductListComponent)
+    loadChildren: () => import('./features/home/home.routes').then(m => m.HOME_ROUTES)
   },
   {
     path: 'products',
@@ -28,6 +28,15 @@ export const routes: Routes = [
     path: 'checkout',
     canActivate: [authGuard],
     loadChildren: () => import('./features/checkout/checkout.routes').then(m => m.CHECKOUT_ROUTES)
+  },
+  {
+    path: 'booking',
+    loadChildren: () => import('./features/booking/booking.routes').then(m => m.BOOKING_ROUTES)
+  },
+  {
+    path: 'user',
+    canActivate: [authGuard],
+    loadChildren: () => import('./features/user/user.routes').then(m => m.USER_ROUTES)
   },
   {
     path: 'admin',
