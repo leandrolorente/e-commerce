@@ -1,6 +1,6 @@
-# E-Commerce Platform - ShopHub
+# InkArt Studio - Tatuagens & Body Art
 
-Projeto Angular de e-commerce fullstack com design moderno e paleta de cores agradável.
+Plataforma web completa para estúdio de tatuagens com catálogo interativo, mapa corporal SVG, assistente virtual com IA e integração WhatsApp.
 
 ## 🔑 Credenciais de Login Mock
 
@@ -17,8 +17,9 @@ Você pode se registrar com qualquer email/senha (será criado como cliente).
 
 ---
 
-## Características
+## 🎨 Características Principais
 
+### Tecnologia
 - ✅ Angular 19 com Standalone Components
 - ✅ Sintaxe moderna (@if, @for, @switch)
 - ✅ TypeScript strict mode
@@ -26,14 +27,28 @@ Você pode se registrar com qualquer email/senha (será criado como cliente).
 - ✅ Lazy loading de rotas
 - ✅ Responsive design (Mobile-first)
 - ✅ **Design Moderno** com paleta azul petróleo (#2d5f7a), coral (#ff6b6b) e dourado (#ffd166)
-- ✅ Autenticação JWT com **mock login** para desenvolvimento
-- ✅ **Preview do carrinho** no header (dropdown)
-- ✅ **Página de detalhes** completa com carrossel de 3-4 imagens por produto
-- ✅ **Sistema de reviews/avaliações** com estrelas e comentários
-- ✅ Produtos clicáveis com navegação para detalhes
+
+### Funcionalidades de Tatuagem
+- ✅ **Mapa Corporal Interativo (SVG)** - 40+ áreas do corpo clicáveis para selecionar localização
+- ✅ **Catálogo de Tatuagens** - 40 designs mockados com filtros por área do corpo
+- ✅ **Página de Detalhes** - Galeria de imagens, informações completas, preços
+- ✅ **Integração WhatsApp** - Botões de consulta direta (18) 99656-6692
+- ✅ **Sistema de Estilos** - Realismo, Old School, Blackwork, Aquarela, Geométrico, etc.
+
+### Assistente Virtual com IA
+- ✅ **Google Gemini 2.5 Flash** - Integração oficial via SDK `@google/genai`
+- ✅ **Especialista em Tatuagens** - Responde sobre estilos, preços, cuidados, curiosidades
+- ✅ **Formatação Markdown** - Negrito, listas, emojis renderizados com MarkdownPipe
+- ✅ **Fallback Inteligente** - Respostas locais em caso de erro na API
+- ✅ **Chat Widget Flutuante** - Interface moderna com animações
+- ✅ **Histórico de Conversa** - Contexto preservado durante a sessão
+
+### E-Commerce
+- ✅ Autenticação JWT com mock login
+- ✅ Preview do carrinho no header
+- ✅ Sistema de reviews/avaliações
 - ✅ Carrinho de compras com persistência
 - ✅ Sistema de checkout
-- ✅ 8 produtos mock com múltiplas imagens e especificações
 
 ## Estrutura do Projeto
 
@@ -149,9 +164,50 @@ effect(() => {
 - Gerenciamento de pedidos
 - Gerenciamento de usuários
 
-## Tecnologias
+## 🤖 Assistente Virtual com IA
+
+### Integração Google Gemini 2.5 Flash
+
+O chat bot utiliza o SDK oficial do Google para respostas inteligentes:
+
+```typescript
+import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI({ apiKey: 'YOUR_API_KEY' });
+const response = await ai.models.generateContent({
+  model: 'gemini-2.5-flash',
+  contents: userMessage,
+  config: {
+    systemInstruction: systemPrompt,
+    temperature: 0.7,
+    maxOutputTokens: 300
+  }
+});
+```
+
+### Conhecimento do Assistente
+
+O bot responde sobre:
+- 📍 **Navegação**: Como usar o site, selecionar áreas do corpo, explorar catálogo
+- 🎨 **Estilos**: 10+ estilos de tatuagem (história, características, técnicas)
+- 💰 **Preços**: Tabela completa (R$ 200 - R$ 8.000+) por tamanho
+- 🏥 **Cuidados**: Antes, durante e pós-tatuagem (2-4 semanas cicatrização)
+- 📱 **Contato**: WhatsApp (18) 99656-6692 para orçamentos
+- 💡 **Curiosidades**: História, simbolismos, tendências, mitos
+
+### Formatação de Mensagens
+
+O MarkdownPipe converte formatação Markdown para HTML:
+- `**texto**` → **negrito**
+- `*texto*` → *itálico*
+- `✓ item` → lista com checkmark
+- Emojis de seção destacados
+- Quebras de linha preservadas
+
+## 🛠 Tecnologias
 
 - **Frontend**: Angular 19
+- **IA**: Google Gemini 2.5 Flash (`@google/genai`)
 - **Estilo**: SCSS com variáveis CSS
 - **HTTP**: HttpClient com interceptors
 - **Roteamento**: Angular Router com lazy loading
