@@ -1,0 +1,1 @@
+import"./chunk-2VMXMS7J.js";var t=[{path:"body-map",loadComponent:()=>import("./chunk-RW3OT2K6.js").then(o=>o.BodyMapComponent)},{path:"detail/:id",loadComponent:()=>import("./chunk-ADLVF2QI.js").then(o=>o.TattooDetailComponent)},{path:"",loadComponent:()=>import("./chunk-DER6OOC4.js").then(o=>o.TattooListComponent)}];export{t as TATTOOS_ROUTES};

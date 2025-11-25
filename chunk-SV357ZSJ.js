@@ -1,0 +1,1 @@
+var p=function(o){return o.CUSTOMER="customer",o.ADMIN="admin",o.MANAGER="manager",o}(p||{});var e=function(o){return o.ELECTRONICS="electronics",o.CLOTHING="clothing",o.BOOKS="books",o.HOME="home",o.SPORTS="sports",o.TOYS="toys",o.BEAUTY="beauty",o.FOOD="food",o.OTHER="other",o}(e||{});export{p as a,e as b};
