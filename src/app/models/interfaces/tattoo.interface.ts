@@ -13,6 +13,7 @@ export interface Tattoo {
   artist: string;
   difficulty: 'Fácil' | 'Médio' | 'Difícil' | 'Expert';
   tags: string[];
+  colors?: string[];
 }
 
 export enum TattooStyle {

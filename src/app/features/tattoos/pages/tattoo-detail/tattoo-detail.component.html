@@ -1,0 +1,130 @@
+@if (tattoo(); as tattoo) {
+  <main class="tattoo-detail-page">
+    <div class="container">
+      <button class="back-button" (click)="goBack()">
+        ← Voltar para Lista
+      </button>
+
+      <div class="detail-content">
+        <!-- Galeria de Imagens -->
+        <div class="image-gallery">
+          <div class="main-image">
+            <img 
+              [src]="tattoo.images[selectedImageIndex()]" 
+              [alt]="tattoo.name"
+              (error)="onImageError($event)">
+          </div>
+          @if (tattoo.images.length > 1) {
+            <div class="thumbnails">
+              @for (image of tattoo.images; track $index) {
+                <div 
+                  class="thumbnail" 
+                  [class.active]="selectedImageIndex() === $index"
+                  (click)="selectImage($index)">
+                  <img [src]="image" [alt]="tattoo.name + ' - ' + ($index + 1)">
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Informações -->
+        <div class="tattoo-info">
+          <div class="header-info">
+            <h1>{{ tattoo.name }}</h1>
+            <div class="badges">
+              <span class="badge style">{{ tattoo.style }}</span>
+              <span class="badge area">{{ tattoo.bodyArea }}</span>
+              <span class="badge size">{{ tattoo.size }}</span>
+            </div>
+          </div>
+
+          <p class="description">{{ tattoo.description }}</p>
+
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="icon">👤</span>
+              <div>
+                <span class="label">Artista</span>
+                <span class="value">{{ tattoo.artist }}</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span class="icon">⏱️</span>
+              <div>
+                <span class="label">Tempo Estimado</span>
+                <span class="value">{{ tattoo.estimatedTime }}</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span class="icon">📊</span>
+              <div>
+                <span class="label">Nível de Dificuldade</span>
+                <span class="value difficulty" [class]="'level-' + tattoo.difficulty.toLowerCase()">
+                  {{ tattoo.difficulty }}
+                </span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span class="icon">💰</span>
+              <div>
+                <span class="label">Preço Estimado</span>
+                <span class="value price">{{ tattoo.estimatedPrice | currency: 'BRL' }}</span>
+              </div>
+            </div>
+
+            @if (tattoo.colors && tattoo.colors.length > 0) {
+              <div class="detail-item full-width">
+                <span class="icon">🎨</span>
+                <div>
+                  <span class="label">Cores</span>
+                  <div class="colors">
+                    @for (color of tattoo.colors; track color) {
+                      <span class="color-tag">{{ color }}</span>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+
+            @if (tattoo.tags && tattoo.tags.length > 0) {
+              <div class="detail-item full-width">
+                <span class="icon">🏷️</span>
+                <div>
+                  <span class="label">Tags</span>
+                  <div class="tags">
+                    @for (tag of tattoo.tags; track tag) {
+                      <span class="tag">{{ tag }}</span>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-whatsapp" (click)="consultWhatsApp()">
+              <span class="icon">💬</span>
+              Consultar via WhatsApp
+            </button>
+          </div>
+
+          <div class="info-box">
+            <strong>ℹ️ Importante:</strong>
+            <p>Os preços e tempos são estimativas. Valores finais serão definidos após consulta presencial com avaliação detalhada do projeto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+} @else {
+  <div class="loading">
+    <div class="spinner"></div>
+    <p>Carregando...</p>
+  </div>
+}

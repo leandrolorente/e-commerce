@@ -22,16 +22,18 @@
         <div class="tattoos-grid">
           @for (tattoo of tattoos(); track tattoo.id) {
             <div class="tattoo-card">
-              <div class="tattoo-image">
+              <a [routerLink]="['/tattoos/detail', tattoo.id]" class="tattoo-image">
                 <img 
                   [src]="tattoo.images[0]" 
                   [alt]="tattoo.name"
                   (error)="onImageError($event)"
                   loading="lazy">
                 <div class="size-badge">{{ tattoo.size }}</div>
-              </div>
+              </a>
               <div class="tattoo-info">
-                <h3>{{ tattoo.name }}</h3>
+                <a [routerLink]="['/tattoos/detail', tattoo.id]">
+                  <h3>{{ tattoo.name }}</h3>
+                </a>
                 <p class="description">{{ tattoo.description }}</p>
                 <div class="meta-info">
                   <span class="style">{{ tattoo.style }}</span>
@@ -55,7 +57,7 @@
                 </div>
                 <div class="tattoo-footer">
                   <span class="price">{{ tattoo.estimatedPrice | currency: 'BRL' }}</span>
-                  <button class="btn-contact">💬 Consultar</button>
+                  <button class="btn-contact" (click)="consultWhatsApp(tattoo)">💬 Consultar</button>
                 </div>
               </div>
             </div>

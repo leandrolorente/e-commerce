@@ -1,7 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { HeaderComponent } from '@shared/components/layout/header/header.component';
 import { FooterComponent } from '@shared/components/layout/footer/footer.component';
 import { ProductService } from '@core/services/product.service';
 import { CartService } from '@core/services/cart.service';
@@ -11,7 +10,7 @@ import { MOCK_REVIEWS, MOCK_PRODUCTS } from '@core/services/mock-data';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, FooterComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
