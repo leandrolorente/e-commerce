@@ -22,6 +22,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   loading = false;
   addedToCart: Set<string> = new Set();
+  imageIndices: Map<string, number> = new Map();
 
   ngOnInit(): void {
     this.loadProducts();
@@ -32,8 +33,42 @@ export class ProductListComponent implements OnInit {
     // Simulando chamada API com timeout
     setTimeout(() => {
       this.products = MOCK_PRODUCTS;
+      // Inicializar índices de imagens
+      this.products.forEach(p => this.imageIndices.set(p.id, 0));
       this.loading = false;
     }, 800);
+  }
+
+  getCurrentImageIndex(productId: string): number {
+    return this.imageIndices.get(productId) || 0;
+  }
+
+  nextImage(productId: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const product = this.products.find(p => p.id === productId);
+    if (product) {
+      const current = this.imageIndices.get(productId) || 0;
+      const next = (current + 1) % product.images.length;
+      this.imageIndices.set(productId, next);
+    }
+  }
+
+  prevImage(productId: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const product = this.products.find(p => p.id === productId);
+    if (product) {
+      const current = this.imageIndices.get(productId) || 0;
+      const prev = (current - 1 + product.images.length) % product.images.length;
+      this.imageIndices.set(productId, prev);
+    }
+  }
+
+  setImageIndex(productId: string, index: number, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.imageIndices.set(productId, index);
   }
 
   addToCart(product: Product, event: Event): void {

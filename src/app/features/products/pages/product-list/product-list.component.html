@@ -25,10 +25,43 @@
                 </div>
               }
               
-              <!-- Imagem do Produto (Clicável) -->
-              <a [routerLink]="['/products', product.id]" class="product-image-wrapper">
-                <img [src]="product.images[0]" [alt]="product.name" class="product-image">
-              </a>
+              <!-- Carrossel de Imagens do Produto -->
+              <div class="product-image-wrapper">
+                <div class="carousel-container">
+                  <button 
+                    class="carousel-btn prev" 
+                    (click)="prevImage(product.id, $event)"
+                    *ngIf="product.images.length > 1"
+                  >‹</button>
+                  
+                  <a [routerLink]="['/products', product.id]">
+                    <img 
+                      [src]="product.images[getCurrentImageIndex(product.id)]" 
+                      [alt]="product.name" 
+                      class="product-image"
+                    >
+                  </a>
+                  
+                  <button 
+                    class="carousel-btn next" 
+                    (click)="nextImage(product.id, $event)"
+                    *ngIf="product.images.length > 1"
+                  >›</button>
+                </div>
+                
+                <!-- Indicadores de imagem -->
+                @if (product.images.length > 1) {
+                  <div class="image-indicators">
+                    @for (img of product.images; track $index) {
+                      <span 
+                        class="indicator" 
+                        [class.active]="getCurrentImageIndex(product.id) === $index"
+                        (click)="setImageIndex(product.id, $index, $event)"
+                      ></span>
+                    }
+                  </div>
+                }
+              </div>
               
               <!-- Informações -->
               <div class="product-info">
