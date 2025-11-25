@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
 import { CartService } from '@core/services/cart.service';
 import { Product } from '@models';
@@ -10,7 +10,7 @@ import { MOCK_PRODUCTS } from '@core/services/mock-data';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -25,15 +25,16 @@ export class HeaderComponent {
   cartItemCount = this.cartService.itemCount;
   cartItems = this.cartService.items;
   cartTotal = this.cartService.total;
-  
+
   showCartDropdown = signal(false);
   showSearchDropdown = signal(false);
+  showMobileMenu = signal(false);
   searchTerm = '';
   searchSuggestions = signal<Product[]>([]);
 
   onSearchInput(): void {
     const term = this.searchTerm.trim().toLowerCase();
-    
+
     if (term.length < 2) {
       this.searchSuggestions.set([]);
       this.showSearchDropdown.set(false);
@@ -82,7 +83,7 @@ export class HeaderComponent {
   onSearch(): void {
     this.showSearchDropdown.set(false);
     if (this.searchTerm.trim()) {
-      this.router.navigate(['/'], { 
+      this.router.navigate(['/'], {
         queryParams: { search: this.searchTerm.trim() }
       });
     } else {
@@ -92,5 +93,13 @@ export class HeaderComponent {
 
   onLogout(): void {
     this.authService.logout();
+  }
+
+  toggleMobileMenu(): void {
+    this.showMobileMenu.update(value => !value);
+  }
+
+  closeMobileMenu(): void {
+    this.showMobileMenu.set(false);
   }
 }

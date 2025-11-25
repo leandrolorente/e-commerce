@@ -29,10 +29,10 @@ export class HomeComponent implements OnInit {
   isLoading = signal(true);
 
   studioStats = {
-    yearsExperience: 10,
-    satisfiedClients: 5000,
-    artistsCount: 8,
-    awardsCount: 15
+    yearsExperience: 6,
+    satisfiedClients: 500,
+    artistsCount: 3,
+    awardsCount: 10
   };
 
   constructor(
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
 
   loadHomeData() {
     this.isLoading.set(true);
-    
+
     // Em produção, virá do backend via API
     this.homeService.getFeaturedTattoos().subscribe({
       next: (tattoos) => this.featuredTattoos.set(tattoos)

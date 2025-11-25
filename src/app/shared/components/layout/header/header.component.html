@@ -2,140 +2,124 @@
   <div class="container header-content">
     <!-- Logo -->
     <a routerLink="/" class="logo">
-      <div class="logo-icon">🛍️</div>
+      <div class="logo-icon">🎨</div>
       <div class="logo-text">
-        <h1>GuaranaTattoShop</h1>
-        <span class="logo-subtitle">Estúdio Guarana Tatto</span>
+        <h1>Guarana Tatto</h1>
+        <span class="logo-subtitle">Estúdio de Arte</span>
       </div>
     </a>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-      <form (submit)="onSearch(); $event.preventDefault()" class="search-form">
-        <span class="search-icon-left">🔍</span>
-        <input 
-          type="text" 
-          name="searchTerm"
-          [(ngModel)]="searchTerm"
-          (input)="onSearchInput()"
-          (blur)="closeSearchDropdown()"
-          placeholder="O que você está procurando?"
-          class="search-input"
-          autocomplete="off"
-        >
-        <button type="submit" class="search-btn">Buscar</button>
-      </form>
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Início</a>
+      <a routerLink="/tattoos" routerLinkActive="active" class="nav-link">Tatuagens</a>
+      <a routerLink="/tattoos/body-map" routerLinkActive="active" class="nav-link">Áreas do Corpo</a>
+      <a routerLink="/products" routerLinkActive="active" class="nav-link">Produtos</a>
+      <a routerLink="/booking" routerLinkActive="active" class="nav-link">Agendar</a>
+    </nav>
 
-      @if (showSearchDropdown()) {
-        <div class="search-dropdown">
-          <div class="search-dropdown-header">
-            <span>Sugestões</span>
-          </div>
-          <div class="search-suggestions">
-            @for (product of searchSuggestions(); track product.id) {
-              <div 
-                class="suggestion-item"
-                (mousedown)="selectSuggestion(product)"
-              >
-                <img [src]="product.images[0]" [alt]="product.name" class="suggestion-image">
-                <div class="suggestion-details">
-                  <h4 class="suggestion-name">{{ product.name }}</h4>
-                  <p class="suggestion-category">{{ product.category }}</p>
-                  <p class="suggestion-price">
-                    @if (product.discountPrice) {
-                      <span class="discount">{{ product.discountPrice | currency: 'BRL' }}</span>
-                      <span class="original">{{ product.price | currency: 'BRL' }}</span>
-                    } @else {
-                      <span class="price">{{ product.price | currency: 'BRL' }}</span>
-                    }
-                  </p>
-                </div>
-              </div>
+    <!-- Actions -->
+    <div class="header-actions">
+      <!-- Cart Button -->
+      @if (isAuthenticated()) {
+        <div class="cart-container">
+          <button
+            (click)="toggleCartDropdown()"
+            class="icon-btn cart-btn"
+            type="button"
+          >
+            🛒
+            @if (cartItemCount() > 0) {
+              <span class="badge">{{ cartItemCount() }}</span>
             }
-          </div>
+          </button>
+
+          <!-- Cart Dropdown -->
+          @if (showCartDropdown()) {
+            <div class="cart-dropdown">
+              <div class="cart-dropdown-header">
+                <h3>Meu Carrinho</h3>
+                <button (click)="closeCartDropdown()" class="close-btn">✕</button>
+              </div>
+
+              @if (cartItems().length === 0) {
+                <div class="empty-cart">
+                  <span class="empty-icon">🛒</span>
+                  <p>Seu carrinho está vazio</p>
+                </div>
+              } @else {
+                <div class="cart-items">
+                  @for (item of cartItems(); track item.product.id) {
+                    <div class="cart-item">
+                      <img [src]="item.product.images[0]" [alt]="item.product.name" class="item-image">
+                      <div class="item-details">
+                        <h4 class="item-name">{{ item.product.name }}</h4>
+                        <p class="item-quantity">Qtd: {{ item.quantity }}</p>
+                        <p class="item-price">{{ item.product.price * item.quantity | currency: 'BRL' }}</p>
+                      </div>
+                      <button
+                        (click)="removeFromCart(item.product.id)"
+                        class="remove-btn"
+                        title="Remover"
+                      >
+                        🗑️
+                      </button>
+                    </div>
+                  }
+                </div>
+
+                <div class="cart-dropdown-footer">
+                  <div class="total">
+                    <span>Total:</span>
+                    <strong>{{ cartTotal() | currency: 'BRL' }}</strong>
+                  </div>
+                  <button (click)="goToCart()" class="btn btn-primary btn-block">
+                    Ver Carrinho Completo
+                  </button>
+                </div>
+              }
+            </div>
+          }
         </div>
+
+        @if (isAdmin()) {
+          <a routerLink="/admin" class="btn btn-admin">Admin</a>
+        }
+        <button (click)="onLogout()" class="btn btn-outline">Sair</button>
+      } @else {
+        <a routerLink="/auth/login" class="btn btn-outline">Entrar</a>
+        <a routerLink="/auth/register" class="btn btn-primary">Cadastrar</a>
+      }
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-btn" (click)="toggleMobileMenu()" type="button">
+        @if (showMobileMenu()) {
+          ✕
+        } @else {
+          ☰
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  @if (showMobileMenu()) {
+    <div class="mobile-menu">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-link" (click)="closeMobileMenu()">🏠 Início</a>
+      <a routerLink="/tattoos" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">🎨 Tatuagens</a>
+      <a routerLink="/tattoos/body-map" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">📍 Áreas do Corpo</a>
+      <a routerLink="/products" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">🛍️ Produtos</a>
+      <a routerLink="/booking" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">📅 Agendar</a>
+
+      @if (isAuthenticated()) {
+        @if (isAdmin()) {
+          <a routerLink="/admin" class="mobile-link" (click)="closeMobileMenu()">⚙️ Admin</a>
+        }
+        <button (click)="onLogout(); closeMobileMenu()" class="mobile-link mobile-btn">🚪 Sair</button>
+      } @else {
+        <a routerLink="/auth/login" class="mobile-link" (click)="closeMobileMenu()">🔑 Entrar</a>
+        <a routerLink="/auth/register" class="mobile-link mobile-link-primary" (click)="closeMobileMenu()">📝 Cadastrar</a>
       }
     </div>
-
-    <!-- Navigation -->
-    <nav class="nav">
-      <a routerLink="/tattoos/body-map" class="nav-link">📍 Áreas do Corpo</a>
-      
-      @if (isAuthenticated()) {
-        <div class="user-menu">
-          <span class="user-name">Olá, {{ currentUser()?.name }}</span>
-          
-          @if (isAdmin()) {
-            <a routerLink="/admin" class="nav-link">Admin</a>
-          }
-          
-          <div class="cart-container">
-            <button 
-              (click)="toggleCartDropdown()" 
-              class="nav-link cart-link"
-              type="button"
-            >
-              <i class="cart-icon">🛒</i>
-              @if (cartItemCount() > 0) {
-                <span class="cart-badge">{{ cartItemCount() }}</span>
-              }
-            </button>
-
-            @if (showCartDropdown()) {
-              <div class="cart-dropdown">
-                <div class="cart-dropdown-header">
-                  <h3>Meu Carrinho</h3>
-                  <button (click)="closeCartDropdown()" class="close-btn">✕</button>
-                </div>
-
-                @if (cartItems().length === 0) {
-                  <div class="empty-cart">
-                    <i class="empty-icon">🛒</i>
-                    <p>Seu carrinho está vazio</p>
-                  </div>
-                } @else {
-                  <div class="cart-items">
-                    @for (item of cartItems(); track item.product.id) {
-                      <div class="cart-item">
-                        <img [src]="item.product.images[0]" [alt]="item.product.name" class="item-image">
-                        <div class="item-details">
-                          <h4 class="item-name">{{ item.product.name }}</h4>
-                          <p class="item-quantity">Qtd: {{ item.quantity }}</p>
-                          <p class="item-price">{{ item.product.price * item.quantity | currency: 'BRL' }}</p>
-                        </div>
-                        <button 
-                          (click)="removeFromCart(item.product.id)" 
-                          class="remove-btn"
-                          title="Remover"
-                        >
-                          🗑️
-                        </button>
-                      </div>
-                    }
-                  </div>
-
-                  <div class="cart-dropdown-footer">
-                    <div class="total">
-                      <span>Total:</span>
-                      <strong>{{ cartTotal() | currency: 'BRL' }}</strong>
-                    </div>
-                    <button (click)="goToCart()" class="btn btn-primary btn-block">
-                      Ver Carrinho Completo
-                    </button>
-                  </div>
-                }
-              </div>
-            }
-          </div>
-          
-          <button (click)="onLogout()" class="btn btn-outline">Sair</button>
-        </div>
-      } @else {
-        <div class="auth-links">
-          <a routerLink="/auth/login" class="btn btn-outline">Entrar</a>
-          <a routerLink="/auth/register" class="btn btn-primary">Cadastrar</a>
-        </div>
-      }
-    </nav>
-  </div>
+  }
 </header>
