@@ -235,6 +235,72 @@ Este projeto espera uma API REST no endpoint `http://localhost:3000/api` com os 
 - POST `/orders` - Criar pedido
 - PATCH `/orders/:id/status` - Atualizar status
 
+## 🚀 Deploy no GitHub Pages
+
+### Deploy Automático (CI/CD) ✅
+
+O projeto está configurado com **GitHub Actions** para deploy automático!
+
+**Como funciona:**
+1. Faça qualquer alteração no código
+2. Commit e push para `main`
+3. GitHub Actions faz build e deploy automaticamente
+4. Site atualizado em 2-3 minutos
+
+```bash
+git add .
+git commit -m "Minhas alterações"
+git push origin main
+# Aguarde 2-3 minutos - deploy automático! 🚀
+```
+
+**Acesse seu site em:**
+```
+https://leandrolorente.github.io/e-commerce/
+```
+
+### Primeira Configuração (Apenas uma vez)
+
+1. **Ative o GitHub Pages:**
+   - Vá em: `https://github.com/leandrolorente/e-commerce/settings/pages`
+   - **Source**: GitHub Actions
+   - Salve
+
+2. **Faça o primeiro push:**
+```bash
+git add .
+git commit -m "Configure GitHub Pages with CI/CD"
+git push origin main
+```
+
+3. **Acompanhe o deploy:**
+   - Acesse: `https://github.com/leandrolorente/e-commerce/actions`
+   - Aguarde o workflow "Deploy to GitHub Pages" ✅
+
+### Deploy Manual (Alternativa)
+
+Se preferir fazer deploy manual sem CI/CD:
+
+```bash
+npm run deploy
+```
+
+### Atualizações Futuras
+
+Apenas faça commit e push - o resto é automático! 🎉
+```bash
+git add .
+git commit -m "Nova feature"
+git push origin main
+```
+
+O GitHub Actions cuida de tudo:
+- ✅ Instala dependências
+- ✅ Build de produção
+- ✅ Deploy no GitHub Pages
+- ✅ Notificações de sucesso/erro
+
+
 ## Roadmap
 
 - [ ] Implementar backend Node.js/NestJS
