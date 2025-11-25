@@ -32,6 +32,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create environment file with API key
+        run: |
+          echo "export const environment = {
+            production: true,
+            geminiApiKey: '${{ secrets.GEMINI_API_KEY }}'
+          };" > src/environments/environment.prod.ts
+
       - name: Build Angular app
         run: npm run build:prod
 
