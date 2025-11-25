@@ -67,8 +67,8 @@
             maxlength="500"
             aria-label="Mensagem do chat"
           ></textarea>
-          <button 
-            class="btn-send" 
+          <button
+            class="btn-send"
             (click)="sendMessage()"
             [disabled]="!userInput().trim()"
             aria-label="Enviar mensagem">

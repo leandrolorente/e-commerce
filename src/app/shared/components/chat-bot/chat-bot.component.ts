@@ -21,7 +21,7 @@ interface Message {
 })
 export class ChatBotComponent implements AfterViewChecked {
   @ViewChild('messagesContainer') private messagesContainer?: ElementRef;
-  
+
   isOpen = signal(false);
   isTyping = signal(false);
   messages = signal<Message[]>([]);
@@ -88,9 +88,9 @@ export class ChatBotComponent implements AfterViewChecked {
     // Chama a API Gemini usando o SDK oficial
     this.llmService.chat(this.conversationHistory).subscribe({
       next: (response) => {
-        const botResponse = response.candidates[0]?.content?.parts[0]?.text || 
+        const botResponse = response.candidates[0]?.content?.parts[0]?.text ||
                            'Desculpe, não consegui processar sua mensagem.';
-        
+
         this.addBotMessage(botResponse);
         this.isTyping.set(false);
         this.shouldScrollToBottom = true;
@@ -132,7 +132,7 @@ export class ChatBotComponent implements AfterViewChecked {
   private checkShouldOpenWhatsApp(userMsg: string, botMsg: string): boolean {
     const msg = userMsg.toLowerCase();
     const response = botMsg.toLowerCase();
-    
+
     return (msg.includes('sim') || msg.includes('quero') || msg.includes('pode')) &&
            (response.includes('whatsapp') || response.includes('contato'));
   }
