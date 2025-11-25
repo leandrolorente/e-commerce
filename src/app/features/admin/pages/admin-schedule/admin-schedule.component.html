@@ -29,7 +29,7 @@
 
           <div class="calendar-days">
             @for (day of calendarDays(); track day.date.getTime()) {
-              <div 
+              <div
                 class="calendar-day"
                 [class.other-month]="!day.isCurrentMonth"
                 [class.today]="day.isToday"

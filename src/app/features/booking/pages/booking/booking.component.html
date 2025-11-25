@@ -25,7 +25,7 @@
       <h2>Qual serviço você deseja?</h2>
       <div class="service-types-grid">
         @for (service of serviceTypes; track service.value) {
-          <div 
+          <div
             class="service-card"
             [class.selected]="formData.serviceType === service.value"
             (click)="formData.serviceType = service.value"
@@ -35,12 +35,12 @@
           </div>
         }
       </div>
-      
+
       @if (formData.serviceType === 'new-tattoo') {
         <div class="extra-fields">
           <div class="form-group">
             <label>Descreva sua tatuagem</label>
-            <textarea 
+            <textarea
               [(ngModel)]="formData.tattooDescription"
               rows="4"
               placeholder="Conte-nos sua ideia..."
@@ -73,7 +73,7 @@
         <label>Artista</label>
         <div class="artists-grid">
           @for (artist of artists(); track artist.id) {
-            <div 
+            <div
               class="artist-card"
               [class.selected]="formData.artistId === artist.id"
               (click)="formData.artistId = artist.id; onArtistSelected()"
@@ -105,7 +105,7 @@
           </div>
           <div class="calendar-days">
             @for (day of calendarDays(); track day.getTime()) {
-              <div 
+              <div
                 class="calendar-day"
                 [class.other-month]="!isCurrentMonth(day)"
                 [class.today]="isToday(day)"
@@ -125,7 +125,7 @@
           <label>Horário Disponível</label>
           <div class="time-slots-grid">
             @for (slot of availableSlots(); track slot.time) {
-              <div 
+              <div
                 class="time-slot"
                 [class.selected]="formData.timeSlot === slot.time"
                 [class.disabled]="!slot.available"
@@ -164,9 +164,9 @@
         </div>
         <div class="form-group">
           <label>Telefone/WhatsApp *</label>
-          <input 
-            type="tel" 
-            [(ngModel)]="formData.customerPhone" 
+          <input
+            type="tel"
+            [(ngModel)]="formData.customerPhone"
             (input)="formatPhoneNumber($event)"
             placeholder="(00) 00000-0000"
             maxlength="15"

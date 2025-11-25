@@ -14,7 +14,7 @@ import { NotificationService } from '../../../../core/services/notification.serv
 })
 export class BookingComponent implements OnInit {
   private notificationService = inject(NotificationService);
-  
+
   currentStep = signal(1);
   artists = signal<Artist[]>([]);
   availableSlots = signal<BookingTimeSlot[]>([]);
@@ -42,7 +42,7 @@ export class BookingComponent implements OnInit {
   ];
 
   bodyAreas = [
-    'Braço', 'Antebraço', 'Costas', 'Peito', 'Perna', 'Coxa', 
+    'Braço', 'Antebraço', 'Costas', 'Peito', 'Perna', 'Coxa',
     'Ombro', 'Nuca', 'Mão', 'Pé', 'Costelas', 'Outro'
   ];
 
@@ -162,7 +162,7 @@ export class BookingComponent implements OnInit {
     const phone = '5518996566692';
     const artist = this.artists().find(a => a.id === this.formData.artistId);
     const service = this.serviceTypes.find(s => s.value === this.formData.serviceType);
-    
+
     const message = encodeURIComponent(
       `Olá! Acabei de fazer um agendamento:\n\n` +
       `Serviço: ${service?.label}\n` +
@@ -172,7 +172,7 @@ export class BookingComponent implements OnInit {
       `Nome: ${this.formData.customerName}\n` +
       `Telefone: ${this.formData.customerPhone}`
     );
-    
+
     window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
   }
 
@@ -199,11 +199,11 @@ export class BookingComponent implements OnInit {
   formatPhoneNumber(event: Event) {
     const input = event.target as HTMLInputElement;
     let value = input.value.replace(/\D/g, '');
-    
+
     if (value.length > 11) {
       value = value.slice(0, 11);
     }
-    
+
     if (value.length <= 10) {
       // (XX) XXXX-XXXX
       value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
@@ -211,7 +211,7 @@ export class BookingComponent implements OnInit {
       // (XX) XXXXX-XXXX
       value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
     }
-    
+
     this.formData.customerPhone = value;
   }
 
@@ -226,27 +226,27 @@ export class BookingComponent implements OnInit {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const prevLastDay = new Date(year, month, 0);
-    
+
     const days: Date[] = [];
     const firstDayOfWeek = firstDay.getDay();
-    
+
     // Previous month days
     for (let i = firstDayOfWeek - 1; i >= 0; i--) {
       const day = new Date(year, month - 1, prevLastDay.getDate() - i);
       days.push(day);
     }
-    
+
     // Current month days
     for (let i = 1; i <= lastDay.getDate(); i++) {
       days.push(new Date(year, month, i));
     }
-    
+
     // Next month days to complete the grid
     const remainingDays = 42 - days.length; // 6 weeks * 7 days
     for (let i = 1; i <= remainingDays; i++) {
       days.push(new Date(year, month + 1, i));
     }
-    
+
     this.calendarDays.set(days);
   }
 
@@ -267,10 +267,10 @@ export class BookingComponent implements OnInit {
   selectDate(date: Date) {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     const selectedDate = new Date(date);
     selectedDate.setHours(0, 0, 0, 0);
-    
+
     if (selectedDate > today) {
       this.selectedDate.set(date);
       this.formData.date = date.toISOString().split('T')[0];
