@@ -1,6 +1,6 @@
-# InkArt Studio - Tatuagens & Body Art
+# GuaranaTattoShop - Estúdio Guarana Tatto
 
-Plataforma web completa para estúdio de tatuagens com catálogo interativo, mapa corporal SVG, assistente virtual com IA e integração WhatsApp.
+Plataforma web completa para o **Estúdio Guarana Tatto** com catálogo interativo de tatuagens, mapa corporal SVG, assistente virtual com IA (Google Gemini 2.5 Flash) e integração WhatsApp.
 
 ## 🎨 Identidade Visual
 
@@ -53,12 +53,12 @@ Você pode se registrar com qualquer email/senha (será criado como cliente).
 - ✅ **Chat Widget Flutuante** - Interface moderna com animações
 - ✅ **Histórico de Conversa** - Contexto preservado durante a sessão
 
-### E-Commerce
-- ✅ Autenticação JWT com mock login
+### Loja de Produtos
+- ✅ Produtos para cuidados pós-tatuagem
 - ✅ Preview do carrinho no header
 - ✅ Sistema de reviews/avaliações
 - ✅ Carrinho de compras com persistência
-- ✅ Sistema de checkout
+- ✅ Finalização via WhatsApp
 
 ## Estrutura do Projeto
 

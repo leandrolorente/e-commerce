@@ -1,4 +1,4 @@
-# Angular E-Commerce Project - AI Coding Agent Instructions
+# GuaranaTattoShop - Estúdio Guarana Tatto - AI Coding Agent Instructions
 
 ## Code Quality Standards
 

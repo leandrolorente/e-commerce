@@ -11,5 +11,5 @@ import { ChatBotComponent } from '@shared/components/chat-bot/chat-bot.component
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'E-Commerce';
+  title = 'GuaranaTattoShop';
 }

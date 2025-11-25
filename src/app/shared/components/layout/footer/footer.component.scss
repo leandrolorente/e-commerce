@@ -15,7 +15,8 @@
   h3 {
     font-size: 18px;
     margin-bottom: var(--spacing-md);
-    color: var(--primary-color);
+    color: var(--bronze-color);
+    font-weight: 600;
   }
   
   p, ul {
@@ -23,15 +24,18 @@
     padding: 0;
     list-style: none;
     line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
   }
   
   a {
-    color: #ccc;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     transition: color 0.2s;
+    font-size: 15px;
     
     &:hover {
-      color: var(--primary-color);
+      color: var(--bronze-color);
+      text-decoration: underline;
     }
   }
   
@@ -55,10 +59,15 @@
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding: var(--spacing-md) 0;
   text-align: center;
-  color: #ccc;
+  
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    margin: 0;
+  }
 }
 
 @media (max-width: 768px) {
