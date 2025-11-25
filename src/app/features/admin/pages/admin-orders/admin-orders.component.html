@@ -1,0 +1,306 @@
+<div class="admin-orders-container">
+  <div class="page-header">
+    <h1>Gerenciar Pedidos</h1>
+    <div class="stats-summary">
+      @if (stats()) {
+        <div class="stat-card">
+          <span class="stat-label">Total</span>
+          <span class="stat-value">{{ stats()!.total }}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Pendentes</span>
+          <span class="stat-value pending">{{ stats()!.pending }}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Confirmados</span>
+          <span class="stat-value confirmed">{{ stats()!.confirmed }}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Receita</span>
+          <span class="stat-value revenue">R$ {{ stats()!.totalRevenue.toFixed(2) }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters-section">
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Buscar por ID, cliente ou email..." 
+        [(ngModel)]="searchTerm"
+        (input)="applyFilters()"
+      />
+    </div>
+    <select [(ngModel)]="selectedStatus" (change)="applyFilters()" class="filter-select">
+      <option value="">Todos os Status</option>
+      @for (status of statusOptions; track status.value) {
+        <option [value]="status.value">{{ status.label }}</option>
+      }
+    </select>
+    <select [(ngModel)]="selectedPaymentStatus" (change)="applyFilters()" class="filter-select">
+      <option value="">Todos os Pagamentos</option>
+      @for (payment of paymentStatusOptions; track payment.value) {
+        <option [value]="payment.value">{{ payment.label }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Tabela de Pedidos -->
+  <div class="orders-table">
+    @if (isLoading()) {
+      <div class="loading">Carregando pedidos...</div>
+    } @else if (orders().length === 0) {
+      <div class="empty-state">
+        <p>Nenhum pedido encontrado</p>
+      </div>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Itens</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Pagamento</th>
+            <th>Data</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orders(); track order.id) {
+            <tr>
+              <td>
+                <strong class="order-id">{{ order.id }}</strong>
+              </td>
+              <td>
+                <div class="customer-info">
+                  <strong>{{ order.customerName }}</strong>
+                  <span class="customer-email">{{ order.customerEmail }}</span>
+                  <span class="customer-phone">{{ order.customerPhone }}</span>
+                </div>
+              </td>
+              <td>
+                <span class="items-count">{{ order.items.length }} item(s)</span>
+              </td>
+              <td>
+                <strong class="order-total">R$ {{ order.total.toFixed(2) }}</strong>
+              </td>
+              <td>
+                <span [class]="'status-badge status-' + getStatusClass(order.status)">
+                  {{ order.status }}
+                </span>
+              </td>
+              <td>
+                <div class="payment-info">
+                  <span>{{ order.paymentMethod }}</span>
+                  <span [class]="'payment-badge payment-' + getPaymentClass(order.paymentStatus)">
+                    {{ order.paymentStatus }}
+                  </span>
+                </div>
+              </td>
+              <td>
+                <span class="order-date">{{ order.createdAt | date:'dd/MM/yyyy' }}</span>
+                <span class="order-time">{{ order.createdAt | date:'HH:mm' }}</span>
+              </td>
+              <td>
+                <div class="actions">
+                  <button class="btn-icon btn-view" (click)="viewOrderDetails(order)" title="Ver Detalhes">
+                    👁️
+                  </button>
+                  <button class="btn-icon btn-edit" (click)="openEditStatusModal(order)" title="Editar Status">
+                    ✏️
+                  </button>
+                  <button class="btn-icon btn-delete" (click)="confirmDelete(order)" title="Excluir">
+                    🗑️
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>
+
+<!-- Modal de Detalhes do Pedido -->
+@if (showDetailsModal()) {
+  <div class="modal-overlay" (click)="closeDetailsModal()">
+    <div class="modal-content modal-large" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Detalhes do Pedido {{ selectedOrder()?.id }}</h2>
+        <button class="btn-close" (click)="closeDetailsModal()">✕</button>
+      </div>
+      
+      @if (selectedOrder(); as order) {
+        <div class="modal-body order-details">
+          <!-- Informações do Cliente -->
+          <section class="details-section">
+            <h3>👤 Informações do Cliente</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <label>Nome:</label>
+                <span>{{ order.customerName }}</span>
+              </div>
+              <div class="info-item">
+                <label>Email:</label>
+                <span>{{ order.customerEmail }}</span>
+              </div>
+              <div class="info-item">
+                <label>Telefone:</label>
+                <span>{{ order.customerPhone }}</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Endereço de Entrega -->
+          <section class="details-section">
+            <h3>📍 Endereço de Entrega</h3>
+            <div class="address-info">
+              <p>{{ order.shippingAddress.street }}, {{ order.shippingAddress.number }}</p>
+              @if (order.shippingAddress.complement) {
+                <p>{{ order.shippingAddress.complement }}</p>
+              }
+              <p>{{ order.shippingAddress.neighborhood }} - {{ order.shippingAddress.city }}/{{ order.shippingAddress.state }}</p>
+              <p>CEP: {{ order.shippingAddress.zipCode }}</p>
+            </div>
+          </section>
+
+          <!-- Itens do Pedido -->
+          <section class="details-section">
+            <h3>🛒 Itens do Pedido</h3>
+            <div class="order-items-list">
+              @for (item of order.items; track item.product.id) {
+                <div class="order-item">
+                  <img [src]="item.product.images[0]" [alt]="item.product.name" class="item-image">
+                  <div class="item-info">
+                    <strong>{{ item.product.name }}</strong>
+                    <span class="item-quantity">Quantidade: {{ item.quantity }}</span>
+                  </div>
+                  <div class="item-price">
+                    <span>R$ {{ item.product.price.toFixed(2) }} x {{ item.quantity }}</span>
+                    <strong>R$ {{ (item.product.price * item.quantity).toFixed(2) }}</strong>
+                  </div>
+                </div>
+              }
+            </div>
+          </section>
+
+          <!-- Resumo Financeiro -->
+          <section class="details-section">
+            <h3>💰 Resumo Financeiro</h3>
+            <div class="financial-summary">
+              <div class="summary-row">
+                <span>Subtotal:</span>
+                <span>R$ {{ order.subtotal.toFixed(2) }}</span>
+              </div>
+              <div class="summary-row">
+                <span>Frete:</span>
+                <span>R$ {{ order.shipping.toFixed(2) }}</span>
+              </div>
+              @if (order.discount > 0) {
+                <div class="summary-row discount">
+                  <span>Desconto:</span>
+                  <span>- R$ {{ order.discount.toFixed(2) }}</span>
+                </div>
+              }
+              <div class="summary-row total">
+                <strong>Total:</strong>
+                <strong>R$ {{ order.total.toFixed(2) }}</strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- Observações -->
+          @if (order.notes) {
+            <section class="details-section">
+              <h3>📝 Observações</h3>
+              <p class="order-notes">{{ order.notes }}</p>
+            </section>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- Modal de Editar Status -->
+@if (showEditModal()) {
+  <div class="modal-overlay" (click)="closeEditModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Atualizar Status - {{ selectedOrder()?.id }}</h2>
+        <button class="btn-close" (click)="closeEditModal()">✕</button>
+      </div>
+      
+      <form class="status-form" (ngSubmit)="updateOrderStatus()">
+        <div class="form-group">
+          <label>Status do Pedido</label>
+          <select [(ngModel)]="editFormData.status" name="status" required>
+            @for (status of statusOptions; track status.value) {
+              <option [value]="status.value">{{ status.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Status do Pagamento</label>
+          <select [(ngModel)]="editFormData.paymentStatus" name="paymentStatus" required>
+            @for (payment of paymentStatusOptions; track payment.value) {
+              <option [value]="payment.value">{{ payment.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Observações</label>
+          <textarea 
+            [(ngModel)]="editFormData.notes"
+            name="notes"
+            rows="3"
+            placeholder="Adicione observações sobre o pedido..."
+          ></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" (click)="closeEditModal()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-save" [disabled]="isSaving()">
+            {{ isSaving() ? 'Salvando...' : 'Salvar Alterações' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- Modal de Confirmação de Exclusão -->
+@if (showDeleteConfirm()) {
+  <div class="modal-overlay" (click)="closeDeleteConfirm()">
+    <div class="modal-content modal-small" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Confirmar Exclusão</h2>
+        <button class="btn-close" (click)="closeDeleteConfirm()">✕</button>
+      </div>
+      
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir o pedido:</p>
+        <strong>{{ orderToDelete()?.id }}</strong>
+        <p class="warning-text">⚠️ Esta ação não pode ser desfeita</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="closeDeleteConfirm()">
+          Cancelar
+        </button>
+        <button class="btn-delete-confirm" (click)="deleteOrder()" [disabled]="isSaving()">
+          {{ isSaving() ? 'Excluindo...' : 'Excluir Pedido' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

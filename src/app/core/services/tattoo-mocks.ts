@@ -19,7 +19,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 4500,
     artist: 'Yuki Tanaka',
     difficulty: 'Expert',
-    tags: ['dragão', 'oriental', 'manga', 'colorido']
+    tags: ['dragão', 'oriental', 'manga', 'colorido'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
   {
     id: 'tattoo-2',
@@ -36,7 +39,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 3800,
     artist: 'Tane Williams',
     difficulty: 'Difícil',
-    tags: ['tribal', 'maori', 'blackwork', 'tradicional']
+    tags: ['tribal', 'maori', 'blackwork', 'tradicional'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Antebraço
@@ -55,7 +61,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1800,
     artist: 'Marco Silva',
     difficulty: 'Expert',
-    tags: ['leão', 'realismo', 'animal', 'preto e cinza']
+    tags: ['leão', 'realismo', 'animal', 'preto e cinza'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
   {
     id: 'tattoo-4',
@@ -72,7 +81,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1200,
     artist: 'Ana Costa',
     difficulty: 'Médio',
-    tags: ['mandala', 'geométrico', 'simétrico', 'fine line']
+    tags: ['mandala', 'geométrico', 'simétrico', 'fine line'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Peito
@@ -90,7 +102,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 2200,
     artist: 'Johnny Flash',
     difficulty: 'Médio',
-    tags: ['águia', 'old school', 'tradicional', 'colorido']
+    tags: ['águia', 'old school', 'tradicional', 'colorido'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Costas
@@ -109,7 +124,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 5500,
     artist: 'Sofia Martins',
     difficulty: 'Expert',
-    tags: ['fênix', 'aquarela', 'colorido', 'grande']
+    tags: ['fênix', 'aquarela', 'colorido', 'grande'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Coxa
@@ -127,7 +145,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 2800,
     artist: 'Sakura Nakamura',
     difficulty: 'Difícil',
-    tags: ['flores', 'japonês', 'colorido', 'peônia']
+    tags: ['flores', 'japonês', 'colorido', 'peônia'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Panturrilha
@@ -145,7 +166,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1400,
     artist: 'Pedro Alves',
     difficulty: 'Médio',
-    tags: ['lobo', 'geométrico', 'animal', 'preto']
+    tags: ['lobo', 'geométrico', 'animal', 'preto'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Ombro
@@ -163,7 +187,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 2400,
     artist: 'Hiro Yamamoto',
     difficulty: 'Difícil',
-    tags: ['samurai', 'japonês', 'guerreiro', 'colorido']
+    tags: ['samurai', 'japonês', 'guerreiro', 'colorido'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Pulso
@@ -181,7 +208,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 400,
     artist: 'Carla Santos',
     difficulty: 'Fácil',
-    tags: ['minimalista', 'montanha', 'fino', 'simples']
+    tags: ['minimalista', 'montanha', 'fino', 'simples'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Barriga
@@ -199,7 +229,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 3200,
     artist: 'Rafael Lima',
     difficulty: 'Expert',
-    tags: ['mandala', 'geométrico', 'grande', 'complexo']
+    tags: ['mandala', 'geométrico', 'grande', 'complexo'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Pescoço
@@ -217,7 +250,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 600,
     artist: 'Luna Garcia',
     difficulty: 'Médio',
-    tags: ['rosa', 'fine line', 'delicado', 'feminino']
+    tags: ['rosa', 'fine line', 'delicado', 'feminino'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Costelas
@@ -235,7 +271,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 800,
     artist: 'Bruno Ferreira',
     difficulty: 'Médio',
-    tags: ['lettering', 'frase', 'script', 'preto']
+    tags: ['lettering', 'frase', 'script', 'preto'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Lombar
@@ -253,7 +292,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1600,
     artist: 'Isabella Rocha',
     difficulty: 'Médio',
-    tags: ['borboleta', 'aquarela', 'colorido', 'feminino']
+    tags: ['borboleta', 'aquarela', 'colorido', 'feminino'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Tornozelo
@@ -271,7 +313,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 350,
     artist: 'Thiago Oliveira',
     difficulty: 'Fácil',
-    tags: ['flecha', 'minimalista', 'simples', 'pequeno']
+    tags: ['flecha', 'minimalista', 'simples', 'pequeno'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Mão
@@ -289,7 +334,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 700,
     artist: 'Raven Dark',
     difficulty: 'Médio',
-    tags: ['símbolos', 'místico', 'blackwork', 'mão']
+    tags: ['símbolos', 'místico', 'blackwork', 'mão'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Rosto
@@ -307,7 +355,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 800,
     artist: 'Luna Martinez',
     difficulty: 'Expert',
-    tags: ['facial', 'minimalista', 'delicado', 'moderno']
+    tags: ['facial', 'minimalista', 'delicado', 'moderno'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Nuca
@@ -326,7 +377,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1200,
     artist: 'Amanda Silva',
     difficulty: 'Difícil',
-    tags: ['mandala', 'geométrico', 'nuca', 'feminino']
+    tags: ['mandala', 'geométrico', 'nuca', 'feminino'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Costas Superior
@@ -346,7 +400,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 5500,
     artist: 'Gabriel Santos',
     difficulty: 'Expert',
-    tags: ['asas', 'anjo', 'realista', 'costas']
+    tags: ['asas', 'anjo', 'realista', 'costas'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Costas Completas
@@ -367,7 +424,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 8000,
     artist: 'Yuki Tanaka',
     difficulty: 'Expert',
-    tags: ['dragão', 'japonês', 'full back', 'colorido']
+    tags: ['dragão', 'japonês', 'full back', 'colorido'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Costelas
@@ -386,7 +446,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 2800,
     artist: 'Isabella Rocha',
     difficulty: 'Difícil',
-    tags: ['flores', 'pássaros', 'aquarela', 'feminino']
+    tags: ['flores', 'pássaros', 'aquarela', 'feminino'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Abdômen
@@ -405,7 +468,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 3200,
     artist: 'Lucas Mendes',
     difficulty: 'Difícil',
-    tags: ['geometria', 'sagrado', 'abdômen', 'blackwork']
+    tags: ['geometria', 'sagrado', 'abdômen', 'blackwork'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Braço Interno
@@ -424,7 +490,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1400,
     artist: 'Camila Ferreira',
     difficulty: 'Médio',
-    tags: ['flores', 'fine line', 'delicado', 'braço']
+    tags: ['flores', 'fine line', 'delicado', 'braço'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Braço Externo
@@ -443,7 +512,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 2500,
     artist: 'Tane Williams',
     difficulty: 'Difícil',
-    tags: ['tribal', 'maori', 'blackwork', 'braço']
+    tags: ['tribal', 'maori', 'blackwork', 'braço'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Antebraço Interno
@@ -461,7 +533,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1100,
     artist: 'Mariana Costa',
     difficulty: 'Médio',
-    tags: ['frase', 'flores', 'fine line', 'feminino']
+    tags: ['frase', 'flores', 'fine line', 'feminino'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Antebraço Externo
@@ -480,7 +555,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1800,
     artist: 'Roberto Silva',
     difficulty: 'Médio',
-    tags: ['relógio', 'old school', 'tradicional', 'colorido']
+    tags: ['relógio', 'old school', 'tradicional', 'colorido'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Cotovelo
@@ -498,7 +576,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1300,
     artist: 'Lucas Mendes',
     difficulty: 'Difícil',
-    tags: ['mandala', 'geométrico', 'cotovelo', 'blackwork']
+    tags: ['mandala', 'geométrico', 'cotovelo', 'blackwork'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Dedos
@@ -516,7 +597,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 400,
     artist: 'Thiago Oliveira',
     difficulty: 'Médio',
-    tags: ['dedos', 'anéis', 'minimalista', 'símbolos']
+    tags: ['dedos', 'anéis', 'minimalista', 'símbolos'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Coxa Interna
@@ -535,7 +619,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 2600,
     artist: 'Isabella Rocha',
     difficulty: 'Médio',
-    tags: ['flores', 'aquarela', 'coxa', 'colorido']
+    tags: ['flores', 'aquarela', 'coxa', 'colorido'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Coxa Externa
@@ -555,7 +642,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 3500,
     artist: 'Rafael Almeida',
     difficulty: 'Expert',
-    tags: ['tigre', 'realista', 'coxa', 'animal']
+    tags: ['tigre', 'realista', 'coxa', 'animal'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Canela
@@ -574,7 +664,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1900,
     artist: 'Amanda Silva',
     difficulty: 'Difícil',
-    tags: ['ornamental', 'canela', 'detalhado', 'blackwork']
+    tags: ['ornamental', 'canela', 'detalhado', 'blackwork'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Pé Completo
@@ -592,7 +685,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1200,
     artist: 'Camila Ferreira',
     difficulty: 'Médio',
-    tags: ['flores', 'pé', 'fine line', 'feminino']
+    tags: ['flores', 'pé', 'fine line', 'feminino'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Dedos do Pé
@@ -610,7 +706,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 350,
     artist: 'Thiago Oliveira',
     difficulty: 'Fácil',
-    tags: ['dedos', 'pé', 'minimalista', 'símbolos']
+    tags: ['dedos', 'pé', 'minimalista', 'símbolos'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Ombro Frontal
@@ -629,7 +728,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1800,
     artist: 'Rafael Almeida',
     difficulty: 'Difícil',
-    tags: ['rosa', 'realista', 'ombro', 'flores']
+    tags: ['rosa', 'realista', 'ombro', 'flores'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Ombro Traseiro
@@ -647,7 +749,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1500,
     artist: 'Tane Williams',
     difficulty: 'Médio',
-    tags: ['tribal', 'ombro', 'blackwork', 'maori']
+    tags: ['tribal', 'ombro', 'blackwork', 'maori'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Peito Superior
@@ -666,7 +771,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 2000,
     artist: 'Amanda Silva',
     difficulty: 'Difícil',
-    tags: ['ornamental', 'peito', 'colar', 'feminino']
+    tags: ['ornamental', 'peito', 'colar', 'feminino'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Peito Lateral
@@ -684,7 +792,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1600,
     artist: 'Raven Dark',
     difficulty: 'Médio',
-    tags: ['pássaro', 'blackwork', 'peito', 'lateral']
+    tags: ['pássaro', 'blackwork', 'peito', 'lateral'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Perna Completa
@@ -705,7 +816,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 6000,
     artist: 'Yuki Tanaka',
     difficulty: 'Expert',
-    tags: ['japonês', 'perna', 'sleeve', 'colorido']
+    tags: ['japonês', 'perna', 'sleeve', 'colorido'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Joelho
@@ -723,7 +837,10 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 1400,
     artist: 'Lucas Mendes',
     difficulty: 'Difícil',
-    tags: ['mandala', 'joelho', 'geométrico', 'blackwork']
+    tags: ['mandala', 'joelho', 'geométrico', 'blackwork'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
 
   // Costas (área geral)
@@ -743,6 +860,11 @@ export const MOCK_TATTOOS: Tattoo[] = [
     estimatedPrice: 3800,
     artist: 'Gabriel Santos',
     difficulty: 'Expert',
-    tags: ['árvore', 'vida', 'blackwork', 'costas']
+    tags: ['árvore', 'vida', 'blackwork', 'costas'],
+    isAvailable: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   }
 ];
+
+

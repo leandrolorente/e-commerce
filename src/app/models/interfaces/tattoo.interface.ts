@@ -14,6 +14,40 @@ export interface Tattoo {
   difficulty: 'Fácil' | 'Médio' | 'Difícil' | 'Expert';
   tags: string[];
   colors?: string[];
+  isAvailable: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface TattooFilter {
+  style?: TattooStyle;
+  size?: TattooSize;
+  bodyArea?: BodyArea;
+  difficulty?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  searchTerm?: string;
+  sortBy?: 'price' | 'popularity' | 'newest';
+  sortOrder?: 'asc' | 'desc';
+}
+
+export interface CreateTattooDto {
+  name: string;
+  description: string;
+  style: TattooStyle;
+  size: TattooSize;
+  bodyArea: BodyArea;
+  estimatedTime: string;
+  estimatedPrice: number;
+  artist: string;
+  difficulty: 'Fácil' | 'Médio' | 'Difícil' | 'Expert';
+  images: string[];
+  tags: string[];
+  colors?: string[];
+}
+
+export interface UpdateTattooDto extends Partial<CreateTattooDto> {
+  isAvailable?: boolean;
 }
 
 export enum TattooStyle {

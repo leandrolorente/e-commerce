@@ -3,191 +3,181 @@ import { Product, ProductCategory, Review } from '@models';
 export const MOCK_PRODUCTS: Product[] = [
   {
     id: '1',
-    name: 'Notebook Gamer RGB',
-    description: 'Notebook potente para jogos e trabalho com iluminação RGB customizável',
-    price: 5499.99,
-    discountPrice: 4799.99,
-    category: ProductCategory.ELECTRONICS,
+    name: 'Pomada Cicatrizante Premium',
+    description: 'Pomada especializada para cicatrização de tatuagens, com ingredientes naturais',
+    price: 45.90,
+    discountPrice: 39.90,
+    category: ProductCategory.CUIDADOS,
     images: [
-      'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400',
-      'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400',
-      'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400',
-      'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400'
+      'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400',
+      'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400'
     ],
-    stock: 15,
+    stock: 50,
     rating: 4.8,
-    reviewCount: 342,
+    reviewCount: 124,
     specifications: {
-      'Processador': 'Intel Core i7 12th Gen',
-      'Memória RAM': '16GB DDR5',
-      'Armazenamento': '512GB SSD',
-      'Placa de Vídeo': 'RTX 4060 8GB'
+      'Tipo': 'Pomada Cicatrizante',
+      'Volume': '50g',
+      'Ingredientes': '100% Natural',
+      'Uso': 'Pós-tatuagem'
     },
     createdAt: new Date('2024-01-15'),
     updatedAt: new Date('2024-11-20')
   },
   {
     id: '2',
-    name: 'Smartphone Pro Max',
-    description: 'Último modelo com câmera tripla de 108MP e processador de última geração',
-    price: 3999.99,
-    discountPrice: 3499.99,
-    category: ProductCategory.ELECTRONICS,
+    name: 'Protetor Solar FPS 50',
+    description: 'Proteção solar especial para tatuagens, previne desbotamento das cores',
+    price: 59.90,
+    discountPrice: 49.90,
+    category: ProductCategory.CUIDADOS,
     images: [
-      'https://images.unsplash.com/photo-1592286927505-40f2f8c6c8f7?w=400',
-      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400',
-      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400',
-      'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400'
+      'https://images.unsplash.com/photo-1556228994-230e0b356b06?w=400',
+      'https://images.unsplash.com/photo-1556229174-5e42a09e9a45?w=400'
     ],
-    stock: 28,
+    stock: 30,
     rating: 4.9,
-    reviewCount: 856,
+    reviewCount: 89,
     specifications: {
-      'Tela': '6.7" AMOLED 120Hz',
-      'Câmera': '108MP + 12MP + 12MP',
-      'Bateria': '5000mAh',
-      'Armazenamento': '256GB'
+      'FPS': '50',
+      'Volume': '100ml',
+      'Tipo': 'Especial para tatuagens',
+      'Resistência': 'Água e suor'
     },
     createdAt: new Date('2024-02-10'),
     updatedAt: new Date('2024-11-22')
   },
   {
     id: '3',
-    name: 'Fone de Ouvido Bluetooth Premium',
-    description: 'Cancelamento de ruído ativo, autonomia de 30h, conforto excepcional',
-    price: 899.99,
-    discountPrice: 699.99,
-    category: ProductCategory.ELECTRONICS,
+    name: 'Sabonete Antibacteriano Tattoo',
+    description: 'Sabonete especial para limpeza de tatuagens, pH neutro e antibacteriano',
+    price: 29.90,
+    discountPrice: 24.90,
+    category: ProductCategory.CUIDADOS,
     images: [
-      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
-      'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400',
-      'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400'
+      'https://images.unsplash.com/photo-1588016522275-5f2e3a72e506?w=400',
+      'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400'
     ],
-    stock: 45,
+    stock: 75,
     rating: 4.7,
-    reviewCount: 523,
+    reviewCount: 156,
     specifications: {
-      'Conectividade': 'Bluetooth 5.3',
-      'Bateria': '30 horas',
-      'ANC': 'Sim',
-      'Drivers': '40mm'
+      'Tipo': 'Antibacteriano',
+      'pH': 'Neutro',
+      'Volume': '150ml',
+      'Fragrância': 'Suave'
     },
     createdAt: new Date('2024-03-05'),
     updatedAt: new Date('2024-11-18')
   },
   {
     id: '4',
-    name: 'Smart TV 55" 4K OLED',
-    description: 'Tecnologia OLED com cores vibrantes, HDR10+, sistema operacional inteligente',
-    price: 4299.99,
-    category: ProductCategory.ELECTRONICS,
+    name: 'Camiseta Guarana Tatto - Preta',
+    description: 'Camiseta 100% algodão com logo do estúdio, confortável e estilosa',
+    price: 79.90,
+    category: ProductCategory.VESTUARIO,
     images: [
-      'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400',
-      'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400',
-      'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400'
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',
+      'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400'
     ],
-    stock: 8,
+    stock: 25,
     rating: 4.9,
-    reviewCount: 287,
+    reviewCount: 67,
     specifications: {
-      'Tamanho': '55 polegadas',
-      'Resolução': '4K OLED',
-      'HDR': 'HDR10+',
-      'Smart': 'Android TV'
+      'Material': '100% Algodão',
+      'Cores': 'Preta',
+      'Tamanhos': 'P, M, G, GG',
+      'Estampa': 'Logo Guarana Tatto'
     },
     createdAt: new Date('2024-01-20'),
     updatedAt: new Date('2024-11-15')
   },
   {
     id: '5',
-    name: 'Tênis Esportivo Performance',
-    description: 'Tecnologia de amortecimento avançada, ideal para corrida e treinos',
-    price: 599.99,
-    discountPrice: 449.99,
-    category: ProductCategory.SPORTS,
+    name: 'Boné Guarana Tatto - Snapback',
+    description: 'Boné snapback com logo bordado, estilo streetwear',
+    price: 69.90,
+    discountPrice: 59.90,
+    category: ProductCategory.ACESSORIOS,
     images: [
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
-      'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
-      'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400',
-      'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=400'
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400',
+      'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=400'
     ],
-    stock: 67,
+    stock: 40,
     rating: 4.6,
-    reviewCount: 1024,
+    reviewCount: 92,
     specifications: {
-      'Tipo': 'Running',
-      'Amortecimento': 'Air Cushion',
-      'Material': 'Mesh respirável',
-      'Numeração': '36-44'
+      'Tipo': 'Snapback',
+      'Material': 'Algodão',
+      'Ajuste': 'Regulável',
+      'Logo': 'Bordado'
     },
     createdAt: new Date('2024-02-28'),
     updatedAt: new Date('2024-11-21')
   },
   {
     id: '6',
-    name: 'Livro: Código Limpo',
-    description: 'Guia completo de boas práticas em programação por Robert C. Martin',
-    price: 89.99,
-    discountPrice: 69.99,
-    category: ProductCategory.BOOKS,
+    name: 'Kit Cuidados Completo',
+    description: 'Kit com pomada, sabonete e protetor solar para cuidados completos',
+    price: 129.90,
+    discountPrice: 99.90,
+    category: ProductCategory.CUIDADOS,
     images: [
-      'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400',
-      'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400'
+      'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400',
+      'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400'
     ],
-    stock: 125,
+    stock: 35,
     rating: 4.9,
-    reviewCount: 2341,
+    reviewCount: 203,
     specifications: {
-      'Autor': 'Robert C. Martin',
-      'Páginas': '464',
-      'Idioma': 'Português',
-      'Editora': 'Alta Books'
+      'Itens': '3 produtos',
+      'Conteúdo': 'Pomada + Sabonete + Protetor',
+      'Economia': '23% de desconto',
+      'Indicado': 'Tatuagens novas'
     },
     createdAt: new Date('2024-01-10'),
     updatedAt: new Date('2024-11-19')
   },
   {
     id: '7',
-    name: 'Mouse Gamer RGB 16000 DPI',
-    description: 'Sensor óptico de alta precisão, 8 botões programáveis, iluminação RGB',
-    price: 249.99,
-    discountPrice: 189.99,
-    category: ProductCategory.ELECTRONICS,
+    name: 'Chaveiro Guarana Tatto - Metal',
+    description: 'Chaveiro de metal com logo do estúdio, acabamento premium',
+    price: 19.90,
+    discountPrice: 14.90,
+    category: ProductCategory.ACESSORIOS,
     images: [
-      'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400',
-      'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400'
+      'https://images.unsplash.com/photo-1582561833237-bb1a9a628a3a?w=400'
     ],
-    stock: 92,
+    stock: 150,
     rating: 4.7,
-    reviewCount: 634,
+    reviewCount: 78,
     specifications: {
-      'DPI': '16000',
-      'Botões': '8 programáveis',
-      'RGB': 'Sim',
-      'Conexão': 'USB'
+      'Material': 'Metal cromado',
+      'Tamanho': '5cm',
+      'Logo': 'Gravado',
+      'Acabamento': 'Premium'
     },
     createdAt: new Date('2024-03-12'),
     updatedAt: new Date('2024-11-20')
   },
   {
     id: '8',
-    name: 'Cafeteira Expresso Automática',
-    description: 'Prepara café expresso perfeito com moedor integrado e espumador de leite',
-    price: 1899.99,
-    discountPrice: 1599.99,
-    category: ProductCategory.HOME,
+    name: 'Luvas Descartáveis - Caixa 100un',
+    description: 'Luvas de nitrilo para tatuagem, sem pó, hipoalergênicas',
+    price: 89.90,
+    discountPrice: 79.90,
+    category: ProductCategory.EQUIPAMENTOS,
     images: [
-      'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400',
-      'https://images.unsplash.com/photo-1556742111-a301076d9d18?w=400'
+      'https://images.unsplash.com/photo-1584515933487-779824d29309?w=400'
     ],
-    stock: 23,
+    stock: 60,
     rating: 4.8,
-    reviewCount: 412,
+    reviewCount: 145,
     specifications: {
-      'Tipo': 'Expresso',
-      'Moedor': 'Integrado',
-      'Pressão': '19 bar',
-      'Capacidade': '1.8L'
+      'Material': 'Nitrilo',
+      'Quantidade': '100 unidades',
+      'Tamanhos': 'P, M, G',
+      'Tipo': 'Sem pó'
     },
     createdAt: new Date('2024-02-15'),
     updatedAt: new Date('2024-11-17')
