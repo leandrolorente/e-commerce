@@ -33,7 +33,7 @@
       </div>
 
       <!-- Messages Area -->
-      <div class="chat-messages">
+      <div class="chat-messages" #messagesContainer>
         @for (message of messages(); track message.id) {
           <div class="message" [class.user]="message.sender === 'user'" [class.bot]="message.sender === 'bot'">
             <div class="message-content">

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
@@ -19,13 +19,16 @@ interface Message {
   templateUrl: './chat-bot.component.html',
   styleUrl: './chat-bot.component.scss'
 })
-export class ChatBotComponent {
+export class ChatBotComponent implements AfterViewChecked {
+  @ViewChild('messagesContainer') private messagesContainer?: ElementRef;
+  
   isOpen = signal(false);
   isTyping = signal(false);
   messages = signal<Message[]>([]);
   userInput = signal('');
   whatsappNumber = '5518996566692';
   conversationHistory: ChatMessage[] = [];
+  private shouldScrollToBottom = false;
 
   constructor(private llmService: LlmService) {
     // Mensagem de boas-vindas
@@ -41,6 +44,23 @@ export class ChatBotComponent {
 
   toggleChat() {
     this.isOpen.update(v => !v);
+    if (this.isOpen()) {
+      setTimeout(() => this.scrollToBottom(), 100);
+    }
+  }
+
+  ngAfterViewChecked() {
+    if (this.shouldScrollToBottom) {
+      this.scrollToBottom();
+      this.shouldScrollToBottom = false;
+    }
+  }
+
+  private scrollToBottom(): void {
+    if (this.messagesContainer) {
+      const element = this.messagesContainer.nativeElement;
+      element.scrollTop = element.scrollHeight;
+    }
   }
 
   sendMessage() {
@@ -63,6 +83,7 @@ export class ChatBotComponent {
 
     this.userInput.set('');
     this.isTyping.set(true);
+    this.shouldScrollToBottom = true;
 
     // Chama a API Gemini usando o SDK oficial
     this.llmService.chat(this.conversationHistory).subscribe({
@@ -72,6 +93,7 @@ export class ChatBotComponent {
         
         this.addBotMessage(botResponse);
         this.isTyping.set(false);
+        this.shouldScrollToBottom = true;
 
         // Adiciona resposta ao histórico
         this.conversationHistory.push({
@@ -93,6 +115,7 @@ export class ChatBotComponent {
         const fallbackResponse = this.llmService.getFallbackResponse(text);
         this.addBotMessage(fallbackResponse);
         this.isTyping.set(false);
+        this.shouldScrollToBottom = true;
       }
     });
   }
@@ -123,6 +146,7 @@ export class ChatBotComponent {
     this.messages.set([]);
     this.conversationHistory = [];
     this.addBotMessage('Chat limpo! Como posso ajudar? 😊');
+    this.shouldScrollToBottom = true;
   }
 
   handleKeyPress(event: KeyboardEvent) {
