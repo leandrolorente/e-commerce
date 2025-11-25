@@ -37,7 +37,7 @@
         @for (message of messages(); track message.id) {
           <div class="message" [class.user]="message.sender === 'user'" [class.bot]="message.sender === 'bot'">
             <div class="message-content">
-              <p>{{ message.text }}</p>
+              <div class="message-text" [innerHTML]="message.text | markdown"></div>
               <span class="timestamp">{{ message.timestamp | date:'HH:mm' }}</span>
             </div>
           </div>

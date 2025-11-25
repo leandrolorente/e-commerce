@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { LlmService, ChatMessage } from '@core/services/llm.service';
+import { MarkdownPipe } from '@shared/pipes/markdown.pipe';
 
 interface Message {
   id: string;
@@ -14,7 +15,7 @@ interface Message {
 @Component({
   selector: 'app-chat-bot',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MarkdownPipe],
   templateUrl: './chat-bot.component.html',
   styleUrl: './chat-bot.component.scss'
 })
