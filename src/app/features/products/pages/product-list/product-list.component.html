@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+<main class="main-content">
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero-banner">
+      <h1>Ofertas Imperdíveis 🔥</h1>
+      <p>Descontos de até 50% em produtos selecionados</p>
+    </div>
+    
+    @if (loading) {
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Carregando produtos incríveis...</p>
+      </div>
+    } @else {
+      @if (products.length > 0) {
+        <div class="products-grid">
+          @for (product of products; track product.id) {
+            <div class="product-card" [class.added]="addedToCart.has(product.id)">
+              <!-- Badge de Desconto -->
+              @if (product.discountPrice) {
+                <div class="discount-badge">
+                  -{{ getDiscountPercentage(product) }}%
+                </div>
+              }
+              
+              <!-- Imagem do Produto (Clicável) -->
+              <a [routerLink]="['/products', product.id]" class="product-image-wrapper">
+                <img [src]="product.images[0]" [alt]="product.name" class="product-image">
+              </a>
+              
+              <!-- Informações -->
+              <div class="product-info">
+                <span class="product-category">{{ product.category }}</span>
+                <a [routerLink]="['/products', product.id]" class="product-title-link">
+                  <h3 class="product-title">{{ product.name }}</h3>
+                </a>
+                <p class="product-description">{{ product.description }}</p>
+                
+                <!-- Rating -->
+                <div class="product-rating">
+                  <span class="stars">⭐ {{ product.rating }}</span>
+                  <span class="reviews">({{ product.reviewCount }} avaliações)</span>
+                </div>
+                
+                <!-- Preço e Ação -->
+                <div class="product-footer">
+                  <div class="price-container">
+                    @if (product.discountPrice) {
+                      <span class="original-price">R$ {{ product.price.toFixed(2) }}</span>
+                      <span class="current-price discount">R$ {{ product.discountPrice.toFixed(2) }}</span>
+                    } @else {
+                      <span class="current-price">R$ {{ product.price.toFixed(2) }}</span>
+                    }
+                  </div>
+                  
+                  <button 
+                    (click)="addToCart(product, $event)" 
+                    class="btn-add-cart"
+                    [class.added]="addedToCart.has(product.id)"
+                  >
+                    @if (addedToCart.has(product.id)) {
+                      <span>✓ Adicionado</span>
+                    } @else {
+                      <span>🛒 Adicionar</span>
+                    }
+                  </button>
+                </div>
+                
+                <!-- Estoque -->
+                @if (product.stock < 10) {
+                  <div class="stock-warning">
+                    ⚠️ Apenas {{ product.stock }} em estoque!
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <div class="empty-icon">📦</div>
+          <h2>Nenhum produto encontrado</h2>
+          <p>Tente ajustar seus filtros ou volte mais tarde</p>
+        </div>
+      }
+    }
+  </div>
+</main>
+
+<app-footer></app-footer>

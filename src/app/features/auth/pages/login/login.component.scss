@@ -1,0 +1,119 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #2d5f7a 100%);
+}
+
+.test-credentials-card {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-lg);
+  background: rgba(255, 209, 102, 0.1);
+  border: 2px solid #ffd166;
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+
+  h3 {
+    margin: 0 0 var(--spacing-md) 0;
+    color: #ffd166;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .credentials-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .credential-item {
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border-left: 3px solid #ff6b6b;
+
+    strong {
+      display: block;
+      color: white;
+      margin-bottom: var(--spacing-xs);
+      font-size: 14px;
+    }
+
+    .credential-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+
+      span {
+        color: #ffd166;
+        background: rgba(0, 0, 0, 0.4);
+        padding: 4px 8px;
+        border-radius: 4px;
+        width: fit-content;
+      }
+    }
+  }
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-xl);
+  
+  h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+  }
+}
+
+.error-message {
+  background-color: #fee;
+  color: var(--error-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--error-color);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  
+  label {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+}
+
+.btn-block {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-top: var(--spacing-sm);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  color: var(--text-secondary);
+  
+  a {
+    color: var(--accent-color);
+    font-weight: 500;
+  }
+}

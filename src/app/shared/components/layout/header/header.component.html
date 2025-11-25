@@ -1,0 +1,105 @@
+<header class="header">
+  <div class="container header-content">
+    <!-- Logo -->
+    <a routerLink="/" class="logo">
+      <div class="logo-icon">🛍️</div>
+      <div class="logo-text">
+        <h1>ShopHub</h1>
+        <span class="logo-subtitle">Sua loja online</span>
+      </div>
+    </a>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <form (submit)="onSearch(); $event.preventDefault()" class="search-form">
+        <span class="search-icon-left">🔍</span>
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm"
+          placeholder="O que você está procurando?"
+          class="search-input"
+        >
+        <button type="submit" class="search-btn">Buscar</button>
+      </form>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      @if (isAuthenticated()) {
+        <div class="user-menu">
+          <span class="user-name">Olá, {{ currentUser()?.name }}</span>
+          
+          @if (isAdmin()) {
+            <a routerLink="/admin" class="nav-link">Admin</a>
+          }
+          
+          <div class="cart-container">
+            <button 
+              (click)="toggleCartDropdown()" 
+              class="nav-link cart-link"
+              type="button"
+            >
+              <i class="cart-icon">🛒</i>
+              @if (cartItemCount() > 0) {
+                <span class="cart-badge">{{ cartItemCount() }}</span>
+              }
+            </button>
+
+            @if (showCartDropdown()) {
+              <div class="cart-dropdown">
+                <div class="cart-dropdown-header">
+                  <h3>Meu Carrinho</h3>
+                  <button (click)="closeCartDropdown()" class="close-btn">✕</button>
+                </div>
+
+                @if (cartItems().length === 0) {
+                  <div class="empty-cart">
+                    <i class="empty-icon">🛒</i>
+                    <p>Seu carrinho está vazio</p>
+                  </div>
+                } @else {
+                  <div class="cart-items">
+                    @for (item of cartItems(); track item.product.id) {
+                      <div class="cart-item">
+                        <img [src]="item.product.images[0]" [alt]="item.product.name" class="item-image">
+                        <div class="item-details">
+                          <h4 class="item-name">{{ item.product.name }}</h4>
+                          <p class="item-quantity">Qtd: {{ item.quantity }}</p>
+                          <p class="item-price">{{ item.product.price * item.quantity | currency: 'BRL' }}</p>
+                        </div>
+                        <button 
+                          (click)="removeFromCart(item.product.id)" 
+                          class="remove-btn"
+                          title="Remover"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    }
+                  </div>
+
+                  <div class="cart-dropdown-footer">
+                    <div class="total">
+                      <span>Total:</span>
+                      <strong>{{ cartTotal() | currency: 'BRL' }}</strong>
+                    </div>
+                    <button (click)="goToCart()" class="btn btn-primary btn-block">
+                      Ver Carrinho Completo
+                    </button>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+          
+          <button (click)="onLogout()" class="btn btn-outline">Sair</button>
+        </div>
+      } @else {
+        <div class="auth-links">
+          <a routerLink="/auth/login" class="btn btn-outline">Entrar</a>
+          <a routerLink="/auth/register" class="btn btn-primary">Cadastrar</a>
+        </div>
+      }
+    </nav>
+  </div>
+</header>

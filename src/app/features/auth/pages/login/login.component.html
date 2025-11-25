@@ -1,0 +1,73 @@
+<div class="auth-container">
+  <!-- Card de Credenciais de Teste -->
+  <div class="test-credentials-card">
+    <h3>🔑 Contas de Teste</h3>
+    <div class="credentials-list">
+      <div class="credential-item">
+        <strong>👤 Cliente:</strong>
+        <div class="credential-details">
+          <span>cliente&#64;test.com</span>
+          <span>123456</span>
+        </div>
+      </div>
+      <div class="credential-item">
+        <strong>👨‍💼 Admin:</strong>
+        <div class="credential-details">
+          <span>admin&#64;test.com</span>
+          <span>admin123</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-card card">
+    <h2>Entrar</h2>
+    
+    @if (errorMessage) {
+      <div class="error-message">{{ errorMessage }}</div>
+    }
+    
+    <form (submit)="onSubmit(); $event.preventDefault()" class="auth-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="credentials.email"
+          name="email"
+          required
+          autocomplete="email"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="credentials.password"
+          name="password"
+          required
+          autocomplete="current-password"
+        >
+      </div>
+      
+      <button 
+        type="submit" 
+        class="btn btn-primary btn-block"
+        [disabled]="isLoading"
+      >
+        @if (isLoading) {
+          Entrando...
+        } @else {
+          Entrar
+        }
+      </button>
+    </form>
+    
+    <p class="auth-footer">
+      Não tem uma conta? 
+      <a href="/auth/register">Cadastre-se</a>
+    </p>
+  </div>
+</div>

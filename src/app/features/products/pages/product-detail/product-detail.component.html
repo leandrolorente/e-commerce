@@ -1,0 +1,200 @@
+<app-header></app-header>
+
+<main class="product-detail-page">
+  @if (product(); as product) {
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a routerLink="/">Início</a>
+        <span>/</span>
+        <a routerLink="/products">Produtos</a>
+        <span>/</span>
+        <span>{{ product.name }}</span>
+      </nav>
+
+      <!-- Seção Principal -->
+      <div class="product-main">
+        <!-- Galeria de Imagens -->
+        <div class="image-gallery">
+          <div class="main-image-container">
+            <button class="nav-btn prev" (click)="prevImage()">‹</button>
+            <img [src]="currentImage()" [alt]="product.name" class="main-image">
+            <button class="nav-btn next" (click)="nextImage()">›</button>
+            
+            @if (product.discountPrice) {
+              <div class="discount-badge">
+                -{{ ((1 - product.discountPrice / product.price) * 100).toFixed(0) }}%
+              </div>
+            }
+          </div>
+          
+          <div class="thumbnails">
+            @for (image of product.images; track image; let idx = $index) {
+              <img 
+                [src]="image" 
+                [alt]="product.name + ' - ' + (idx + 1)"
+                [class.active]="currentImageIndex() === idx"
+                (click)="selectImage(idx)"
+                class="thumbnail"
+              >
+            }
+          </div>
+        </div>
+
+        <!-- Informações do Produto -->
+        <div class="product-info-section">
+          <span class="category-badge">{{ product.category }}</span>
+          <h1 class="product-title">{{ product.name }}</h1>
+          
+          <div class="rating-section">
+            <div class="stars">
+              @for (filled of getStarArray(product.rating); track $index) {
+                <span [class.filled]="filled">★</span>
+              }
+            </div>
+            <span class="rating-text">{{ product.rating.toFixed(1) }}</span>
+            <span class="review-count">({{ product.reviewCount }} avaliações)</span>
+          </div>
+
+          <p class="product-description">{{ product.description }}</p>
+
+          <div class="price-section">
+            @if (product.discountPrice) {
+              <div class="price-container">
+                <span class="original-price">{{ product.price | currency: 'BRL' }}</span>
+                <span class="current-price">{{ product.discountPrice | currency: 'BRL' }}</span>
+              </div>
+            } @else {
+              <span class="current-price">{{ product.price | currency: 'BRL' }}</span>
+            }
+          </div>
+
+          <div class="stock-info">
+            @if (product.stock > 10) {
+              <span class="in-stock">✓ Em estoque</span>
+            } @else if (product.stock > 0) {
+              <span class="low-stock">⚠ Apenas {{ product.stock }} unidades disponíveis</span>
+            } @else {
+              <span class="out-stock">✗ Fora de estoque</span>
+            }
+          </div>
+
+          <!-- Quantidade e Ações -->
+          <div class="purchase-section">
+            <div class="quantity-selector">
+              <label>Quantidade:</label>
+              <div class="quantity-controls">
+                <button (click)="decrementQuantity()" [disabled]="quantity() <= 1">-</button>
+                <span class="quantity-value">{{ quantity() }}</span>
+                <button (click)="incrementQuantity()" [disabled]="quantity() >= product.stock">+</button>
+              </div>
+            </div>
+
+            <div class="action-buttons">
+              <button 
+                (click)="addToCart()" 
+                class="btn btn-primary"
+                [class.added]="addedToCart()"
+                [disabled]="product.stock === 0"
+              >
+                {{ addedToCart() ? '✓ Adicionado!' : '🛒 Adicionar ao Carrinho' }}
+              </button>
+              <button 
+                (click)="buyNow()" 
+                class="btn btn-secondary"
+                [disabled]="product.stock === 0"
+              >
+                Comprar Agora
+              </button>
+            </div>
+          </div>
+
+          <!-- Especificações -->
+          @if (product.specifications) {
+            <div class="specifications">
+              <h3>Especificações</h3>
+              <table class="specs-table">
+                @for (spec of product.specifications | keyvalue; track spec.key) {
+                  <tr>
+                    <td class="spec-label">{{ spec.key }}</td>
+                    <td class="spec-value">{{ spec.value }}</td>
+                  </tr>
+                }
+              </table>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Seção de Avaliações -->
+      <div class="reviews-section">
+        <h2>Avaliações dos Clientes</h2>
+
+        <div class="reviews-summary">
+          <div class="rating-overview">
+            <div class="average-rating">
+              <span class="rating-number">{{ averageRating().toFixed(1) }}</span>
+              <div class="stars">
+                @for (filled of getStarArray(averageRating()); track $index) {
+                  <span [class.filled]="filled">★</span>
+                }
+              </div>
+              <span class="total-reviews">{{ reviews().length }} avaliações</span>
+            </div>
+          </div>
+
+          <div class="rating-bars">
+            @for (star of [5, 4, 3, 2, 1]; track star) {
+              <div class="rating-bar-item">
+                <span class="star-label">{{ star }} ★</span>
+                <div class="bar-container">
+                  <div class="bar-fill" [style.width.%]="getRatingPercentage(star)"></div>
+                </div>
+                <span class="percentage">{{ getRatingPercentage(star).toFixed(0) }}%</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="reviews-list">
+          @if (reviews().length === 0) {
+            <p class="no-reviews">Ainda não há avaliações para este produto.</p>
+          } @else {
+            @for (review of reviews(); track review.id) {
+              <div class="review-card">
+                <div class="review-header">
+                  <img [src]="review.userAvatar" [alt]="review.userName" class="user-avatar">
+                  <div class="user-info">
+                    <h4 class="user-name">{{ review.userName }}</h4>
+                    <div class="review-meta">
+                      <div class="stars small">
+                        @for (filled of getStarArray(review.rating); track $index) {
+                          <span [class.filled]="filled">★</span>
+                        }
+                      </div>
+                      <span class="review-date">{{ review.createdAt | date: 'dd/MM/yyyy' }}</span>
+                    </div>
+                  </div>
+                </div>
+                <h5 class="review-title">{{ review.title }}</h5>
+                <p class="review-comment">{{ review.comment }}</p>
+                <div class="review-footer">
+                  <button class="helpful-btn">
+                    👍 Útil ({{ review.helpful }})
+                  </button>
+                </div>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="container loading-container">
+      <div class="spinner"></div>
+      <p>Carregando produto...</p>
+    </div>
+  }
+</main>
+
+<app-footer></app-footer>
