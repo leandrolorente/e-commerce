@@ -31,7 +31,6 @@ export class ProductListComponent implements OnInit {
     // Observar mudanças nos parâmetros de busca
     this.route.queryParams.subscribe(params => {
       this.searchTerm = params['search'] || '';
-      console.log('Query params mudaram. Search term:', this.searchTerm);
       if (this.allProducts.length > 0) {
         this.filterProducts();
       }
@@ -45,7 +44,6 @@ export class ProductListComponent implements OnInit {
     // Simulando chamada API com timeout
     setTimeout(() => {
       this.allProducts = MOCK_PRODUCTS;
-      console.log('Produtos carregados:', this.allProducts.length);
       // Aplicar filtro inicial baseado nos query params atuais
       const currentParams = this.route.snapshot.queryParams;
       this.searchTerm = currentParams['search'] || '';
@@ -57,12 +55,8 @@ export class ProductListComponent implements OnInit {
   }
 
   filterProducts(): void {
-    console.log('Filtrando produtos. Termo:', this.searchTerm);
-    console.log('Total de produtos:', this.allProducts.length);
-    
     if (!this.searchTerm.trim()) {
       this.products = this.allProducts;
-      console.log('Sem busca, mostrando todos:', this.products.length);
       return;
     }
 
@@ -72,7 +66,6 @@ export class ProductListComponent implements OnInit {
       product.description.toLowerCase().includes(term) ||
       product.category.toLowerCase().includes(term)
     );
-    console.log('Produtos filtrados:', this.products.length);
   }
 
   getCurrentImageIndex(productId: string): number {

@@ -66,6 +66,7 @@
 .search-container {
   flex: 1;
   max-width: 600px;
+  position: relative;
 }
 
 .search-form {
@@ -485,5 +486,123 @@
   .cart-item .item-image {
     width: 50px;
     height: 50px;
+  }
+}
+
+// Search Dropdown
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-dropdown-header {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.search-suggestions {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid #f1f3f5;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background: #f8f9fa;
+  }
+}
+
+.suggestion-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.suggestion-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suggestion-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.suggestion-category {
+  margin: 0;
+  font-size: 11px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.suggestion-price {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  
+  .price,
+  .discount {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  
+  .original {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-decoration: line-through;
   }
 }

@@ -17,11 +17,44 @@
           type="text" 
           name="searchTerm"
           [(ngModel)]="searchTerm"
+          (input)="onSearchInput()"
+          (blur)="closeSearchDropdown()"
           placeholder="O que você está procurando?"
           class="search-input"
+          autocomplete="off"
         >
         <button type="submit" class="search-btn">Buscar</button>
       </form>
+
+      @if (showSearchDropdown()) {
+        <div class="search-dropdown">
+          <div class="search-dropdown-header">
+            <span>Sugestões</span>
+          </div>
+          <div class="search-suggestions">
+            @for (product of searchSuggestions(); track product.id) {
+              <div 
+                class="suggestion-item"
+                (mousedown)="selectSuggestion(product)"
+              >
+                <img [src]="product.images[0]" [alt]="product.name" class="suggestion-image">
+                <div class="suggestion-details">
+                  <h4 class="suggestion-name">{{ product.name }}</h4>
+                  <p class="suggestion-category">{{ product.category }}</p>
+                  <p class="suggestion-price">
+                    @if (product.discountPrice) {
+                      <span class="discount">{{ product.discountPrice | currency: 'BRL' }}</span>
+                      <span class="original">{{ product.price | currency: 'BRL' }}</span>
+                    } @else {
+                      <span class="price">{{ product.price | currency: 'BRL' }}</span>
+                    }
+                  </p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
     </div>
 
     <!-- Navigation -->
