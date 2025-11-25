@@ -86,16 +86,37 @@
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label>Data</label>
-          <input 
-            type="date"
-            [(ngModel)]="formData.date"
-            [min]="getMinDate()"
-            [max]="getMaxDate()"
-            (change)="onDateSelected()"
-          />
+      <div class="form-group">
+        <label>Escolha a Data</label>
+        <div class="custom-calendar">
+          <div class="calendar-header">
+            <button type="button" class="calendar-nav" (click)="previousMonth()">‹</button>
+            <span class="calendar-month">{{ getMonthYearLabel() }}</span>
+            <button type="button" class="calendar-nav" (click)="nextMonth()">›</button>
+          </div>
+          <div class="calendar-weekdays">
+            <div class="weekday">Dom</div>
+            <div class="weekday">Seg</div>
+            <div class="weekday">Ter</div>
+            <div class="weekday">Qua</div>
+            <div class="weekday">Qui</div>
+            <div class="weekday">Sex</div>
+            <div class="weekday">Sáb</div>
+          </div>
+          <div class="calendar-days">
+            @for (day of calendarDays(); track day.getTime()) {
+              <div 
+                class="calendar-day"
+                [class.other-month]="!isCurrentMonth(day)"
+                [class.today]="isToday(day)"
+                [class.selected]="isDateSelected(day)"
+                [class.disabled]="isDateDisabled(day)"
+                (click)="!isDateDisabled(day) && selectDate(day)"
+              >
+                {{ day.getDate() }}
+              </div>
+            }
+          </div>
         </div>
       </div>
 
@@ -143,7 +164,13 @@
         </div>
         <div class="form-group">
           <label>Telefone/WhatsApp *</label>
-          <input type="tel" [(ngModel)]="formData.customerPhone" placeholder="(00) 00000-0000">
+          <input 
+            type="tel" 
+            [(ngModel)]="formData.customerPhone" 
+            (input)="formatPhoneNumber($event)"
+            placeholder="(00) 00000-0000"
+            maxlength="15"
+          >
         </div>
       </div>
 

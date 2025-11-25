@@ -1,0 +1,133 @@
+<div class="admin-schedule-container">
+  <div class="schedule-header">
+    <h1>📅 Agenda de Agendamentos</h1>
+    <p>Visualize todos os agendamentos organizados por data</p>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading">Carregando agenda...</div>
+  } @else {
+    <div class="schedule-content">
+      <!-- Calendar Section -->
+      <div class="calendar-section">
+        <div class="calendar-card">
+          <div class="calendar-header">
+            <button type="button" class="calendar-nav" (click)="previousMonth()">‹</button>
+            <h2 class="calendar-month">{{ getMonthYearLabel() }}</h2>
+            <button type="button" class="calendar-nav" (click)="nextMonth()">›</button>
+          </div>
+
+          <div class="calendar-weekdays">
+            <div class="weekday">Dom</div>
+            <div class="weekday">Seg</div>
+            <div class="weekday">Ter</div>
+            <div class="weekday">Qua</div>
+            <div class="weekday">Qui</div>
+            <div class="weekday">Sex</div>
+            <div class="weekday">Sáb</div>
+          </div>
+
+          <div class="calendar-days">
+            @for (day of calendarDays(); track day.date.getTime()) {
+              <div 
+                class="calendar-day"
+                [class.other-month]="!day.isCurrentMonth"
+                [class.today]="day.isToday"
+                [class.selected]="isDateSelected(day.date)"
+                [class.has-bookings]="day.bookings.length > 0"
+                (click)="selectDay(day)"
+              >
+                <span class="day-number">{{ day.date.getDate() }}</span>
+                @if (day.bookings.length > 0) {
+                  <span class="bookings-badge">{{ day.bookings.length }}</span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <div class="legend-color today-color"></div>
+            <span>Hoje</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color bookings-color"></div>
+            <span>Com Agendamentos</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color selected-color"></div>
+            <span>Selecionado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details Section -->
+      <div class="details-section">
+        @if (selectedDate()) {
+          <div class="details-card">
+            <div class="details-header">
+              <h3>
+                📌 {{ selectedDate()!.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' }) }}
+              </h3>
+              <button class="close-btn" (click)="closeDetails()">✕</button>
+            </div>
+
+            @if (selectedDayBookings().length === 0) {
+              <div class="empty-state">
+                <div class="empty-icon">📭</div>
+                <p>Nenhum agendamento para este dia</p>
+              </div>
+            } @else {
+              <div class="bookings-list">
+                @for (booking of selectedDayBookings(); track booking.timeSlot) {
+                  <div class="booking-item">
+                    <div class="booking-time">
+                      <div class="time-icon">🕐</div>
+                      <span class="time">{{ booking.timeSlot }}</span>
+                    </div>
+                    <div class="booking-details">
+                      <div class="service-type">
+                        {{ getServiceLabel(booking.serviceType) }}
+                      </div>
+                      <div class="customer-name">
+                        <strong>{{ booking.customerName }}</strong>
+                      </div>
+                      <div class="contact-info">
+                        <div class="contact-item">
+                          <span class="icon">📧</span>
+                          <span>{{ booking.customerEmail }}</span>
+                        </div>
+                        <div class="contact-item">
+                          <span class="icon">📱</span>
+                          <span>{{ booking.customerPhone }}</span>
+                        </div>
+                      </div>
+                      @if (booking.tattooDescription) {
+                        <div class="tattoo-info">
+                          <strong>Descrição:</strong> {{ booking.tattooDescription }}
+                        </div>
+                      }
+                      @if (booking.bodyArea) {
+                        <div class="tattoo-info">
+                          <strong>Área:</strong> {{ booking.bodyArea }}
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="no-selection">
+            <div class="no-selection-icon">👆</div>
+            <h3>Selecione um dia no calendário</h3>
+            <p>Clique em uma data para ver os agendamentos</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

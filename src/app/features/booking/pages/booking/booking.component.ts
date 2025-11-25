@@ -53,6 +53,7 @@ export class BookingComponent implements OnInit {
 
   ngOnInit() {
     this.loadArtists();
+    this.generateCalendarDays();
   }
 
   loadArtists() {
@@ -193,5 +194,120 @@ export class BookingComponent implements OnInit {
 
   getSelectedService() {
     return this.serviceTypes.find(s => s.value === this.formData.serviceType);
+  }
+
+  formatPhoneNumber(event: Event) {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, '');
+    
+    if (value.length > 11) {
+      value = value.slice(0, 11);
+    }
+    
+    if (value.length <= 10) {
+      // (XX) XXXX-XXXX
+      value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    } else {
+      // (XX) XXXXX-XXXX
+      value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    }
+    
+    this.formData.customerPhone = value;
+  }
+
+  // Calendar methods
+  currentMonth = signal(new Date());
+  selectedDate = signal<Date | null>(null);
+  calendarDays = signal<Date[]>([]);
+
+  generateCalendarDays() {
+    const year = this.currentMonth().getFullYear();
+    const month = this.currentMonth().getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const prevLastDay = new Date(year, month, 0);
+    
+    const days: Date[] = [];
+    const firstDayOfWeek = firstDay.getDay();
+    
+    // Previous month days
+    for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+      const day = new Date(year, month - 1, prevLastDay.getDate() - i);
+      days.push(day);
+    }
+    
+    // Current month days
+    for (let i = 1; i <= lastDay.getDate(); i++) {
+      days.push(new Date(year, month, i));
+    }
+    
+    // Next month days to complete the grid
+    const remainingDays = 42 - days.length; // 6 weeks * 7 days
+    for (let i = 1; i <= remainingDays; i++) {
+      days.push(new Date(year, month + 1, i));
+    }
+    
+    this.calendarDays.set(days);
+  }
+
+  previousMonth() {
+    const newDate = new Date(this.currentMonth());
+    newDate.setMonth(newDate.getMonth() - 1);
+    this.currentMonth.set(newDate);
+    this.generateCalendarDays();
+  }
+
+  nextMonth() {
+    const newDate = new Date(this.currentMonth());
+    newDate.setMonth(newDate.getMonth() + 1);
+    this.currentMonth.set(newDate);
+    this.generateCalendarDays();
+  }
+
+  selectDate(date: Date) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const selectedDate = new Date(date);
+    selectedDate.setHours(0, 0, 0, 0);
+    
+    if (selectedDate > today) {
+      this.selectedDate.set(date);
+      this.formData.date = date.toISOString().split('T')[0];
+      this.onDateSelected();
+    }
+  }
+
+  isDateDisabled(date: Date): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const checkDate = new Date(date);
+    checkDate.setHours(0, 0, 0, 0);
+    return checkDate <= today;
+  }
+
+  isDateSelected(date: Date): boolean {
+    if (!this.selectedDate()) return false;
+    const selected = new Date(this.selectedDate()!);
+    selected.setHours(0, 0, 0, 0);
+    const check = new Date(date);
+    check.setHours(0, 0, 0, 0);
+    return selected.getTime() === check.getTime();
+  }
+
+  isCurrentMonth(date: Date): boolean {
+    return date.getMonth() === this.currentMonth().getMonth();
+  }
+
+  isToday(date: Date): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const check = new Date(date);
+    check.setHours(0, 0, 0, 0);
+    return today.getTime() === check.getTime();
+  }
+
+  getMonthYearLabel(): string {
+    return this.currentMonth().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
   }
 }
