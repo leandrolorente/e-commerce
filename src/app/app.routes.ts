@@ -5,6 +5,10 @@ import { roleGuard } from './core/guards/role.guard';
 export const routes: Routes = [
   {
     path: '',
+    loadComponent: () => import('./features/products/pages/product-list/product-list.component').then(m => m.ProductListComponent)
+  },
+  {
+    path: 'products',
     loadChildren: () => import('./features/products/products.routes').then(m => m.PRODUCTS_ROUTES)
   },
   {

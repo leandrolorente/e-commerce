@@ -6,7 +6,7 @@ import { FooterComponent } from '@shared/components/layout/footer/footer.compone
 import { ProductService } from '@core/services/product.service';
 import { CartService } from '@core/services/cart.service';
 import { Product, Review } from '@models';
-import { MOCK_REVIEWS } from '@core/services/mock-data';
+import { MOCK_REVIEWS, MOCK_PRODUCTS } from '@core/services/mock-data';
 
 @Component({
   selector: 'app-product-detail',
@@ -58,11 +58,11 @@ export class ProductDetailComponent {
   }
 
   private loadProduct(id: string): void {
-    const products = this.productService.products();
-    const product = products.find(p => p.id === id);
+    const product = MOCK_PRODUCTS.find(p => p.id === id);
     if (product) {
       this.product.set(product);
     } else {
+      console.error('Produto não encontrado:', id);
       this.router.navigate(['/']);
     }
   }
