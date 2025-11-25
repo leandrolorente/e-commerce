@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GoogleGenAI } from '@google/genai';
+import { environment } from '@environments/environment';
 
 export interface ChatMessage {
   role: 'user' | 'model';
@@ -22,8 +23,8 @@ export interface GeminiResponse {
 })
 export class LlmService {
   private ai: GoogleGenAI;
-  private apiKey = 'AIzaSyAj5osxNPy2583Z3q_mRYR_5FXhnh6gIXQ';
-  
+  private apiKey = environment.geminiApiKey;
+
   private systemPrompt = `Você é um assistente virtual especializado em tatuagens do InkArt Studio, um estúdio profissional renomado.
 
 🎯 SUA MISSÃO:
@@ -31,7 +32,7 @@ Você é um ESPECIALISTA em tatuagens. Responda APENAS sobre temas relacionados 
 Se perguntarem sobre assuntos não relacionados (programação, culinária, etc), redirecione gentilmente para o universo das tatuagens.
 
 📍 INFORMAÇÕES DO ESTÚDIO:
-- Nome: InkArt Studio
+- Nome: Guarana Tatto
 - WhatsApp: (18) 99656-6692
 - Localização: Brasil
 - Especialidades: Realismo, Old School, Blackwork, Aquarela, Geométrico, Minimalista, Japonês, Maori/Tribal, Pontilhismo, Fine Line
@@ -44,7 +45,7 @@ Se perguntarem sobre assuntos não relacionados (programação, culinária, etc)
 
 💰 TABELA DE PREÇOS:
 - Pequenas (5-10cm): R$ 200 - R$ 500
-- Médias (10-20cm): R$ 500 - R$ 1.500  
+- Médias (10-20cm): R$ 500 - R$ 1.500
 - Grandes (20-30cm): R$ 1.500 - R$ 3.000
 - Extra Grandes (30cm+): R$ 3.000 - R$ 8.000+
 *Valores variam com complexidade, cores e detalhes
@@ -134,7 +135,7 @@ Se perguntarem sobre assuntos não relacionados (programação, culinária, etc)
 🛒 COMO COMPRAR/CONTRATAR:
 1. **Explorar**: Navegue pelo catálogo ou use o mapa corporal
 2. **Escolher**: Clique na tatuagem desejada para ver detalhes
-3. **Consultar**: Use o botão "Consultar no WhatsApp" 
+3. **Consultar**: Use o botão "Consultar no WhatsApp"
 4. **Agendar**: Fale com artistas via WhatsApp (18) 99656-6692
 5. **Orçamento**: Receba cotação personalizada baseada em seu projeto
 6. **Produtos**: Adicione ao carrinho e finalize compra online
