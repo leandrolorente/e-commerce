@@ -5,7 +5,7 @@
 }
 
 .hero-banner {
-  background: linear-gradient(135deg, #2d5f7a 0%, #1f4358 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
   text-align: center;
@@ -25,13 +25,13 @@
     opacity: 0.95;
     
     strong {
-      color: #ffd166;
+      color: var(--bronze-color);
       font-weight: 700;
     }
   }
   
   &.search-results {
-    background: linear-gradient(135deg, #1f4358 0%, #2d5f7a 100%);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
     
     .results-count {
       margin-top: var(--spacing-sm);
@@ -101,7 +101,7 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  background: linear-gradient(135deg, var(--accent-color) 0%, #c01050 100%);
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
@@ -271,7 +271,7 @@
   font-size: 14px;
   
   .stars {
-    color: #ffd166;
+    color: var(--orange-color);
     font-weight: 600;
   }
   
@@ -315,7 +315,7 @@
 
 .btn-add-cart {
   padding: 10px 20px;
-  background: linear-gradient(135deg, #2d5f7a 0%, #1f4358 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
   border: none;
   border-radius: var(--radius-md);

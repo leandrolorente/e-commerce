@@ -37,7 +37,7 @@ Each component must have exactly 4 files:
 - Use CSS variables for theming
 - Mobile-first responsive design
 - SCSS with BEM-like naming when needed
-- Color palette: Blue petróleo (#2d5f7a), Coral (#ff6b6b), Gold (#ffd166)
+- Color palette: Dark Green (#1b4d3e), Bronze (#d4a574), Coral (#e8b4a0), Pink (#d81159), Orange (#ffa500), Olive Green (#8b9d40)
 
 ### Forms
 - Always add `name` attribute to inputs using `[(ngModel)]` inside `<form>` tags

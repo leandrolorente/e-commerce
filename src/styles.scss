@@ -7,11 +7,18 @@
 
 /* Variáveis CSS */
 :root {
-  /* Cores principais - Tema Moderno */
-  --primary-color: #2d5f7a;
-  --primary-dark: #1f4358;
-  --secondary-color: #1a1a2e;
-  --accent-color: #ff6b6b;
+  /* Cores principais - Paleta InkArt Studio */
+  --primary-color: #1b4d3e;      /* Verde escuro do estúdio */
+  --primary-dark: #0f3329;       /* Verde mais escuro */
+  --primary-light: #d4a574;      /* Caramelo/Bronze */
+  --secondary-color: #e8b4a0;    /* Coral/Salmão suave */
+  --accent-color: #d81159;       /* Rosa/Vermelho vibrante */
+  --warning-color: #ffa500;      /* Laranja/Dourado */
+  
+  /* Cores de desenhos (auxiliares) */
+  --tattoo-red: #d81159;
+  --tattoo-green: #8b9d40;
+  --tattoo-orange: #ffa500;
   
   /* Cores neutras */
   --text-primary: #1a202c;
@@ -21,9 +28,9 @@
   --border-color: #e2e8f0;
   
   /* Estados */
-  --success-color: #06d6a0;
-  --error-color: #ef476f;
-  --warning-color: #ffd166;
+  --success-color: #1b4d3e;
+  --error-color: #d81159;
+  --warning-color: #ffa500;
   
   /* Espaçamentos */
   --spacing-xs: 4px;
@@ -112,12 +119,12 @@ a {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #2d5f7a 0%, #1f4358 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(45, 95, 122, 0.3);
+  box-shadow: 0 4px 12px rgba(27, 77, 62, 0.3);
   
   &:hover:not(:disabled) {
-    box-shadow: 0 6px 20px rgba(45, 95, 122, 0.4);
+    box-shadow: 0 6px 20px rgba(27, 77, 62, 0.4);
     transform: translateY(-2px);
   }
 }
@@ -227,12 +234,12 @@ input, select, textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #2d5f7a 0%, #1f4358 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #1f4358 0%, #143040 100%);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #0a2119 100%);
 }
 
 /* Responsividade Mobile-First */

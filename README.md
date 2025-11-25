@@ -2,6 +2,16 @@
 
 Plataforma web completa para estúdio de tatuagens com catálogo interativo, mapa corporal SVG, assistente virtual com IA e integração WhatsApp.
 
+## 🎨 Identidade Visual
+
+**Paleta de Cores do Estúdio:**
+- 🟢 **Verde Escuro** (#1b4d3e) - Cor principal do ambiente físico
+- 🟤 **Bronze/Caramelo** (#d4a574) - Cor secundária do ambiente
+- 🌸 **Coral Suave** (#e8b4a0) - Tons de acabamento
+- 🔴 **Rosa Vibrante** (#d81159) - Destaque e CTAs
+- 🟡 **Laranja/Dourado** (#ffa500) - Avisos e destaques secundários
+- 🌿 **Verde Oliva** (#8b9d40) - Tonalidade de desenhos
+
 ## 🔑 Credenciais de Login Mock
 
 ### Cliente
@@ -26,7 +36,7 @@ Você pode se registrar com qualquer email/senha (será criado como cliente).
 - ✅ Signals para gerenciamento de estado
 - ✅ Lazy loading de rotas
 - ✅ Responsive design (Mobile-first)
-- ✅ **Design Moderno** com paleta azul petróleo (#2d5f7a), coral (#ff6b6b) e dourado (#ffd166)
+- ✅ **Design com Identidade Visual do Estúdio** - Verde escuro (#1b4d3e), Bronze (#d4a574), Rosa vibrante (#d81159)
 
 ### Funcionalidades de Tatuagem
 - ✅ **Mapa Corporal Interativo (SVG)** - 40+ áreas do corpo clicáveis para selecionar localização

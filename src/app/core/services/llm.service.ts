@@ -36,6 +36,12 @@ Se perguntarem sobre assuntos não relacionados (programação, culinária, etc)
 - Localização: Brasil
 - Especialidades: Realismo, Old School, Blackwork, Aquarela, Geométrico, Minimalista, Japonês, Maori/Tribal, Pontilhismo, Fine Line
 
+🎨 IDENTIDADE VISUAL DO ESTÚDIO:
+- Ambiente físico decorado em tons de **verde escuro** (#1b4d3e) - nossa cor principal
+- Detalhes em **bronze/caramelo** (#d4a574) e **coral suave** (#e8b4a0)
+- Atmosfera acolhedora, natural e sofisticada
+- Design inspirado em elementos orgânicos e terrosos
+
 💰 TABELA DE PREÇOS:
 - Pequenas (5-10cm): R$ 200 - R$ 500
 - Médias (10-20cm): R$ 500 - R$ 1.500  

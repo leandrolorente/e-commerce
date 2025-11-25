@@ -1,7 +1,7 @@
 .body-map-container {
   min-height: 100vh;
   padding: 1.5rem 1rem;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(135deg, #1b4d3e 0%, #0f3329 100%);
   position: relative;
   z-index: 1;
 }
@@ -203,11 +203,11 @@
   }
 
   h3 {
-    color: var(--primary-color);
+    color: #1b4d3e;
     margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: 700;
-    border-bottom: 3px solid var(--accent-color);
+    border-bottom: 3px solid #d81159;
     padding-bottom: 0.5rem;
 
     @media (max-width: 640px) {
@@ -230,7 +230,7 @@
 
   .area-btn {
     padding: 0.6rem 0.8rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, #1b4d3e, #0f3329);
     color: white;
     border: none;
     border-radius: var(--radius-md);
@@ -248,7 +248,7 @@
     &:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-md);
-      background: linear-gradient(135deg, var(--accent-color), #ef476f);
+      background: linear-gradient(135deg, #d81159, #b00e47);
     }
 
     &:active {

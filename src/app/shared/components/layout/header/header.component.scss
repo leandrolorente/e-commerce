@@ -1,8 +1,8 @@
 .header {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #2d5f7a 100%);
+  background: linear-gradient(135deg, #0f3329 0%, #1b4d3e 50%, #2a6f5a 100%);
   color: white;
   padding: var(--spacing-md) 0;
-  box-shadow: 0 4px 16px rgba(45, 95, 122, 0.2);
+  box-shadow: 0 4px 16px rgba(27, 77, 62, 0.3);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -46,7 +46,7 @@
     font-size: 24px;
     font-weight: 800;
     margin: 0;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ffd166 100%);
+    background: linear-gradient(135deg, #d4a574 0%, #ffa500 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -108,7 +108,7 @@
 
 .search-btn {
   padding: 14px 28px;
-  background: linear-gradient(135deg, #2d5f7a 0%, #1f4358 100%);
+  background: linear-gradient(135deg, #1b4d3e 0%, #0f3329 100%);
   border: none;
   color: white;
   font-weight: 600;
@@ -116,7 +116,7 @@
   transition: all 0.3s ease;
   
   &:hover {
-    background: linear-gradient(135deg, #1f4358 0%, #143040 100%);
+    background: linear-gradient(135deg, #2a6f5a 0%, #1b4d3e 100%);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(45, 95, 122, 0.4);
   }
@@ -174,13 +174,13 @@
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  background: linear-gradient(135deg, #06a77d 0%, #059669 100%);
+  background: linear-gradient(135deg, #d4a574 0%, #c08f5e 100%);
   border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(6, 167, 125, 0.3);
+  box-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
   
   &:hover {
-    box-shadow: 0 4px 12px rgba(6, 167, 125, 0.4);
-    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+    background: linear-gradient(135deg, #c08f5e 0%, #a67a4e 100%);
   }
 }
 
@@ -192,7 +192,7 @@
   position: absolute;
   top: -6px;
   right: -6px;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #d81159 0%, #b00e47 100%);
   color: white;
   border-radius: 50%;
   min-width: 22px;
