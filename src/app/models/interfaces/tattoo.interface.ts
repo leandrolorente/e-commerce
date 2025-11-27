@@ -51,23 +51,23 @@ export interface UpdateTattooDto extends Partial<CreateTattooDto> {
 }
 
 export enum TattooStyle {
-  OLD_SCHOOL = 'Old School',
-  REALISMO = 'Realismo',
-  BLACKWORK = 'Blackwork',
-  AQUARELA = 'Aquarela',
-  MAORI = 'Maori',
-  JAPONES = 'Japonês',
-  GEOMETRICO = 'Geométrico',
-  MINIMALISTA = 'Minimalista',
-  TRIBAL = 'Tribal',
-  FINE_LINE = 'Fine Line',
-  PONTILHISMO = 'Pontilhismo',
-  ORNAMENTAL = 'Ornamental'
+  OLD_SCHOOL = 'OLD_SCHOOL',
+  REALISMO = 'REALISMO',
+  BLACKWORK = 'BLACKWORK',
+  AQUARELA = 'AQUARELA',
+  MAORI = 'MAORI',
+  JAPONES = 'JAPONES',
+  GEOMETRICO = 'GEOMETRICO',
+  MINIMALISTA = 'MINIMALISTA',
+  TRIBAL = 'TRIBAL',
+  FINE_LINE = 'FINE_LINE',
+  PONTILHISMO = 'PONTILHISMO',
+  ORNAMENTAL = 'ORNAMENTAL'
 }
 
 export enum TattooSize {
-  PEQUENA = 'Pequena (até 5cm)',
-  MEDIA = 'Média (5-15cm)',
-  GRANDE = 'Grande (15-30cm)',
-  EXTRA_GRANDE = 'Extra Grande (30cm+)'
+  PEQUENA = 'PEQUENA',
+  MEDIA = 'MEDIA',
+  GRANDE = 'GRANDE',
+  EXTRA_GRANDE = 'EXTRA_GRANDE'
 }

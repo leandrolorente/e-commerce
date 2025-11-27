@@ -4,7 +4,6 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { ProductService } from '@core/services/product.service';
 import { CartService } from '@core/services/cart.service';
 import { Product } from '@models';
-import { MOCK_PRODUCTS } from '@core/services/mock-data';
 
 @Component({
   selector: 'app-product-list',
@@ -39,17 +38,26 @@ export class ProductListComponent implements OnInit {
 
   loadProducts(): void {
     this.loading = true;
-    // Simulando chamada API com timeout
-    setTimeout(() => {
-      this.allProducts = MOCK_PRODUCTS;
-      // Aplicar filtro inicial baseado nos query params atuais
-      const currentParams = this.route.snapshot.queryParams;
-      this.searchTerm = currentParams['search'] || '';
-      this.filterProducts();
-      // Inicializar índices de imagens
-      this.allProducts.forEach(p => this.imageIndices.set(p.id, 0));
-      this.loading = false;
-    }, 800);
+    const currentParams = this.route.snapshot.queryParams;
+    this.searchTerm = currentParams['search'] || '';
+
+    const filters: any = {};
+    if (this.searchTerm) {
+      filters.search = this.searchTerm;
+    }
+
+    this.productService.getProducts(filters).subscribe({
+      next: (response) => {
+        this.allProducts = response.products || [];
+        this.filterProducts();
+        this.allProducts.forEach(p => this.imageIndices.set(p.id, 0));
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar produtos:', err);
+        this.loading = false;
+      }
+    });
   }
 
   filterProducts(): void {

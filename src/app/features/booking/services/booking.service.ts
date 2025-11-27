@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from '@environments/environment';
 
 export interface Artist {
   id: string;
@@ -16,6 +18,13 @@ export interface BookingTimeSlot {
   available: boolean;
 }
 
+export interface AvailableSlotsResponse {
+  artistId: string;
+  date: string;
+  availableSlots: string[];
+  bookedSlots: string[];
+}
+
 export interface BookingData {
   serviceType: string;
   artistId: string;
@@ -29,6 +38,15 @@ export interface BookingData {
   referenceImages?: string[];
 }
 
+// DTO para criar booking (formato esperado pelo backend)
+export interface CreateBookingDto {
+  artistId: string;
+  service: string;
+  date: string;
+  time: string;
+  notes?: string;
+}
+
 export interface BookingResponse {
   id: string;
   status: string;
@@ -39,103 +57,62 @@ export interface BookingResponse {
   providedIn: 'root'
 })
 export class BookingService {
-  private mockArtists: Artist[] = [
-    {
-      id: '1',
-      name: 'Gabriel Santos',
-      specialty: 'Realismo',
-      photo: 'https://i.pravatar.cc/150?img=12',
-      yearsExperience: 12,
-      rating: 4.9
-    },
-    {
-      id: '2',
-      name: 'Amanda Silva',
-      specialty: 'Fine Line',
-      photo: 'https://i.pravatar.cc/150?img=5',
-      yearsExperience: 8,
-      rating: 4.8
-    },
-    {
-      id: '3',
-      name: 'Yuki Tanaka',
-      specialty: 'Japonês',
-      photo: 'https://i.pravatar.cc/150?img=8',
-      yearsExperience: 15,
-      rating: 5.0
-    },
-    {
-      id: '4',
-      name: 'Isabella Rocha',
-      specialty: 'Aquarela',
-      photo: 'https://i.pravatar.cc/150?img=9',
-      yearsExperience: 10,
-      rating: 4.9
-    },
-    {
-      id: '5',
-      name: 'Rafael Almeida',
-      specialty: 'Blackwork',
-      photo: 'https://i.pravatar.cc/150?img=13',
-      yearsExperience: 11,
-      rating: 4.8
-    },
-    {
-      id: '6',
-      name: 'Camila Ferreira',
-      specialty: 'Ornamental',
-      photo: 'https://i.pravatar.cc/150?img=1',
-      yearsExperience: 7,
-      rating: 4.7
-    }
-  ];
+  private readonly API_URL = `${environment.apiUrl}/bookings`;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  // Em produção: GET /api/booking/artists
+  // GET /api/bookings/artists
   getArtists(): Observable<Artist[]> {
-    return of(this.mockArtists).pipe(delay(300));
+    return this.http.get<Artist[]>(`${this.API_URL}/artists`);
   }
 
-  // Em produção: GET /api/booking/available-slots?artistId=X&date=Y
   getAvailableSlots(artistId: string, date: string): Observable<BookingTimeSlot[]> {
-    const slots: BookingTimeSlot[] = [
-      { time: '09:00', available: true },
-      { time: '10:00', available: true },
-      { time: '11:00', available: false },
-      { time: '13:00', available: true },
-      { time: '14:00', available: true },
-      { time: '15:00', available: false },
-      { time: '16:00', available: true },
-      { time: '17:00', available: true }
-    ];
-    
-    return of(slots).pipe(delay(500));
+    const params = new HttpParams()
+      .set('artistId', artistId)
+      .set('date', date);
+    return this.http.get<AvailableSlotsResponse>(`${this.API_URL}/available-slots`, { params })
+      .pipe(
+        map(response => {
+          // Transformar os arrays de strings em array de BookingTimeSlot
+          return response.availableSlots.map(time => ({
+            time,
+            available: !response.bookedSlots.includes(time)
+          }));
+        })
+      );
   }
 
-  // Em produção: POST /api/booking
   createBooking(bookingData: BookingData): Observable<BookingResponse> {
-    const response: BookingResponse = {
-      id: `BK${Date.now()}`,
-      status: 'pending_confirmation',
-      confirmationCode: `GT${Math.random().toString(36).substr(2, 9).toUpperCase()}`
+    // Transformar BookingData em CreateBookingDto
+    const dto: CreateBookingDto = {
+      artistId: bookingData.artistId,
+      service: bookingData.serviceType,
+      date: bookingData.date,
+      time: bookingData.timeSlot,
+      notes: [
+        `Nome: ${bookingData.customerName}`,
+        `Email: ${bookingData.customerEmail}`,
+        `Telefone: ${bookingData.customerPhone}`,
+        bookingData.tattooDescription ? `Descrição: ${bookingData.tattooDescription}` : '',
+        bookingData.bodyArea ? `Área do corpo: ${bookingData.bodyArea}` : ''
+      ].filter(Boolean).join('\n')
     };
-    
-    return of(response).pipe(delay(1000));
+
+    return this.http.post<BookingResponse>(this.API_URL, dto);
   }
 
-  // Em produção: GET /api/booking/my-bookings
-  getMyBookings(userId: string): Observable<any[]> {
-    return of([]).pipe(delay(300));
+  getMyBookings(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}/my-bookings`);
   }
 
-  // Em produção: PUT /api/booking/:id/cancel
   cancelBooking(bookingId: string): Observable<boolean> {
-    return of(true).pipe(delay(500));
+    return this.http.delete<boolean>(`${this.API_URL}/${bookingId}`);
   }
 
-  // Em produção: PUT /api/booking/:id/reschedule
   rescheduleBooking(bookingId: string, newDate: string, newTime: string): Observable<boolean> {
-    return of(true).pipe(delay(500));
+    return this.http.patch<boolean>(`${this.API_URL}/${bookingId}/reschedule`, {
+      date: newDate,
+      time: newTime
+    });
   }
 }

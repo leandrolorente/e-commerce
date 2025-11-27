@@ -1,54 +1,57 @@
 export enum BodyArea {
   // Cabeça e Pescoço
-  ROSTO = 'Rosto',
-  PESCOCO = 'Pescoço',
-  NUCA = 'Nuca',
+  ROSTO = 'ROSTO',
+  PESCOCO = 'PESCOCO',
+  NUCA = 'NUCA',
   
   // Tronco - Frente
-  PEITO = 'Peito',
-  PEITO_SUPERIOR = 'Peito Superior',
-  PEITO_LATERAL = 'Peito Lateral',
-  COSTELAS = 'Costelas',
-  BARRIGA = 'Barriga',
-  ABDOMEN = 'Abdômen',
+  PEITO = 'PEITO',
+  PEITO_SUPERIOR = 'PEITO_SUPERIOR',
+  PEITO_LATERAL = 'PEITO_LATERAL',
+  COSTELAS = 'COSTELAS',
+  BARRIGA = 'BARRIGA',
+  ABDOMEN = 'ABDOMEN',
   
   // Tronco - Trás
-  COSTAS = 'Costas',
-  COSTAS_SUPERIOR = 'Costas Superior',
-  COSTAS_COMPLETAS = 'Costas Completas',
-  LOMBAR = 'Lombar',
+  COSTAS = 'COSTAS',
+  COSTAS_SUPERIOR = 'COSTAS_SUPERIOR',
+  COSTAS_COMPLETAS = 'COSTAS_COMPLETAS',
+  LOMBAR = 'LOMBAR',
   
   // Braços
-  BRACO_COMPLETO = 'Braço Completo',
-  BRACO_SUPERIOR = 'Braço (Parte Superior)',
-  BRACO_INTERNO = 'Braço Interno',
-  BRACO_EXTERNO = 'Braço Externo',
-  ANTEBRACO_COMPLETO = 'Antebraço Completo',
-  ANTEBRACO_INTERNO = 'Antebraço Interno',
-  ANTEBRACO_EXTERNO = 'Antebraço Externo',
-  COTOVELO = 'Cotovelo',
+  BRACO = 'BRACO',
+  BRACO_COMPLETO = 'BRACO_COMPLETO',
+  BRACO_SUPERIOR = 'BRACO_SUPERIOR',
+  BRACO_INTERNO = 'BRACO_INTERNO',
+  BRACO_EXTERNO = 'BRACO_EXTERNO',
+  ANTEBRACO = 'ANTEBRACO',
+  ANTEBRACO_COMPLETO = 'ANTEBRACO_COMPLETO',
+  ANTEBRACO_INTERNO = 'ANTEBRACO_INTERNO',
+  ANTEBRACO_EXTERNO = 'ANTEBRACO_EXTERNO',
+  COTOVELO = 'COTOVELO',
   
   // Mãos
-  MAO_COMPLETA = 'Mão Completa',
-  DEDOS = 'Dedos',
-  PULSO = 'Pulso',
-  
-  // Pernas
-  PERNA_COMPLETA = 'Perna Completa',
-  COXA = 'Coxa',
-  COXA_INTERNA = 'Coxa Interna',
-  COXA_EXTERNA = 'Coxa Externa',
-  JOELHO = 'Joelho',
-  PANTURRILHA = 'Panturrilha',
-  CANELA = 'Canela',
-  
-  // Pés
-  PE_COMPLETO = 'Pé Completo',
-  TORNOZELO = 'Tornozelo',
-  DEDOS_PE = 'Dedos do Pé',
+  MAO = 'MAO',
+  MAO_COMPLETA = 'MAO_COMPLETA',
+  DEDOS = 'DEDOS',
+  PULSO = 'PULSO',
   
   // Ombros
-  OMBRO = 'Ombro',
-  OMBRO_FRONTAL = 'Ombro Frontal',
-  OMBRO_TRASEIRO = 'Ombro Traseiro'
+  OMBRO = 'OMBRO',
+  OMBRO_COMPLETO = 'OMBRO_COMPLETO',
+  
+  // Pernas
+  PERNA_COMPLETA = 'PERNA_COMPLETA',
+  COXA = 'COXA',
+  COXA_INTERNA = 'COXA_INTERNA',
+  COXA_EXTERNA = 'COXA_EXTERNA',
+  JOELHO = 'JOELHO',
+  PANTURRILHA = 'PANTURRILHA',
+  CANELA = 'CANELA',
+  
+  // Pés
+  PE = 'PE',
+  PE_COMPLETO = 'PE_COMPLETO',
+  TORNOZELO = 'TORNOZELO',
+  DEDOS_PE = 'DEDOS_PE'
 }

@@ -28,7 +28,6 @@ export class AdminOrdersComponent implements OnInit {
 
   statusOptions = [
     { value: OrderStatus.PENDING, label: 'Pendente' },
-    { value: OrderStatus.CONFIRMED, label: 'Confirmado' },
     { value: OrderStatus.PROCESSING, label: 'Em Processamento' },
     { value: OrderStatus.SHIPPED, label: 'Enviado' },
     { value: OrderStatus.DELIVERED, label: 'Entregue' },
@@ -37,8 +36,9 @@ export class AdminOrdersComponent implements OnInit {
 
   paymentStatusOptions = [
     { value: PaymentStatus.PENDING, label: 'Pendente' },
-    { value: PaymentStatus.PAID, label: 'Pago' },
-    { value: PaymentStatus.FAILED, label: 'Falhou' },
+    { value: PaymentStatus.APPROVED, label: 'Aprovado' },
+    { value: PaymentStatus.REJECTED, label: 'Rejeitado' },
+    { value: PaymentStatus.CANCELLED, label: 'Cancelado' },
     { value: PaymentStatus.REFUNDED, label: 'Reembolsado' }
   ];
 
@@ -164,7 +164,6 @@ export class AdminOrdersComponent implements OnInit {
   getStatusClass(status: OrderStatus): string {
     const statusMap: Record<OrderStatus, string> = {
       [OrderStatus.PENDING]: 'pending',
-      [OrderStatus.CONFIRMED]: 'confirmed',
       [OrderStatus.PROCESSING]: 'processing',
       [OrderStatus.SHIPPED]: 'shipped',
       [OrderStatus.DELIVERED]: 'delivered',
@@ -176,8 +175,9 @@ export class AdminOrdersComponent implements OnInit {
   getPaymentClass(status: PaymentStatus): string {
     const paymentMap: Record<PaymentStatus, string> = {
       [PaymentStatus.PENDING]: 'pending',
-      [PaymentStatus.PAID]: 'paid',
-      [PaymentStatus.FAILED]: 'failed',
+      [PaymentStatus.APPROVED]: 'approved',
+      [PaymentStatus.REJECTED]: 'rejected',
+      [PaymentStatus.CANCELLED]: 'cancelled',
       [PaymentStatus.REFUNDED]: 'refunded'
     };
     return paymentMap[status] || 'default';

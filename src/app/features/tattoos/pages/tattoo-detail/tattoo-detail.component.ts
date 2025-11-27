@@ -1,8 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tattoo } from '@models';
-import { MOCK_TATTOOS } from '@core/services/tattoo-mocks';
+import { TattooService } from '@core/services/tattoo.service';
 
 @Component({
   selector: 'app-tattoo-detail',
@@ -12,24 +12,26 @@ import { MOCK_TATTOOS } from '@core/services/tattoo-mocks';
   styleUrl: './tattoo-detail.component.scss'
 })
 export class TattooDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private tattooService = inject(TattooService);
+
   tattoo = signal<Tattoo | null>(null);
   selectedImageIndex = signal(0);
-  whatsappNumber = '5518996566692'; // Formato internacional sem espaços
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  whatsappNumber = '5518996566692';
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      const foundTattoo = MOCK_TATTOOS.find(t => t.id === id);
-      if (foundTattoo) {
-        this.tattoo.set(foundTattoo);
-      } else {
-        this.router.navigate(['/tattoos']);
-      }
+      this.tattooService.getTattooById(id).subscribe({
+        next: (tattoo) => {
+          this.tattoo.set(tattoo);
+        },
+        error: (err) => {
+          console.error('Erro ao carregar tatuagem:', err);
+          this.router.navigate(['/tattoos']);
+        }
+      });
     }
   }
 

@@ -1,13 +1,13 @@
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookingService, BookingData } from '../../../booking/services/booking.service';
+import { AdminBookingService, BookingAdmin } from '../../services/admin-booking.service';
 import { NotificationService } from '../../../../core/services/notification.service';
 
 interface CalendarDay {
   date: Date;
   isCurrentMonth: boolean;
   isToday: boolean;
-  bookings: BookingData[];
+  bookings: BookingAdmin[];
 }
 
 @Component({
@@ -18,14 +18,14 @@ interface CalendarDay {
   styleUrls: ['./admin-schedule.component.scss']
 })
 export class AdminScheduleComponent implements OnInit {
-  private bookingService = inject(BookingService);
+  private adminBookingService = inject(AdminBookingService);
   private notificationService = inject(NotificationService);
 
   currentMonth = signal(new Date());
   calendarDays = signal<CalendarDay[]>([]);
   selectedDate = signal<Date | null>(null);
-  selectedDayBookings = signal<BookingData[]>([]);
-  allBookings = signal<BookingData[]>([]);
+  selectedDayBookings = signal<BookingAdmin[]>([]);
+  allBookings = signal<BookingAdmin[]>([]);
   isLoading = signal(false);
 
   ngOnInit() {
@@ -34,63 +34,19 @@ export class AdminScheduleComponent implements OnInit {
 
   loadBookings() {
     this.isLoading.set(true);
-    // Simulando dados - substituir por chamada real à API
-    setTimeout(() => {
-      const mockBookings: BookingData[] = [
-        {
-          serviceType: 'new-tattoo',
-          artistId: '1',
-          date: new Date(2025, 10, 26).toISOString().split('T')[0],
-          timeSlot: '10:00',
-          customerName: 'João Silva',
-          customerEmail: 'joao@email.com',
-          customerPhone: '(18) 99999-9999',
-          tattooDescription: 'Dragão oriental',
-          bodyArea: 'Braço',
-          referenceImages: []
-        },
-        {
-          serviceType: 'consultation',
-          artistId: '2',
-          date: new Date(2025, 10, 26).toISOString().split('T')[0],
-          timeSlot: '14:00',
-          customerName: 'Maria Santos',
-          customerEmail: 'maria@email.com',
-          customerPhone: '(18) 98888-8888',
-          tattooDescription: '',
-          bodyArea: '',
-          referenceImages: []
-        },
-        {
-          serviceType: 'touch-up',
-          artistId: '1',
-          date: new Date(2025, 10, 28).toISOString().split('T')[0],
-          timeSlot: '15:00',
-          customerName: 'Pedro Costa',
-          customerEmail: 'pedro@email.com',
-          customerPhone: '(18) 97777-7777',
-          tattooDescription: 'Retoque de tatuagem antiga',
-          bodyArea: 'Costas',
-          referenceImages: []
-        },
-        {
-          serviceType: 'new-tattoo',
-          artistId: '3',
-          date: new Date(2025, 10, 29).toISOString().split('T')[0],
-          timeSlot: '11:00',
-          customerName: 'Ana Paula',
-          customerEmail: 'ana@email.com',
-          customerPhone: '(18) 96666-6666',
-          tattooDescription: 'Flor de lótus',
-          bodyArea: 'Ombro',
-          referenceImages: []
-        }
-      ];
-
-      this.allBookings.set(mockBookings);
-      this.generateCalendarDays();
-      this.isLoading.set(false);
-    }, 500);
+    this.adminBookingService.getAllBookings().subscribe({
+      next: (bookings) => {
+        console.log('📅 Bookings recebidos:', bookings);
+        this.allBookings.set(bookings);
+        this.generateCalendarDays();
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        console.error('Erro ao carregar agendamentos:', err);
+        this.notificationService.error('Erro ao carregar agendamentos');
+        this.isLoading.set(false);
+      }
+    });
   }
 
   generateCalendarDays() {
@@ -140,9 +96,19 @@ export class AdminScheduleComponent implements OnInit {
     this.calendarDays.set(days);
   }
 
-  getBookingsForDate(date: Date): BookingData[] {
+  getBookingsForDate(date: Date): BookingAdmin[] {
     const dateStr = date.toISOString().split('T')[0];
-    return this.allBookings().filter(booking => booking.date === dateStr);
+    const filtered = this.allBookings().filter(booking => {
+      // A API retorna date como "2025-11-30T00:00:00.000Z", então precisa extrair só a data
+      const bookingDate = booking.date.split('T')[0];
+      return bookingDate === dateStr;
+    });
+
+    if (filtered.length > 0) {
+      console.log(`📌 Data ${dateStr}: ${filtered.length} agendamento(s)`);
+    }
+
+    return filtered;
   }
 
   isToday(date: Date): boolean {
@@ -193,6 +159,16 @@ export class AdminScheduleComponent implements OnInit {
       'cover-up': 'Cover Up'
     };
     return types[type] || type;
+  }
+
+  getStatusLabel(status: string): string {
+    const labels: { [key: string]: string } = {
+      'PENDING': 'Pendente',
+      'CONFIRMED': 'Confirmado',
+      'COMPLETED': 'Concluído',
+      'CANCELLED': 'Cancelado'
+    };
+    return labels[status] || status;
   }
 
   closeDetails() {

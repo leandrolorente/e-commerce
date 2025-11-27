@@ -4,7 +4,6 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProductService } from '@core/services/product.service';
 import { CartService } from '@core/services/cart.service';
 import { Product, Review } from '@models';
-import { MOCK_REVIEWS, MOCK_PRODUCTS } from '@core/services/mock-data';
 
 @Component({
   selector: 'app-product-detail',
@@ -56,18 +55,21 @@ export class ProductDetailComponent {
   }
 
   private loadProduct(id: string): void {
-    const product = MOCK_PRODUCTS.find(p => p.id === id);
-    if (product) {
-      this.product.set(product);
-    } else {
-      console.error('Produto não encontrado:', id);
-      this.router.navigate(['/']);
-    }
+    this.productService.getProductById(id).subscribe({
+      next: (product) => {
+        this.product.set(product);
+      },
+      error: (err) => {
+        console.error('Erro ao carregar produto:', err);
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   private loadReviews(productId: string): void {
-    const productReviews = MOCK_REVIEWS.filter(r => r.productId === productId);
-    this.reviews.set(productReviews);
+    // TODO: Criar endpoint no backend para reviews
+    // Por enquanto, manter vazio até o backend ter o endpoint /api/reviews/:productId
+    this.reviews.set([]);
   }
 
   selectImage(index: number): void {

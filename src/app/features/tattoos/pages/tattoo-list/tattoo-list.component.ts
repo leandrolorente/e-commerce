@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Tattoo } from '@models';
-import { MOCK_TATTOOS } from '@core/services/tattoo-mocks';
+import { TattooService } from '@core/services/tattoo.service';
 
 @Component({
   selector: 'app-tattoo-list',
@@ -13,6 +13,7 @@ import { MOCK_TATTOOS } from '@core/services/tattoo-mocks';
 })
 export class TattooListComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private tattooService = inject(TattooService);
 
   tattoos = signal<Tattoo[]>([]);
   selectedArea = signal<string>('');
@@ -28,16 +29,21 @@ export class TattooListComponent implements OnInit {
 
   filterTattoos(): void {
     this.loading.set(true);
-    setTimeout(() => {
-      if (this.selectedArea()) {
-        this.tattoos.set(
-          MOCK_TATTOOS.filter(t => t.bodyArea === this.selectedArea())
-        );
-      } else {
-        this.tattoos.set(MOCK_TATTOOS);
+    const filters: any = {};
+    if (this.selectedArea()) {
+      filters.bodyArea = this.selectedArea();
+    }
+
+    this.tattooService.getTattoos(filters).subscribe({
+      next: (tattoos) => {
+        this.tattoos.set(tattoos);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.error('Erro ao carregar tatuagens:', err);
+        this.loading.set(false);
       }
-      this.loading.set(false);
-    }, 300);
+    });
   }
 
   onImageError(event: Event): void {

@@ -48,9 +48,7 @@ export class BodyMapComponent {
         { label: 'Antebraço Interno', value: BodyArea.ANTEBRACO_INTERNO },
         { label: 'Antebraço Externo', value: BodyArea.ANTEBRACO_EXTERNO },
         { label: 'Cotovelo', value: BodyArea.COTOVELO },
-        { label: 'Ombro', value: BodyArea.OMBRO },
-        { label: 'Ombro Frontal', value: BodyArea.OMBRO_FRONTAL },
-        { label: 'Ombro Traseiro', value: BodyArea.OMBRO_TRASEIRO }
+        { label: 'Ombro Completo', value: BodyArea.OMBRO_COMPLETO }
       ]
     },
     {

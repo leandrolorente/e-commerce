@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 
 export interface UserProfile {
   id: string;
@@ -30,79 +32,44 @@ export interface Address {
   providedIn: 'root'
 })
 export class UserService {
-  private mockProfile: UserProfile = {
-    id: '1',
-    name: 'Cliente Exemplo',
-    email: 'cliente@example.com',
-    phone: '(18) 99656-6692',
-    cpf: '123.456.789-00',
-    birthDate: '1990-01-01',
-    photo: 'https://i.pravatar.cc/150?img=1',
-    createdAt: new Date('2024-01-01')
-  };
-
-  private mockAddresses: Address[] = [
-    {
-      id: '1',
-      label: 'Casa',
-      zipCode: '19000-000',
-      street: 'Rua Exemplo',
-      number: '123',
-      complement: 'Apto 45',
-      neighborhood: 'Centro',
-      city: 'Presidente Prudente',
-      state: 'SP',
-      isDefault: true
-    }
-  ];
-
-  constructor() {}
+  private http = inject(HttpClient);
+  private apiUrl = `${environment.apiUrl}/user`;
 
   // GET /api/user/profile
   getProfile(): Observable<UserProfile> {
-    return of(this.mockProfile).pipe(delay(300));
+    return this.http.get<UserProfile>(`${this.apiUrl}/profile`);
   }
 
   // PUT /api/user/profile
   updateProfile(profile: Partial<UserProfile>): Observable<UserProfile> {
-    this.mockProfile = { ...this.mockProfile, ...profile };
-    return of(this.mockProfile).pipe(delay(500));
+    return this.http.put<UserProfile>(`${this.apiUrl}/profile`, profile);
   }
 
   // PUT /api/user/change-password
-  changePassword(currentPassword: string, newPassword: string): Observable<boolean> {
-    return of(true).pipe(delay(500));
+  changePassword(currentPassword: string, newPassword: string): Observable<{ message: string }> {
+    return this.http.put<{ message: string }>(`${this.apiUrl}/change-password`, {
+      currentPassword,
+      newPassword
+    });
   }
 
   // GET /api/user/addresses
   getAddresses(): Observable<Address[]> {
-    return of(this.mockAddresses).pipe(delay(300));
+    return this.http.get<Address[]>(`${this.apiUrl}/addresses`);
   }
 
   // POST /api/user/addresses
-  addAddress(address: Address): Observable<Address> {
-    const newAddress = { ...address, id: Date.now().toString() };
-    this.mockAddresses.push(newAddress);
-    return of(newAddress).pipe(delay(500));
+  addAddress(address: Omit<Address, 'id'>): Observable<Address> {
+    return this.http.post<Address>(`${this.apiUrl}/addresses`, address);
   }
 
   // DELETE /api/user/addresses/:id
-  deleteAddress(addressId: string): Observable<boolean> {
-    this.mockAddresses = this.mockAddresses.filter(a => a.id !== addressId);
-    return of(true).pipe(delay(300));
+  deleteAddress(addressId: string): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(`${this.apiUrl}/addresses/${addressId}`);
   }
 
   // PUT /api/user/addresses/:id/set-default
-  setDefaultAddress(addressId: string): Observable<boolean> {
-    this.mockAddresses = this.mockAddresses.map(a => ({
-      ...a,
-      isDefault: a.id === addressId
-    }));
-    return of(true).pipe(delay(300));
-  }
-
-  // DELETE /api/user/account
-  deleteAccount(): Observable<boolean> {
-    return of(true).pipe(delay(500));
+  setDefaultAddress(addressId: string): Observable<Address> {
+    return this.http.put<Address>(`${this.apiUrl}/addresses/${addressId}/set-default`, {});
   }
 }

@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
 import { CartService } from '@core/services/cart.service';
+import { ProductService } from '@core/services/product.service';
 import { Product } from '@models';
-import { MOCK_PRODUCTS } from '@core/services/mock-data';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +17,7 @@ import { MOCK_PRODUCTS } from '@core/services/mock-data';
 export class HeaderComponent {
   private authService = inject(AuthService);
   private cartService = inject(CartService);
+  private productService = inject(ProductService);
   private router = inject(Router);
 
   currentUser = this.authService.currentUser;
@@ -41,14 +42,19 @@ export class HeaderComponent {
       return;
     }
 
-    const suggestions = MOCK_PRODUCTS.filter(product =>
-      product.name.toLowerCase().includes(term) ||
-      product.description.toLowerCase().includes(term) ||
-      product.category.toLowerCase().includes(term)
-    ).slice(0, 5); // Limitar a 5 sugestões
-
-    this.searchSuggestions.set(suggestions);
-    this.showSearchDropdown.set(suggestions.length > 0);
+    // Buscar produtos no backend
+    this.productService.getProducts({ search: term, limit: 5 }).subscribe({
+      next: (response) => {
+        const products = response.products || [];
+        this.searchSuggestions.set(products);
+        this.showSearchDropdown.set(products.length > 0);
+      },
+      error: (err) => {
+        console.error('Erro ao buscar produtos:', err);
+        this.searchSuggestions.set([]);
+        this.showSearchDropdown.set(false);
+      }
+    });
   }
 
   selectSuggestion(product: Product): void {

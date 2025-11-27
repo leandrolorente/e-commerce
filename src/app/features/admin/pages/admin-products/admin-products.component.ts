@@ -12,7 +12,6 @@ interface ProductFormData {
   price: number;
   discountPrice?: number;
   stock: number;
-  imageUrl: string;
 }
 
 interface ImagePreview {
@@ -36,7 +35,7 @@ export class AdminProductsComponent implements OnInit {
   isEditMode = signal(false);
   productToDelete = signal<Product | null>(null);
   editingProductId = signal<string | null>(null);
-  
+
   // Image upload
   imagePreviews = signal<ImagePreview[]>([]);
   isDragging = signal(false);
@@ -45,10 +44,12 @@ export class AdminProductsComponent implements OnInit {
   selectedCategory: ProductCategory | '' = '';
 
   categories = [
-    { value: ProductCategory.CUIDADOS, label: 'Cuidados' },
-    { value: ProductCategory.VESTUARIO, label: 'Vestuário' },
-    { value: ProductCategory.ACESSORIOS, label: 'Acessórios' },
-    { value: ProductCategory.EQUIPAMENTOS, label: 'Equipamentos' }
+    { value: ProductCategory.AFTERCARE, label: 'Cuidados Pós-Tatuagem' },
+    { value: ProductCategory.CLOTHING, label: 'Vestuário' },
+    { value: ProductCategory.ACCESSORIES, label: 'Acessórios' },
+    { value: ProductCategory.EQUIPMENT, label: 'Equipamentos' },
+    { value: ProductCategory.GIFT_CARD, label: 'Vale Presente' },
+    { value: ProductCategory.ART, label: 'Arte' }
   ];
 
   formData: ProductFormData = this.getEmptyFormData();
@@ -58,7 +59,7 @@ export class AdminProductsComponent implements OnInit {
 
     if (this.searchTerm) {
       const term = this.searchTerm.toLowerCase();
-      filtered = filtered.filter(p => 
+      filtered = filtered.filter(p =>
         p.name.toLowerCase().includes(term) ||
         p.description.toLowerCase().includes(term)
       );
@@ -110,8 +111,7 @@ export class AdminProductsComponent implements OnInit {
       category: product.category,
       price: product.price,
       discountPrice: product.discountPrice,
-      stock: product.stock,
-      imageUrl: product.images[0] || ''
+      stock: product.stock
     };
     this.showModal.set(true);
   }
@@ -249,7 +249,7 @@ export class AdminProductsComponent implements OnInit {
 
   handleFiles(files: File[]) {
     const imageFiles = files.filter(file => file.type.startsWith('image/'));
-    
+
     imageFiles.forEach(file => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -264,7 +264,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   removeImage(index: number) {
-    this.imagePreviews.update(previews => 
+    this.imagePreviews.update(previews =>
       previews.filter((_, i) => i !== index)
     );
   }
@@ -276,8 +276,7 @@ export class AdminProductsComponent implements OnInit {
       category: '',
       price: 0,
       discountPrice: undefined,
-      stock: 0,
-      imageUrl: ''
+      stock: 0
     };
   }
 }

@@ -23,5 +23,6 @@ export interface RegisterData {
 
 export interface AuthResponse {
   user: User;
-  token: string;
+  token?: string;
+  access_token?: string; // Backend NestJS retorna access_token
 }

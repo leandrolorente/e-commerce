@@ -38,7 +38,14 @@ export class LoginComponent {
         this.router.navigate(['/']);
       },
       error: (error) => {
-        this.errorMessage = 'Email ou senha inválidos';
+        console.error('Login error:', error);
+        if (error.status === 0) {
+          this.errorMessage = 'Erro de conexão. Verifique se o backend está rodando em http://localhost:3000';
+        } else if (error.status === 401) {
+          this.errorMessage = 'Email ou senha inválidos';
+        } else {
+          this.errorMessage = error.error?.message || 'Erro ao fazer login. Tente novamente.';
+        }
         this.isLoading = false;
       }
     });

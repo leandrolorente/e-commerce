@@ -2,16 +2,17 @@ import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product, ProductFilter, ProductListResponse } from '@models';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private readonly API_URL = 'http://localhost:3000/api/products';
-  
+  private readonly API_URL = `${environment.apiUrl}/products`;
+
   private productsSignal = signal<Product[]>([]);
   private loadingSignal = signal<boolean>(false);
-  
+
   products = this.productsSignal.asReadonly();
   loading = this.loadingSignal.asReadonly();
   productCount = computed(() => this.productsSignal().length);
@@ -19,12 +20,26 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts(filter?: ProductFilter, page: number = 1, pageSize: number = 20): Observable<ProductListResponse> {
-    let params = new HttpParams()
-      .set('page', page.toString())
-      .set('pageSize', pageSize.toString());
+    let params = new HttpParams();
+
+    // Se tiver featured ou limit, retorna array direto (homepage)
+    if (filter?.search) {
+      params = params.set('search', filter.search);
+    }
+    if (filter?.limit) {
+      params = params.set('limit', filter.limit.toString());
+    }
+    if (filter?.category) {
+      params = params.set('category', filter.category);
+    }
+
+    // Se não for busca da homepage, adiciona paginação
+    if (!filter?.limit) {
+      params = params.set('page', page.toString());
+      params = params.set('pageSize', pageSize.toString());
+    }
 
     if (filter) {
-      if (filter.category) params = params.set('category', filter.category);
       if (filter.minPrice) params = params.set('minPrice', filter.minPrice.toString());
       if (filter.maxPrice) params = params.set('maxPrice', filter.maxPrice.toString());
       if (filter.searchTerm) params = params.set('search', filter.searchTerm);

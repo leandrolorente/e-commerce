@@ -237,3 +237,16 @@
     </div>
   }
 </div>
+
+<!-- Modal de Sucesso -->
+@if (showSuccessModal()) {
+  <div class="success-modal-overlay">
+    <div class="success-modal">
+      <div class="success-icon">✓</div>
+      <h2>Agendamento Realizado!</h2>
+      <p>Seu agendamento foi confirmado com sucesso.</p>
+      <p class="success-note">Em instantes você será redirecionado para o WhatsApp para finalizar os detalhes.</p>
+      <div class="success-loader"></div>
+    </div>
+  </div>
+}

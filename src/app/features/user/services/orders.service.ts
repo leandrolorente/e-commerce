@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Order } from '../../../models/interfaces/order.interface';
-import { Product } from '@models';
+import { environment } from '../../../../environments/environment';
 
 export { Order } from '../../../models/interfaces/order.interface';
 
@@ -10,31 +10,34 @@ export { Order } from '../../../models/interfaces/order.interface';
   providedIn: 'root'
 })
 export class OrdersService {
-  private mockOrders: Order[] = [];
+  private http = inject(HttpClient);
+  private apiUrl = `${environment.apiUrl}/orders`;
 
-  constructor() {}
-
-  // GET /api/orders/my-orders
+  // GET /api/orders/my-orders (or GET /api/orders with JWT filtering on backend)
   getMyOrders(): Observable<Order[]> {
-    return of(this.mockOrders).pipe(delay(500));
+    return this.http.get<Order[]>(`${this.apiUrl}/my-orders`);
   }
 
   // GET /api/orders/:id
-  getOrderById(orderId: string): Observable<Order | undefined> {
-    return of(this.mockOrders.find(o => o.id === orderId)).pipe(delay(300));
+  getOrderById(orderId: string): Observable<Order> {
+    return this.http.get<Order>(`${this.apiUrl}/${orderId}`);
   }
 
   // PUT /api/orders/:id/cancel
-  cancelOrder(orderId: string): Observable<boolean> {
-    return of(true).pipe(delay(500));
+  cancelOrder(orderId: string): Observable<{ message: string }> {
+    return this.http.put<{ message: string }>(`${this.apiUrl}/${orderId}/cancel`, {});
   }
 
   // POST /api/orders/:id/track
-  trackOrder(orderId: string): Observable<any> {
-    return of({
-      status: 'SHIPPED',
-      trackingCode: 'BR123456789BR',
-      estimatedDelivery: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)
-    }).pipe(delay(300));
+  trackOrder(orderId: string): Observable<{
+    status: string;
+    trackingCode: string;
+    estimatedDelivery: Date;
+  }> {
+    return this.http.get<{
+      status: string;
+      trackingCode: string;
+      estimatedDelivery: Date;
+    }>(`${this.apiUrl}/${orderId}/track`);
   }
 }

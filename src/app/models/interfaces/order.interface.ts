@@ -45,17 +45,18 @@ export interface OrderRequest {
 
 export enum PaymentMethod {
   PIX = 'PIX',
-  CREDIT_CARD = 'Cartão de Crédito',
-  DEBIT_CARD = 'Cartão de Débito',
-  CASH = 'Dinheiro',
-  BANK_TRANSFER = 'Transferência Bancária'
+  CREDIT_CARD = 'CREDIT_CARD',
+  DEBIT_CARD = 'DEBIT_CARD',
+  CASH = 'CASH',
+  BANK_TRANSFER = 'BANK_TRANSFER'
 }
 
 export enum PaymentStatus {
-  PENDING = 'Pendente',
-  PAID = 'Pago',
-  FAILED = 'Falhou',
-  REFUNDED = 'Reembolsado'
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+  CANCELLED = 'CANCELLED',
+  REFUNDED = 'REFUNDED'
 }
 
 export interface OrderFilter {

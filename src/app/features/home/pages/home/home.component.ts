@@ -1,19 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { Product } from '@models';
+import { Product, Testimonial } from '@models';
 import { Tattoo } from '../../../../models/interfaces/tattoo.interface';
 import { HomeService } from '../../services/home.service';
-
-interface Testimonial {
-  id: string;
-  customerName: string;
-  customerPhoto: string;
-  rating: number;
-  comment: string;
-  date: Date;
-  service: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -28,12 +18,12 @@ export class HomeComponent implements OnInit {
   testimonials = signal<Testimonial[]>([]);
   isLoading = signal(true);
 
-  studioStats = {
-    yearsExperience: 6,
-    satisfiedClients: 500,
-    artistsCount: 3,
-    awardsCount: 10
-  };
+  studioStats = signal({
+    yearsExperience: 0,
+    satisfiedClients: 0,
+    artistsCount: 0,
+    awardsCount: 0
+  });
 
   constructor(
     private homeService: HomeService,
@@ -47,7 +37,6 @@ export class HomeComponent implements OnInit {
   loadHomeData() {
     this.isLoading.set(true);
 
-    // Em produção, virá do backend via API
     this.homeService.getFeaturedTattoos().subscribe({
       next: (tattoos) => this.featuredTattoos.set(tattoos)
     });
@@ -61,6 +50,10 @@ export class HomeComponent implements OnInit {
         this.testimonials.set(testimonials);
         this.isLoading.set(false);
       }
+    });
+
+    this.homeService.getStudioStats().subscribe({
+      next: (stats) => this.studioStats.set(stats)
     });
   }
 

@@ -81,37 +81,48 @@
               </div>
             } @else {
               <div class="bookings-list">
-                @for (booking of selectedDayBookings(); track booking.timeSlot) {
-                  <div class="booking-item">
+                @for (booking of selectedDayBookings(); track booking.id) {
+                  <div class="booking-item" [class.confirmed]="booking.status === 'CONFIRMED'" [class.completed]="booking.status === 'COMPLETED'" [class.cancelled]="booking.status === 'CANCELLED'">
                     <div class="booking-time">
                       <div class="time-icon">🕐</div>
-                      <span class="time">{{ booking.timeSlot }}</span>
+                      <span class="time">{{ booking.date }}</span>
                     </div>
                     <div class="booking-details">
                       <div class="service-type">
-                        {{ getServiceLabel(booking.serviceType) }}
+                        <span class="status-badge">{{ getStatusLabel(booking.status) }}</span>
                       </div>
                       <div class="customer-name">
-                        <strong>{{ booking.customerName }}</strong>
+                        <strong>{{ booking.user?.name || 'Cliente' }}</strong>
                       </div>
-                      <div class="contact-info">
-                        <div class="contact-item">
-                          <span class="icon">📧</span>
-                          <span>{{ booking.customerEmail }}</span>
-                        </div>
-                        <div class="contact-item">
-                          <span class="icon">📱</span>
-                          <span>{{ booking.customerPhone }}</span>
-                        </div>
-                      </div>
-                      @if (booking.tattooDescription) {
-                        <div class="tattoo-info">
-                          <strong>Descrição:</strong> {{ booking.tattooDescription }}
+                      @if (booking.artist) {
+                        <div class="artist-info">
+                          <span class="icon">🎨</span>
+                          <span>{{ booking.artist.name }} - {{ booking.artist.specialty }}</span>
                         </div>
                       }
-                      @if (booking.bodyArea) {
+                      <div class="contact-info">
+                        @if (booking.user?.email) {
+                          <div class="contact-item">
+                            <span class="icon">📧</span>
+                            <span>{{ booking.user?.email }}</span>
+                          </div>
+                        }
+                        @if (booking.user?.phone) {
+                          <div class="contact-item">
+                            <span class="icon">📱</span>
+                            <span>{{ booking.user?.phone }}</span>
+                          </div>
+                        }
+                      </div>
+                      @if (booking.notes) {
                         <div class="tattoo-info">
-                          <strong>Área:</strong> {{ booking.bodyArea }}
+                          <strong>Observações:</strong>
+                          <pre style="white-space: pre-wrap; margin: 0.5rem 0;">{{ booking.notes }}</pre>
+                        </div>
+                      }
+                      @if (booking.tattoo) {
+                        <div class="tattoo-info">
+                          <strong>Tatuagem:</strong> {{ booking.tattoo.name }}
                         </div>
                       }
                     </div>

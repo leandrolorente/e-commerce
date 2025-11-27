@@ -36,6 +36,7 @@ jobs:
         run: |
           echo "export const environment = {
             production: true,
+            apiUrl: '${{ secrets.API_URL }}',
             geminiApiKey: '${{ secrets.GEMINI_API_KEY }}'
           };" > src/environments/environment.prod.ts
 

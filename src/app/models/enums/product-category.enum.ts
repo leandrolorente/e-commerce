@@ -1,7 +1,8 @@
 export enum ProductCategory {
-  CUIDADOS = 'cuidados',
-  VESTUARIO = 'vestuario',
-  ACESSORIOS = 'acessorios',
-  EQUIPAMENTOS = 'equipamentos',
-  OTHER = 'other'
+  AFTERCARE = 'AFTERCARE',
+  CLOTHING = 'CLOTHING',
+  ACCESSORIES = 'ACCESSORIES',
+  EQUIPMENT = 'EQUIPMENT',
+  GIFT_CARD = 'GIFT_CARD',
+  ART = 'ART'
 }

@@ -20,6 +20,7 @@ export class BookingComponent implements OnInit {
   availableSlots = signal<BookingTimeSlot[]>([]);
   isLoading = signal(false);
   isSaving = signal(false);
+  showSuccessModal = signal(false);
 
   formData: BookingData = {
     serviceType: '',
@@ -81,12 +82,16 @@ export class BookingComponent implements OnInit {
 
   loadAvailableSlots() {
     this.isLoading.set(true);
+
     this.bookingService.getAvailableSlots(this.formData.artistId, this.formData.date).subscribe({
       next: (slots) => {
         this.availableSlots.set(slots);
         this.isLoading.set(false);
       },
-      error: () => this.isLoading.set(false)
+      error: (err) => {
+        console.error('Erro ao carregar slots:', err);
+        this.isLoading.set(false);
+      }
     });
   }
 
@@ -147,9 +152,14 @@ export class BookingComponent implements OnInit {
     this.bookingService.createBooking(this.formData).subscribe({
       next: (response) => {
         this.isSaving.set(false);
-        this.notificationService.success('Agendamento realizado com sucesso! Em breve entraremos em contato para confirmar.', 5000);
-        this.sendWhatsAppConfirmation();
-        this.router.navigate(['/']);
+        this.showSuccessModal.set(true);
+
+        // Aguardar 5 segundos antes de abrir WhatsApp e redirecionar
+        setTimeout(() => {
+          this.showSuccessModal.set(false);
+          this.sendWhatsAppConfirmation();
+          this.router.navigate(['/']);
+        }, 5000);
       },
       error: () => {
         this.isSaving.set(false);
@@ -173,7 +183,17 @@ export class BookingComponent implements OnInit {
       `Telefone: ${this.formData.customerPhone}`
     );
 
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+    console.log('Abrindo WhatsApp:', whatsappUrl);
+
+    // Tenta abrir em nova aba
+    const newWindow = window.open(whatsappUrl, '_blank');
+
+    // Se o popup foi bloqueado, tenta redirecionar na mesma aba
+    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+      console.log('Popup bloqueado, tentando redirecionar...');
+      window.location.href = whatsappUrl;
+    }
   }
 
   getMinDate(): string {
